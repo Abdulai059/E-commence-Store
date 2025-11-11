@@ -12,10 +12,10 @@ function Topbar() {
 
       <div className="flex gap-4">
         <a className="text-base" href="#">
-          Wishlist (0)
+          wishlist (0)
         </a>
         <a className="text-base" href="#">
-          Track Order
+          track order
         </a>
       </div>
     </div>
