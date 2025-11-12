@@ -1,7 +1,7 @@
 function Topbar() {
   return (
-    <div className="md:flex py-2 hidden justify-between w-full bg-primary px-4 ">
-      <div className="flex gap-4 ">
+    <div className="text-foreground bg-primary hidden  justify-between px-4 py-2 md:flex">
+      <div className="flex gap-4">
         <a className="text-base" href="#">
           📞 +233 24 123 456
         </a>

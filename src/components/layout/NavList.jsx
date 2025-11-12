@@ -15,7 +15,7 @@ function NavList() {
               aria-hidden
             />
           </NavigationMenu.Trigger>
-          <NavigationMenu.Content className="absolute left-0 top-0 w-full data-[motion=from-end] bg-amber-950 :animate-enterFromRight data-[motion=from-start]:animate-enterFromLeft data-[motion=to-end]:animate-exitToRight data-[motion=to-start]:animate-exitToLeft sm:w-auto">
+          <NavigationMenu.Content className="absolute left-0 top-0 w-full data-[motion=from-end] bg-popover :animate-enterFromRight data-[motion=from-start]:animate-enterFromLeft data-[motion=to-end]:animate-exitToRight data-[motion=to-start]:animate-exitToLeft sm:w-auto">
             <ul className="one m-0 grid list-none gap-x-2.5 p-[22px] sm:w-[500px] sm:grid-cols-[0.75fr_1fr]">
               <li className="row-span-3 grid">
                 <NavigationMenu.Link asChild>
@@ -65,7 +65,7 @@ function NavList() {
               aria-hidden
             />
           </NavigationMenu.Trigger>
-          <NavigationMenu.Content className="absolute left-0 top-0 w-full sm:w-auto  bg-amber-950 ">
+          <NavigationMenu.Content className="absolute left-0 top-0 w-full sm:w-auto  bg-popover ">
             <ul className="m-0 grid list-none gap-x-2.5 p-[22px] sm:w-[600px] sm:grid-flow-col sm:grid-rows-2">
               <ListItem
                 title="Smartphones"
