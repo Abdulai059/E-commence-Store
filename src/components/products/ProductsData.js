@@ -1,45 +1,34 @@
  export const products = [
     {
-      image: {
-        src: '/SAMSUNGTV.jpg',
-      },
-      title: 'Another Card',
-      badge: 'HOT',
-      description: 'This is another product feature card with example content.',
-      actions: ['Trending', 'Deals'],
+      id: 1,
+      image: '/SAMSUNGTV.jpg',
+      title: 'White crew-Neck T-Shirt',
+      price: 29.0,
+      imagePosition: 'object-top',
+      href: '#',
     },
-
     {
-      image: {
-        src: '/aircon.webp',
-        alt: 'Shoes',
-      },
-      title: 'Card Title',
-      badge: 'NEW',
-      description:
-        'A card component has a figure, a body part, and inside body ',
-      actions: ['Fashion', 'Products'],
+      id: 2,
+      image: '/aircon.webp',
+      title: 'White crew-Neck T-Shirt',
+      price: 39.0,
+      imagePosition: 'object-right',
+      href: '#',
     },
-
     {
-      image: {
-        src: '/nasco-blendeer.webp',
-      },
-      title: 'Another Card',
-      badge: 'HOT',
-      description: 'This is another product feature card with example content.',
-      actions: ['Trending', 'Deals'],
+      id: 3,
+      image: '/Microwavev.jpg',
+      title: 'White crew-Neck T-Shirt',
+      price: 49.0,
+      imagePosition: 'object-right',
+      href: '#',
     },
-
     {
-      image: {
-        src: 'deepfridzer.jpg',
-        alt: 'Shoes',
-      },
-      title: 'Another Card',
-      badge: 'HOT',
-      description: 'This is another product feature card with example content.',
-      actions: ['Trending', 'Deals'],
+      id: 4,
+      image: '/deepfridzer.jpg',
+      title: 'White crew-Neck T-Shirt',
+      price: 29.0,
+      imagePosition: 'object-right',
+      href: '#',
     },
-    // Add more cards if you want...
   ];

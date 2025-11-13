@@ -1,14 +1,18 @@
 import Home from '../../pages/Home';
 import Product from '../../pages/Product';
+import Feature from '../products/Feature';
+import Footer from './Footer';
 import Header from './Header';
 
 function AppLayout() {
   return (
     <>
       <Header />
-      <main className='max-w-[1500px] mx-auto overflow-y-auto'>
+      <main className="mx-auto max-w-[1500px] overflow-y-auto">
         <Home />
+        <Feature />
         <Product />
+        <Footer/>
       </main>
     </>
   );
