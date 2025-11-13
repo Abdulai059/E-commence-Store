@@ -1,41 +1,97 @@
-import { div } from "motion/react-client";
+import { Heart, ShoppingCart, Eye } from 'lucide-react';
+import { useState } from 'react';
 
-export function ProductCard({ product }) {
-  const { 
-    image, 
-    title, 
-    price, 
-    href = '#', 
-    imagePosition = 'object-center' 
-  } = product;
+function ProductCard({product}) {
+
+const [favorites, setFavorites] = useState([]);
+  const [cart, setCart] = useState([]);
+
+  const toggleFavorite = (id) => {
+    setFavorites((prev) => (prev.includes(id) ? prev.filter((fav) => fav !== id) : [...prev, id]));
+  };
+
+  const addToCart = (product) => {
+    setCart((prev) => [...prev, product]);
+  };
+
+  const getBadgeColor = (badge) => {
+    switch (badge) {
+      case 'New':
+        return 'bg-blue-500';
+      case 'Popular':
+        return 'bg-purple-500';
+      case 'Sale':
+        return 'bg-red-500';
+      default:
+        return 'bg-gray-500';
+    }
+  };
+
 
   return (
-    <div>
-
-  <a 
-      href={href}
-      className="group block w-full max-w-sm transition-transform duration-200 hover:scale-[1.02]"
-      aria-label={`View ${title}`}
+    <div
+      key={product.id}
+      className="group relative overflow-hidden rounded-2xl bg-white shadow-md transition-all duration-300 hover:shadow-2xl"
     >
-      <div className="overflow-hidden rounded-lg bg-gray-100">
-        <img
-          className={`h-72 w-full object-cover ${imagePosition} transition-all duration-300 group-hover:scale-105`}
-          src={image}
-          alt={title}
-          loading="lazy"
+      {/* Badge */}
+      {product.badge && (
+        <div
+          className={`absolute top-4 left-4 ${getBadgeColor(product.badge)} z-10 rounded-full px-3 py-1 text-xs font-semibold text-white`}
+        >
+          {product.badge}
+        </div>
+      )}
+
+      {/* Favorite Button */}
+      <button
+        onClick={() => toggleFavorite(product.id)}
+        className="absolute top-4 right-4 z-10 rounded-full bg-white p-2 shadow-md transition-transform hover:scale-110"
+      >
+        <Heart
+          size={20}
+          className={
+            favorites.includes(product.id) ? 'fill-red-500 text-red-500' : 'text-slate-400'
+          }
         />
+      </button>
+
+      {/* Image */}
+      <div className="relative h-80 overflow-hidden">
+        <img
+          src={product.image}
+          alt={product.name}
+          className="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-110"
+        />
+
+        {/* Hover Overlay */}
+        <div className="inset-0bg-opacity-0 group-hover:bg-opacity-20 absolute flex items-center justify-center transition-all duration-300">
+          <button className="flex translate-y-4 transform items-center gap-2 rounded-full bg-white px-6 py-2 font-medium text-slate-800 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100 hover:bg-slate-800 hover:text-white">
+            <Eye size={18} />
+            Quick View
+          </button>
+        </div>
       </div>
-      
-      <div className="mt-3 space-y-1">
-        <h3 className="text-sm font-medium text-gray-900 line-clamp-2 group-hover:text-gray-600 transition-colors">
-          {title}
-        </h3>
-        <p className="text-lg font-semibold text-gray-900">
-          ${price.toFixed(2)}
-        </p>
+
+      {/* Content */}
+      <div className="p-6">
+        <span className="text-xs font-medium tracking-wider text-slate-500 uppercase">
+          {product.category}
+        </span>
+        <h3 className="mt-1 mb-3 text-base font-medium text-slate-800">{product.name}</h3>
+
+        <div className="flex items-center justify-between">
+          <p className="text-xl font-semibold text-slate-900">${product.price.toFixed(2)}</p>
+          <button
+            onClick={() => addToCart(product)}
+            className="group/btn flex items-center gap-2 rounded-lg bg-slate-800 px-4 py-2 text-white transition-colors hover:bg-slate-700"
+          >
+            <ShoppingCart size={18} className="transition-transform group-hover/btn:scale-110" />
+            Add
+          </button>
+        </div>
       </div>
-    </a>
     </div>
-  
   );
 }
+
+export default ProductCard;

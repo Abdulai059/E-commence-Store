@@ -14,8 +14,8 @@ function Home() {
   }, []);
 
   return (
-    <section className="relative flex  min-h-screen items-center bg-white py-16 md:pt-32">
-      <div className=" px-4 md:px-8">
+    <section className="relative flex min-h-screen items-center py-16 md:pt-32">
+      <div className="px-4 md:px-8">
         <div className="grid items-center gap-x-20 gap-y-8 md:grid-cols-2">
           {/* Left: Image */}
           <div className="relative grid justify-items-center pt-8">
@@ -104,7 +104,10 @@ function Home() {
               <button className="bg-secondary hover:bg-first-color-alt rounded-lg px-7 py-4 font-medium text-white transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg">
                 Buy Now
               </button>
-              <a href="#" className="text-title-color flex items-center gap-2 hover:underline md:hidden">
+              <a
+                href="#"
+                className="text-title-color flex items-center gap-2 hover:underline md:hidden"
+              >
                 View Details <i className="bx bx-right-arrow-alt text-xl" />
               </a>
             </motion.div>
@@ -112,7 +115,7 @@ function Home() {
         </div>
 
         {/* Pagination */}
-        <div className="md:mt-[90px] flex justify-center gap-2">
+        <div className="flex justify-center gap-2 md:mt-[90px]">
           {homeSlides.map((_, index) => (
             <span
               key={index}
