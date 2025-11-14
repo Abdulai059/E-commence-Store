@@ -6,7 +6,7 @@ function ProductFeature({ products }) {
   const [cart, setCart] = useState([]);
 
   return (
-    <div className="min-h-screen px-4 py-12">
+    <div className="px-4 py-12">
       <div className="mx-auto max-w-7xl">
         {/* Header */}
         <div className="mb-12 text-center">
@@ -24,7 +24,7 @@ function ProductFeature({ products }) {
         <ProductGrid products={products} />
 
         {/* Additional Info */}
-        <div className="mt-16 text-center hidden">
+        <div className="mt-16 hidden text-center">
           <button className="rounded-full bg-slate-800 px-8 py-3 font-medium text-white shadow-lg transition-colors hover:bg-slate-700 hover:shadow-xl">
             View All Products
           </button>
@@ -36,7 +36,7 @@ function ProductFeature({ products }) {
 
 export default ProductFeature;
 
-export function ProductGrid({products}) {
+export function ProductGrid({ products }) {
   return (
     <section className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
       {products.map((product) => (

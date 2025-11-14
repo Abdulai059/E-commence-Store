@@ -1,6 +1,6 @@
 const homeSlides = [
   {
-    image: "public/SAMSUNGTV.jpg",
+    image: "/SAMSUNGTV.jpg",
     title: "Samsung TV",
     subtitle: "Smart 4K UHD",
     trending: "#1 TRENDING ITEM",
@@ -10,7 +10,7 @@ const homeSlides = [
   },
 
   {
-    image: "public/fredge.webp",
+    image: "/fredge.webp",
     title: "Refrigerator",
     subtitle: "Energy Efficient",
     trending: "#2 TOP PICK FOR HOMES",
@@ -20,7 +20,7 @@ const homeSlides = [
   },
 
   {
-    image: "public/Wm.jpg",
+    image: "/Wm.jpg",
     title: "Washing Machine",
     subtitle: "Smart Wash",
     trending: "#3 CUSTOMER FAVORITE",
@@ -30,7 +30,7 @@ const homeSlides = [
   },
 
   {
-    image: "public/banner-img.png",
+    image: "/banner-img.png",
     title: "Headset",
     subtitle: "Wireless Audio",
     trending: "#4 BESTSELLER IN TECH",
@@ -40,7 +40,7 @@ const homeSlides = [
   },
 
   {
-    image: "public/Microwave.jpg",
+    image: "/Microwave.jpg",
     title: "Microwave",
     subtitle: "Quick Heat",
     trending: "#5 KITCHEN ESSENTIAL",
