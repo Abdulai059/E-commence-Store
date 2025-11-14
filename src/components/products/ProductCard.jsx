@@ -1,9 +1,8 @@
 import { Heart, ShoppingCart, Eye } from 'lucide-react';
 import { useState } from 'react';
 
-function ProductCard({product}) {
-
-const [favorites, setFavorites] = useState([]);
+function ProductCard({ product }) {
+  const [favorites, setFavorites] = useState([]);
   const [cart, setCart] = useState([]);
 
   const toggleFavorite = (id) => {
@@ -26,7 +25,6 @@ const [favorites, setFavorites] = useState([]);
         return 'bg-gray-500';
     }
   };
-
 
   return (
     <div

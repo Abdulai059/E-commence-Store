@@ -2,8 +2,8 @@ import { ArrowRight } from 'lucide-react';
 
 function ProjectBanner() {
   return (
-    <section className="mx-auto w-full max-w-7xl md:py-20">
-      <div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-red-500 to-red-600 shadow-2xl">
+    <section className="mx-auto w-full max-w-7xl md:py-20 px-4">
+      <div className="relative overflow-hidden rounded-xl bg-gradient-to-r from-red-500 to-red-600 shadow-2xl">
         {/* Decorative circles */}
         {/* Content Container */}
         <div className="relative flex flex-col items-center justify-between px-6 py-8 md:flex-row md:px-12 md:py-10">
@@ -29,7 +29,7 @@ function ProjectBanner() {
           </div>
 
           {/* Product Badge */}
-          <div className="relative -right-10 z-10 rotate-3 transform rounded-2xl bg-white px-4 py-3 shadow-xl md:-top-15 md:-right-8 md:px-6 md:py-3">
+          <div className="relative hidden md:flex md:flex-col -right-10 z-10 rotate-3 transform rounded-2xl bg-white px-4 py-3 shadow-xl md:-top-15 md:-right-8 md:px-6 md:py-3">
             <p className="text-xs font-medium tracking-wide text-gray-500 uppercase">
               Welcome Offer
             </p>
@@ -39,6 +39,9 @@ function ProjectBanner() {
           </div>
         </div>
       </div>
+      {/* <div className='className="relative -right-10 z-10 to-70%'>
+        <img src="/banner-img.png" alt="iron" className="h-80 w-40" />
+      </div> */}
     </section>
   );
 }

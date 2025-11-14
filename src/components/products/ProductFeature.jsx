@@ -1,8 +1,9 @@
 import { Heart, ShoppingCart, Eye } from 'lucide-react';
 import ProductCard from './ProductCard';
 import { useState } from 'react';
+import { useProducts } from './useProduct';
 
-function ProductFeature({ products }) {
+function ProductFeature({ productsdata }) {
   const [cart, setCart] = useState([]);
 
   return (
@@ -21,7 +22,7 @@ function ProductFeature({ products }) {
         </div>
 
         {/* Product Grid */}
-        <ProductGrid products={products} />
+        <ProductGrid productsdata={productsdata} />
 
         {/* Additional Info */}
         <div className="mt-16 hidden text-center">
@@ -36,11 +37,16 @@ function ProductFeature({ products }) {
 
 export default ProductFeature;
 
-export function ProductGrid({ products }) {
+export function ProductGrid({ productsdata }) {
+  const { isLoading, products } = useProducts();
+  console.log(products);
+  // const {
+  //   id:
+  // }= products;
   return (
     <section className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
-      {products.map((product) => (
-        <ProductCard product={product} />
+      {productsdata?.map((product) => (
+        <ProductCard key={product.id} product={product} />
       ))}
     </section>
   );

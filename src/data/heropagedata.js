@@ -20,7 +20,7 @@ const homeSlides = [
   },
 
   {
-    image: "/Wm.jpg",
+    image: "/cooke.jpg",
     title: "Washing Machine",
     subtitle: "Smart Wash",
     trending: "#3 CUSTOMER FAVORITE",
@@ -37,6 +37,15 @@ const homeSlides = [
     mainTitle: "PURE SOUND",
     description:
       "Experience crystal-clear sound and deep bass with our premium wireless headset — perfect for music lovers, gamers, and dreamers on the move.",
+  },
+  {
+    image: "/iron2.jpg",
+    title: "Refrigerator",
+    subtitle: "Energy Efficient",
+    trending: "#2 TOP PICK FOR HOMES",
+    mainTitle: "FRESHNESS REDEFINED",
+    description:
+      "Keep your groceries fresh and your kitchen stylish. Designed with modern cooling technology to preserve flavor and nutrition in every meal.",
   },
 
   {
