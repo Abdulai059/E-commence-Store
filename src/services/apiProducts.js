@@ -1,25 +1,28 @@
 import supabase from './supabase';
 
 export async function getProducts() {
-  const { data: products, error: productsError } = await supabase
+  const { data, error } = await supabase
     .from('products')
-    .select('*')
+    .select(`
+      id,
+      name,
+      description,
+      price,
+      offer_price,
+      stock_quantity,
+      category_id,
+      created_at,
+      product_images(id, image_url, position)
+    `)
     .order('created_at', { ascending: false });
 
-  if (productsError) throw productsError;
+  if (error) {
+    console.error('Error fetching products:', error);
+    throw new Error('Products could not be loaded');
+  }
 
-  // fetch all images separately
-  const { data: images, error: imagesError } = await supabase
-    .from('product_images')
-    .select('*');
-
-  if (imagesError) throw imagesError;
-
-  // attach images to products
-  const productsWithImages = products.map(product => ({
+  return data.map(product => ({
     ...product,
-    product_images: images.filter(img => img.product_id === product.id),
+    images: product.product_images || [], // ensure `images` is always an array
   }));
-
-  return productsWithImages;
 }
