@@ -1,17 +1,10 @@
-import homeSlides from '../data/heropagedata';
-import { useEffect, useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import homeSlides from "../data/heropagedata";
+
+import { motion, AnimatePresence } from "framer-motion";
+import { useSlider } from "../hooks/useSlider";
 
 function Home() {
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const slide = homeSlides[currentSlide];
-
-  useEffect(() => {
-    const slideInterval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % homeSlides.length);
-    }, 5000);
-    return () => clearInterval(slideInterval);
-  }, []);
+  const { currentSlide, slide, goToSlide } = useSlider(homeSlides, 5000);
 
   return (
     <section className="relative flex min-h-screen items-center py-16 md:pt-32">
@@ -65,7 +58,7 @@ function Home() {
               initial={{ opacity: 0, x: -30 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6 }}
-              className="text-first-color mb-2 text-lg font-bold text-gray-600 uppercase md:text-lg"
+              className="text-first-color mb-2 text-sm font-semibold text-red-500 uppercase md:text-lg"
             >
               {slide.trending}
             </motion.h3>
@@ -75,12 +68,12 @@ function Home() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
-              className="mb-6 text-5xl leading-[1.1] font-bold text-gray-900 sm:text-[2rem] md:text-[2.5rem]"
+              className="mb-6 text-4xl leading-[1.1] font-bold text-gray-900 sm:text-[1.5rem] md:text-[2.5rem]"
             >
-              {slide.mainTitle.split(' ').map((word, i) => (
+              {slide.mainTitle.split(" ").map((word, i) => (
                 <span key={i}>
                   {word}
-                  {i < slide.mainTitle.split(' ').length - 1 && <br />}
+                  {i < slide.mainTitle.split(" ").length - 1 && <br />}
                 </span>
               ))}
             </motion.h1>
@@ -101,7 +94,7 @@ function Home() {
               transition={{ duration: 0.8, delay: 0.4 }}
               className="flex flex-wrap gap-4 sm:flex-col sm:gap-2"
             >
-              <button className="bg-secondary hover:bg-first-color-alt rounded-lg px-7 py-4 font-medium text-white transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg">
+              <button className="bg-secondary hover:bg-first-color-alt rounded- px-7 py-4 font-medium text-white transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg">
                 Buy Now
               </button>
               <a
@@ -115,16 +108,16 @@ function Home() {
         </div>
 
         {/* Pagination */}
-        <div className="flex justify-center gap-2 md:mt-[90px]">
+        <div className="mt-5 flex justify-center gap-2 md:mt-[90px]">
           {homeSlides.map((_, index) => (
             <span
               key={index}
-              className={`cursor-pointer rounded-full transition-all duration-300 ${
+              className={`cursor-pointer rounded-full bg-red-500 transition-all duration-300 ${
                 index === currentSlide
-                  ? 'bg-first-color h-2 w-8 rounded-md opacity-100'
-                  : 'h-2 w-2 bg-gray-800 opacity-50 hover:scale-110 hover:opacity-80'
+                  ? "bg-first-color h-2 w-8 rounded-md opacity-100"
+                  : "h-2 w-2 bg-gray-800 opacity-50 hover:scale-110 hover:opacity-80"
               }`}
-              onClick={() => setCurrentSlide(index)}
+              onClick={() => goToSlide(index)}
             />
           ))}
         </div>

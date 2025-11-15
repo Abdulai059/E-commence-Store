@@ -40,7 +40,7 @@ function Feature() {
     <section className="px-4 pb-20">
       <style>{getMarqueeStyles()}</style>
       <SectionHeader
-        title="Our Feature Items"
+        title="Trending Products"
         subtitle="Explore the latest additions to our collection."
         viewAllLink="/new-arrivals"
       />

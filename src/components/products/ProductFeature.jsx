@@ -7,7 +7,7 @@ function ProductFeature() {
   const { isLoading, products } = useProducts();
 
   return (
-    <div className="max-w-8xl mx-auto px-4 py-12">
+    <div className=" mx-auto px-4 py-12">
       {/* Header with View All */}
       <SectionHeader
         title="New Arrival"

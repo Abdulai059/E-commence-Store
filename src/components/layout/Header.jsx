@@ -3,7 +3,7 @@ import Navbar from './Navbar';
 
 function Header() {
   return (
-    <div className="fixed top-0 left-0 z-50 h-screen w-full overflow-y-auto">
+    <div className="fixed top-0 left-0 z-50 w-full">
       <Topbar />
       <Navbar />
     </div>

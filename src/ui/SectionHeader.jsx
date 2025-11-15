@@ -10,15 +10,12 @@ function SectionHeader({ title, subtitle, viewAllText = "View All", viewAllLink 
         <div className="flex-1 border-b border-gray-300"></div>
 
         {/* View All link */}
-        <a
-          href={viewAllLink}
-          className="flex items-center gap-2 font-medium text-red-600 hover:text-red-700"
-        >
-          <span>{viewAllText}</span>
-          <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-          </svg>
-        </a>
+       <a href={viewAllLink} className="flex items-center gap-2 font-medium hover:text-red-700">
+            <span className="text-red-600">{viewAllText}</span>
+            <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
+          </a>
       </div>
 
       {/* Optional subtitle */}
