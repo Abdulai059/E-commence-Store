@@ -1,9 +1,16 @@
 import { Heart, ShoppingCart, Eye } from 'lucide-react';
 import { useState } from 'react';
+import { formatCurrency } from '../../utils/helpers';
 
 function ProductCard({ product }) {
   const [favorites, setFavorites] = useState([]);
   const [cart, setCart] = useState([]);
+
+  // Destructure the product
+  const { name, description, price, offer_price, stock_quantity, category, images } = product;
+
+  // Optional: get the first image
+  const mainImage = images[0]?.image_url;
 
   const toggleFavorite = (id) => {
     setFavorites((prev) => (prev.includes(id) ? prev.filter((fav) => fav !== id) : [...prev, id]));
@@ -56,8 +63,8 @@ function ProductCard({ product }) {
       {/* Image */}
       <div className="relative h-80 overflow-hidden">
         <img
-          src={product.image}
-          alt={product.name}
+          src={mainImage}
+          alt={name}
           className="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-110"
         />
 
@@ -73,19 +80,21 @@ function ProductCard({ product }) {
       {/* Content */}
       <div className="p-6">
         <span className="text-xs font-medium tracking-wider text-slate-500 uppercase">
-          {product.category}
+          {category?.name}
         </span>
-        <h3 className="mt-1 mb-3 text-base font-medium text-slate-800">{product.name}</h3>
+        <h3 className="mt-1 mb-3 text-lg font-medium">{name}</h3>
 
         <div className="flex items-center justify-between">
-          <p className="text-xl font-semibold text-slate-900">${product.price.toFixed(2)}</p>
-          <button
+          <p className="text-lg font-medium text-red-500">{formatCurrency(price)}</p>
+
+
+          {/* <button
             onClick={() => addToCart(product)}
             className="group/btn flex items-center gap-2 rounded-lg bg-slate-800 px-4 py-2 text-white transition-colors hover:bg-slate-700"
           >
             <ShoppingCart size={18} className="transition-transform group-hover/btn:scale-110" />
             Add
-          </button>
+          </button> */}
         </div>
       </div>
     </div>

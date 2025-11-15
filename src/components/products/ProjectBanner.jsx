@@ -2,7 +2,7 @@ import { ArrowRight } from 'lucide-react';
 
 function ProjectBanner() {
   return (
-    <section className="mx-auto w-full max-w-7xl md:py-20 px-4">
+    <section className="mx-auto w-full max-w-8xl md:py-20 px-4">
       <div className="relative overflow-hidden rounded-xl bg-gradient-to-r from-red-500 to-red-600 shadow-2xl">
         {/* Decorative circles */}
         {/* Content Container */}
