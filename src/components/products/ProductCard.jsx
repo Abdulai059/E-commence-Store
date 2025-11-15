@@ -16,9 +16,7 @@ function ProductCard({ product }) {
     setFavorites((prev) => (prev.includes(id) ? prev.filter((fav) => fav !== id) : [...prev, id]));
   };
 
-  const addToCart = (product) => {
-    setCart((prev) => [...prev, product]);
-  };
+
 
   const getBadgeColor = (badge) => {
     switch (badge) {
@@ -36,7 +34,7 @@ function ProductCard({ product }) {
   return (
     <div
       key={product.id}
-      className="group relative overflow-hidden rounded-2xl bg-white shadow-md transition-all duration-300 hover:shadow-2xl"
+      className="group relative overflow-hidden rounded-xl bg-white shadow-md transition-all duration-300 hover:shadow-2xl"
     >
       {/* Badge */}
       {product.badge && (
@@ -86,7 +84,6 @@ function ProductCard({ product }) {
 
         <div className="flex items-center justify-between">
           <p className="text-lg font-medium text-red-500">{formatCurrency(price)}</p>
-
 
           {/* <button
             onClick={() => addToCart(product)}
