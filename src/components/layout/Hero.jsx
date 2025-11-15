@@ -2,44 +2,35 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useSlider } from "../../hooks/useSlider";
 
 function Hero() {
-  const heroimages = [
-    {
-      image: "/hero-images/bg.jpeg",
-    },
-    {
-      image: "/hero-images/bg4.jpeg",
-    },
-
-    {
-      image: "/hero-images/bg5.jpeg",
-    },
-
-    {
-      image: "/hero-images/bg2.jpg",
-    },
+  const heroImages = [
+    { image: "/hero-images/bg.jpeg" },
+    { image: "/hero-images/bg4.jpeg" },
+    { image: "/hero-images/bg5.jpeg" },
+    { image: "/hero-images/bg2.jpg" },
   ];
 
-  const { slide } = useSlider(heroimages);
+  const { slide } = useSlider(heroImages);
   if (!slide) return null;
 
   return (
-    <section className="relative pt-[180px]"> 
-  {/* pt-20 adds padding-top so content is below navbar */}
-  <div className="w-full max-w-[1600px] h-[645px] mx-auto overflow-hidden relative">
-    <AnimatePresence mode="wait">
-      <motion.img
-        key={slide.image}
-        src={slide.image}
-        alt="Hero slide"
-        className="w-full h-full object-cover"
-        initial={{ opacity: 0, y: 40 }}
-        animate={{ opacity: 1, y: 0 }}
-        exit={{ opacity: 0, y: -40 }}
-        transition={{ duration: 0.7 }}
-      />
-    </AnimatePresence>
-  </div>
-</section>
+    <section className="relative pt-20 sm:pt-[150px]">
+      <div className="px-1 sm:px-4">
+        <div className="relative mx-auto h-[200px] w-full overflow-hidden rounded-lg md:h-[750px]">
+          <AnimatePresence mode="wait">
+            <motion.img
+              key={slide.image}
+              src={slide.image}
+              alt="Hero slide"
+              className="absolute top-0 left-0 h-full w-full object-cover object-center"
+              initial={{ scale: 1.05 }}
+              animate={{ scale: 1 }}
+              exit={{ scale: 1 }}
+              transition={{ duration: 1, ease: "easeInOut" }}
+            />
+          </AnimatePresence>
+        </div>
+      </div>
+    </section>
   );
 }
 
