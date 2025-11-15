@@ -83,7 +83,7 @@ function ProductCard({ product }) {
         <h3 className="mt-1 mb-3 text-lg font-medium">{name}</h3>
 
         <div className="flex items-center justify-between">
-          <p className="text-lg font-medium text-red-500">{formatCurrency(price)}</p>
+          <p className="text-base font-medium text-red-500">{formatCurrency(price)}</p>
 
           {/* <button
             onClick={() => addToCart(product)}
