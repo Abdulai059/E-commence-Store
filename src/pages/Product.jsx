@@ -1,10 +1,10 @@
-import ProductFeature from '../components/products/ProductFeature';
+import ProductsSection from '../components/products/ProductsSection';
 import { productsdata } from '../components/products/ProductsData';
 
 function Product() {
   return (
     <div>
-      <ProductFeature productsdata={productsdata} />
+      <ProductsSection productsdata={productsdata} />
       {/* <Productimg /> */}
     </div>
   );

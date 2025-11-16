@@ -1,5 +1,6 @@
 import Home from "../../pages/Home";
 import Product from "../../pages/Product";
+import CategorySection from "../categories/CategoryList";
 import Feature from "../products/Feature";
 import ProjectBanner from "../products/ProjectBanner";
 import Footer from "./Footer";
@@ -11,7 +12,8 @@ function AppLayout() {
     <>
       <Header />
       <Hero />
-      <main className="mx-auto max-w-[1500px] overflow-y-auto">
+      <main className="mx-auto max-w-[1500px] px-4 overflow-y-auto">
+        <CategorySection/>
         <Home />
         <Feature />
         <Product />

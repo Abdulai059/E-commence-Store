@@ -1,13 +1,14 @@
+import { Grid } from "../../ui/Grid";
 import SectionHeader from "../../ui/SectionHeader";
 import ProductCard from "./ProductCard";
 
 import { useProducts } from "./useProduct";
 
-function ProductFeature() {
+function ProductsSection() {
   const { isLoading, products } = useProducts();
 
   return (
-    <div className=" mx-auto px-4 py-12">
+    <div className="mx-auto px-4 py-12">
       {/* Header with View All */}
       <SectionHeader
         title="New Arrival"
@@ -16,19 +17,14 @@ function ProductFeature() {
       />
 
       {/* Product Grid */}
-      <ProductGrid products={products || []} />
+      <Grid>
+        {products?.map((product) => (
+          <ProductCard key={product.id} product={product} />
+        ))}
+      </Grid>
     </div>
   );
 }
 
-export default ProductFeature;
+export default ProductsSection;
 
-export function ProductGrid({ products }) {
-  return (
-    <section className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
-      {products.map((product) => (
-        <ProductCard key={product.id} product={product} />
-      ))}
-    </section>
-  );
-}

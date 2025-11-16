@@ -4,10 +4,9 @@ import { formatCurrency } from '../../utils/helpers';
 
 function ProductCard({ product }) {
   const [favorites, setFavorites] = useState([]);
-  const [cart, setCart] = useState([]);
 
   // Destructure the product
-  const { name, description, price, offer_price, stock_quantity, category, images } = product;
+  const { name, price, category, images } = product;
 
   // Optional: get the first image
   const mainImage = images[0]?.image_url;
