@@ -1,6 +1,6 @@
 import Home from "../../pages/Home";
 import Product from "../../pages/Product";
-import CategorySection from "../categories/CategoryList";
+import CategorySection from "../categories/CategorySection";
 import Feature from "../products/Feature";
 import ProjectBanner from "../products/ProjectBanner";
 import Footer from "./Footer";

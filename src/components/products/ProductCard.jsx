@@ -32,7 +32,7 @@ function ProductCard({ product }) {
 
   return (
     <div
-      key={product.id}
+    
       className="group relative overflow-hidden rounded-xl bg-white shadow-md transition-all duration-300 hover:shadow-2xl"
     >
       {/* Badge */}
