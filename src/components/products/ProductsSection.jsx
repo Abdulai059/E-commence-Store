@@ -13,7 +13,7 @@ function ProductsSection() {
         viewAllLink="/new-arrivals"
         items={products}
         mobileCols="w-full"
-        desktopCols="lg:grid-cols-4"
+        desktopCols="lg:grid-cols-5"
         showArrows= {false}
         renderItem={(product) => <ProductCard product={product} />}
       />
