@@ -8,7 +8,7 @@ function ProductsSection() {
   const { isLoading, products } = useProducts();
 
   return (
-    <div className="mx-auto px-4 py-12">
+    <div className="mx-auto px-4  md:py-12">
       {/* Header with View All */}
       <SectionHeader
         title="New Arrival"
@@ -17,7 +17,7 @@ function ProductsSection() {
       />
 
       {/* Product Grid */}
-      <Grid>
+      <Grid className="md:grid-cols-4">
         {products?.map((product) => (
           <ProductCard key={product.id} product={product} />
         ))}
