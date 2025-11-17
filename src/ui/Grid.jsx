@@ -1,9 +1,4 @@
-export function Grid({
-  children,
-  columns = { base: 1, sm: 2, lg: 4},
-  gap = 8,
-  className = "",
-}) {
+export function Grid({ children, columns = { base: 1, sm: 2, lg: 4 }, gap = 8, className = "" }) {
   // Map numbers to Tailwind classes
   const colMap = {
     1: "grid-cols-1",
@@ -35,14 +30,7 @@ export function Grid({
 
   return (
     <div
-      className={`
-        grid
-        ${colMap[columns.base] || "grid-cols-1"}
-        sm:${colMap[columns.sm] || "grid-cols-2"}
-        lg:${colMap[columns.lg] || "grid-cols-4"}
-        ${gapMap[gap] || "gap-4"}
-        ${className}
-      `}
+      className={`grid ${colMap[columns.base] || "grid-cols-1"} sm:${colMap[columns.sm] || "grid-cols-2"} lg:${colMap[columns.lg] || "grid-cols-4"} ${gapMap[gap] || "gap-4"} ${className} `}
     >
       {children}
     </div>

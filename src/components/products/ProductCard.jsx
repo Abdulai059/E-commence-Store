@@ -29,7 +29,7 @@ function ProductCard({ product }) {
   };
 
   return (
-    <div className="group relative overflow-hidden rounded-xl bg-white shadow-md transition-shadow duration-300 hover:shadow-2xl md:w-64">
+    <div className="group relative min-h-[300px] overflow-hidden rounded-xl bg-white shadow-md transition-shadow duration-300 hover:shadow-2xl md:w-full">
       {/* Badge */}
       {product.badge && (
         <div
@@ -40,7 +40,7 @@ function ProductCard({ product }) {
       )}
 
       {/* Favorite Button */}
-      <button
+      {/* <button
         onClick={() => toggleFavorite(product.id)}
         className="absolute top-4 right-4 z-10 rounded-full bg-white p-2 shadow-md transition-transform duration-200 hover:scale-110"
       >
@@ -50,14 +50,14 @@ function ProductCard({ product }) {
             favorites.includes(product.id) ? "fill-red-500 text-red-500" : "text-slate-400"
           }
         />
-      </button>
+      </button> */}
 
       {/* Product Image */}
       <div className="relative overflow-hidden">
         <img
           src={mainImage}
           alt={name}
-          className="md:h-64 md:w-64 object-cover object-center transition-transform duration-500 group-hover:scale-110"
+          className="object-cover object-center transition-transform duration-500 group-hover:scale-110 md:h-50 md:w-full"
         />
 
         {/* Hover Overlay */}
@@ -70,23 +70,22 @@ function ProductCard({ product }) {
       </div>
 
       {/* Product Info */}
-      <div className="p-6">
+      <div className="flex flex-1 flex-col p-6">
         <span className="text-xs font-medium tracking-wider text-slate-500 uppercase">
           {category?.name}
         </span>
-        <h3 className="mt-1 mb-3 text-base font-medium">{name}</h3>
 
-        <div className="flex items-center justify-between">
+        <h3 className="mt-1 mb-3 line-clamp-2 h-12 text-base font-medium">{name}</h3>
+
+        <div className="mt-auto flex items-center justify-between">
           <p className="text-sm font-medium text-red-500">{formatCurrency(price)}</p>
-
-          {/* Optional Add to Cart button */}
-          {/* 
-      <button className="flex items-center gap-2 rounded-lg bg-slate-800 px-4 py-2 text-white transition-colors hover:bg-slate-700">
-        <ShoppingCart size={18} className="transition-transform group-hover:scale-110" />
-        Add
-      </button>
-      */}
         </div>
+        {/* Optional Add to Cart button */}
+
+        {/* <button className="flex items-center gap-2 rounded-lg bg-slate-800 px-4 py-2 text-white transition-colors hover:bg-slate-700">
+            <ShoppingCart size={18} className="transition-transform group-hover:scale-110" />
+            Add
+          </button> */}
       </div>
     </div>
   );

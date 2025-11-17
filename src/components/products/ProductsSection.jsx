@@ -6,7 +6,7 @@ function ProductsSection() {
   const { isLoading, products } = useProducts();
 
   return (
-    <div className="mx-auto px-4 md:py-12">
+    <div className="mx-auto md:px-4 md:py-12">
       <CarouselSection
         title="New Arrival"
         subtitle="Browse our selection of high-quality refrigerators"

@@ -36,7 +36,7 @@ function CarouselSection({
   }, [items]);
 
   return (
-    <div className="mx-auto px-4 py-12">
+    <div className="mx-auto px-4 py-10 md:py-5">
       {/* Section Header */}
       <SectionHeader title={title} subtitle={subtitle} viewAllLink={viewAllLink} />
 
@@ -79,7 +79,7 @@ function CarouselSection({
       </div>
 
       {/* DESKTOP GRID */}
-      <Grid className={`hidden md:grid gap-6 ${desktopCols}`}>
+      <Grid gap={4} className={`hidden md:grid ${desktopCols}`}>
         {items.map((item, index) => (
           <div key={index}>{renderItem(item)}</div>
         ))}

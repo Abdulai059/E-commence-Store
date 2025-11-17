@@ -13,15 +13,15 @@ function Hero() {
   if (!slide) return null;
 
   return (
-    <section className="relative pt-20 sm:pt-[150px]">
-      <div className="px-1 sm:px-4">
-        <div className="relative mx-auto h-[200px] w-full overflow-hidden rounded-lg md:h-[750px]">
+    <section className="relative pt-20 md:pt-[136px]">
+      <div className="px-1 sm:px-2">
+        <div className="relative mx-auto aspect-16/9 w-full overflow-hidden rounded-lg sm:aspect-16/7 md:aspect-[16/6.3]">
           <AnimatePresence mode="wait">
             <motion.img
               key={slide.image}
               src={slide.image}
               alt="Hero slide"
-              className="absolute top-0 left-0 h-full w-full object-cover object-center"
+              className="absolute inset-0 h-full w-full object-cover object-center sm:object-cover sm:object-center"
               initial={{ scale: 1.05 }}
               animate={{ scale: 1 }}
               exit={{ scale: 1 }}
