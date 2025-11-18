@@ -1,33 +1,18 @@
 import { useEffect, useRef, useState } from "react";
-import { Grid } from "./Grid";
-import SectionHeader from "./SectionHeader";
 import { useAutoScroll } from "../hooks/useAutoScroll";
 
-function CarouselSection({
-  title,
-  subtitle,
-  viewAllLink,
-  showViewAll = true,
-  items = [],
-  renderItem,
-  mobileCols = "w-1/2",
-  desktopCols = "lg:grid-cols-4",
-  showArrows = true,
-}) {
+function CarouselSection({ items = [], renderItem, mobileCols = "w-1/2", showArrows = true }) {
   const scrollContainerRef = useRef();
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(false);
 
-  const [scrollLeft, setScrollLeft] = useState(false);
-  const [scrollRight, setScrollRight] = useState(false);
-
-  // Use auto-scroll hook
   const { scroll } = useAutoScroll(scrollContainerRef, [items]);
 
-  // Check scroll position for arrows
   const checkScroll = () => {
     if (!scrollContainerRef.current) return;
     const { scrollLeft, scrollWidth, clientWidth } = scrollContainerRef.current;
-    setScrollLeft(scrollLeft > 0);
-    setScrollRight(scrollLeft < scrollWidth - clientWidth - 1);
+    setCanScrollLeft(scrollLeft > 0);
+    setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 1);
   };
 
   useEffect(() => {
@@ -36,59 +21,52 @@ function CarouselSection({
     return () => window.removeEventListener("resize", checkScroll);
   }, [items]);
 
+  if (!items || items.length === 0) return null;
+
   return (
-    <div className="mx-auto px-4 py-10 md:py-5">
-      {/* Section Header */}
-      <SectionHeader
-        title={title}
-        subtitle={subtitle}
-        showViewAll={showViewAll}
-        viewAllLink={viewAllLink}
-      />
-
-      {/* MOBILE CAROUSEL */}
-      <div className="relative md:hidden">
-        {showArrows && scrollLeft && (
-          <button
-            onClick={() => scroll("left")}
-            className="absolute top-1/2 left-0 z-10 -translate-y-1/2 rounded-full bg-white p-2 shadow-lg"
-          >
-            <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M15 19l-7-7 7-7"
-              />
-            </svg>
-          </button>
-        )}
-
-        <div
-          ref={scrollContainerRef}
-          onScroll={checkScroll}
-          className="flex snap-x snap-mandatory gap-4 overflow-x-auto"
-          style={{ scrollbarWidth: "none" }}
+    <div className="relative px-4 py-6">
+      {/* Left Arrow */}
+      {showArrows && canScrollLeft && (
+        <button
+          onClick={() => scroll("left")}
+          className="absolute top-1/2 left-0 z-10 -translate-y-1/2 rounded-full bg-white p-2 shadow-lg"
         >
-          {items.map((item, index) => (
-            <div key={index} className={`${mobileCols} flex-none snap-start`}>
-              {renderItem(item)}
-            </div>
-          ))}
-        </div>
+          <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M15 19l-7-7 7-7"
+            />
+          </svg>
+        </button>
+      )}
 
-        {showArrows && scrollRight && (
-          <button
-            onClick={() => scroll("right")}
-            className="absolute top-1/2 right-0 z-10 -translate-y-1/2 rounded-full bg-white p-2 shadow-lg"
-          >
-            <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-            </svg>
-          </button>
-        )}
+      {/* Scrollable items */}
+      <div
+        ref={scrollContainerRef}
+        onScroll={checkScroll}
+        className="flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth"
+        style={{ scrollbarWidth: "none" }}
+      >
+        {items.map((item, index) => (
+          <div key={index} className={`${mobileCols} flex-none snap-start`}>
+            {renderItem(item)}
+          </div>
+        ))}
       </div>
 
+      {/* Right Arrow */}
+      {showArrows && canScrollRight && (
+        <button
+          onClick={() => scroll("right")}
+          className="absolute top-1/2 right-0 z-10 -translate-y-1/2 rounded-full bg-white p-2 shadow-lg"
+        >
+          <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+          </svg>
+        </button>
+      )}
     </div>
   );
 }

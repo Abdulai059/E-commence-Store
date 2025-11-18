@@ -1,14 +1,11 @@
-import ProductsSection from '../components/products/ProductsSection';
-import { productsdata } from '../components/products/ProductsData';
+import ProductsSection from "../components/products/ProductsSection";
 
 function Product() {
   return (
     <div>
-      <ProductsSection  />
-      {/* <Productimg /> */}
+      <ProductsSection />
     </div>
   );
 }
 
 export default Product;
-
