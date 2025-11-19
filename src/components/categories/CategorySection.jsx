@@ -1,6 +1,4 @@
 import CarouselSection from "../../ui/CarouselSection";
-import { CategoryGrid } from "../../ui/CategoryGrid";
-import { ProjectGrid } from "../../ui/ProductGrid";
 import SectionHeader from "../../ui/SectionHeader";
 import CategoriesCard from "./CategoriesCard";
 import { useCategories } from "./useCategories";
@@ -9,28 +7,18 @@ function CategorySection() {
   const { isLoading, categories } = useCategories();
 
   return (
-    <div className="md:py-12">
+    <div className="md:py-12 pt-5">
       <SectionHeader
-        title="New Arrival"
-        subtitle="Browse our selection of high-quality refrigerators"
+        title="Shop by Category"
+        subtitle="Explore our wide range of electronics and appliances"
         viewAllLink="/new-arrivals"
+          showViewAll = {false}
       />
-
-      <div>
-        <CarouselSection
-          items={categories}
-          mobileCols="w-1/2 sm:w-1/3 md:hidden lg:hidden"
-          showArrows={true}
-          renderItem={(category) => <CategoriesCard category={category} />}
-        />
-
-        <div className="hidden md:block">
-          <CategoryGrid
-            data={categories}
-            renderItem={(category) => <CategoriesCard category={category} />}
-          />
-        </div>
-      </div>
+      <CarouselSection
+        items={categories}
+        showArrows={true}
+        renderItem={(category) => <CategoriesCard category={category} />}
+      />
     </div>
   );
 }

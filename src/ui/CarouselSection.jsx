@@ -1,11 +1,10 @@
 import { useEffect, useRef, useState } from "react";
 import { useAutoScroll } from "../hooks/useAutoScroll";
 
-function CarouselSection({ items = [], renderItem, mobileCols = "w-1/2", showArrows = true }) {
+export function CarouselSection({ items = [], renderItem, showArrows = true }) {
   const scrollContainerRef = useRef();
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(false);
-
   const { scroll } = useAutoScroll(scrollContainerRef, [items]);
 
   const checkScroll = () => {
@@ -21,15 +20,16 @@ function CarouselSection({ items = [], renderItem, mobileCols = "w-1/2", showArr
     return () => window.removeEventListener("resize", checkScroll);
   }, [items]);
 
-  if (!items || items.length === 0) return null;
+  if (!items || items.length === 0) return <p>Loading...</p>;
 
   return (
-    <div className="relative px-4 py-6">
+    <div className="relative">
       {/* Left Arrow */}
       {showArrows && canScrollLeft && (
         <button
           onClick={() => scroll("left")}
-          className="absolute top-1/2 left-0 z-10 -translate-y-1/2 rounded-full bg-white p-2 shadow-lg"
+          className="absolute top-1/2 left-2 z-10 -translate-y-1/2 rounded-full bg-white p-2 shadow-lg transition-colors hover:bg-gray-100"
+          aria-label="Scroll left"
         >
           <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path
@@ -42,15 +42,18 @@ function CarouselSection({ items = [], renderItem, mobileCols = "w-1/2", showArr
         </button>
       )}
 
-      {/* Scrollable items */}
+      {/* Flex container with responsive column widths */}
       <div
         ref={scrollContainerRef}
         onScroll={checkScroll}
-        className="flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth"
+        className="flex snap-x snap-mandatory items-center gap-4 overflow-x-auto scroll-smooth px-4"
         style={{ scrollbarWidth: "none" }}
       >
         {items.map((item, index) => (
-          <div key={index} className={`${mobileCols} flex-none snap-start`}>
+          <div
+            key={index}
+            className="w-[calc(50%-0.5rem)] flex-none snap-start sm:w-[calc(33.333%-0.667rem)] md:w-[calc(12.5%-0.875rem)]"
+          >
             {renderItem(item)}
           </div>
         ))}
@@ -60,13 +63,21 @@ function CarouselSection({ items = [], renderItem, mobileCols = "w-1/2", showArr
       {showArrows && canScrollRight && (
         <button
           onClick={() => scroll("right")}
-          className="absolute top-1/2 right-0 z-10 -translate-y-1/2 rounded-full bg-white p-2 shadow-lg"
+          className="absolute top-1/2 right-2 z-10 -translate-y-1/2 rounded-full bg-white p-2 shadow-lg transition-colors hover:bg-gray-100"
+          aria-label="Scroll right"
         >
           <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
           </svg>
         </button>
       )}
+
+      {/* Hide scrollbar */}
+      <style>{`
+        div::-webkit-scrollbar {
+          display: none;
+        }
+      `}</style>
     </div>
   );
 }
