@@ -1,8 +1,19 @@
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight } from "lucide-react";
+import { useSlider } from "../../hooks/useSlider";
+import { motion, AnimatePresence } from "framer-motion";
 
 function ProjectBanner() {
+  const heroImages = [
+    { image: "/banner-img.png" },
+    { image: "/banner-img.png" },
+    // { image: "/NASCO-DF.jpg" },
+    // { image: "/nasco-blendeer.webp" },
+  ];
+
+  const { currentSlide, slide, goToSlide } = useSlider(heroImages, 8000);
+
   return (
-    <section className="mx-auto w-full max-w-7xl my-10 px-4">
+    <section className="max-w-8xl mx-auto my-20 w-full px-4">
       <div className="relative overflow-hidden rounded-xl bg-linear-to-r from-red-500 to-red-600 shadow-2xl">
         {/* Decorative circles */}
         {/* Content Container */}
@@ -29,7 +40,7 @@ function ProjectBanner() {
           </div>
 
           {/* Product Badge */}
-          <div className="relative hidden md:flex md:flex-col -right-10 z-10 rotate-3 transform rounded-2xl bg-white px-4 py-3 shadow-xl md:-top-15 md:-right-8 md:px-6 md:py-3">
+          <div className="relative -right-10 z-10 hidden rotate-3 transform rounded-2xl bg-white px-4 py-3 shadow-xl md:-top-15 md:-right-8 md:flex md:flex-col md:px-6 md:py-3">
             <p className="text-xs font-medium tracking-wide text-gray-500 uppercase">
               Welcome Offer
             </p>
@@ -39,9 +50,22 @@ function ProjectBanner() {
           </div>
         </div>
       </div>
-      {/* <div className='className="relative -right-10 z-10 to-70%'>
-        <img src="/banner-img.png" alt="iron" className="h-80 w-40" />
-      </div> */}
+
+      <div className="relative">
+        <span className="absolute -top-95 translate-x-120">
+          <AnimatePresence mode="wait">
+            <motion.img
+              key={slide.image}
+              src={slide.image}
+              initial={{ opacity: 0, y: -50 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -50 }}
+              transition={{ duration: 0.8 }}
+              className="h-120 w-full"
+            />
+          </AnimatePresence>
+        </span>
+      </div>
     </section>
   );
 }

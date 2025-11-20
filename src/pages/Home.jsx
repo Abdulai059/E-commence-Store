@@ -108,7 +108,7 @@ function Home() {
         </div>
 
         {/* Pagination */}
-        {/* <div className="mt-5 flex justify-center gap-2 md:mt-[90px]">
+        <div className="mt-5 flex justify-center gap-2 md:mt-[90px]">
           {homeSlides.map((_, index) => (
             <span
               key={index}
@@ -120,7 +120,7 @@ function Home() {
               onClick={() => goToSlide(index)}
             />
           ))}
-        </div> */}
+        </div>
       </div>
     </section>
   );
