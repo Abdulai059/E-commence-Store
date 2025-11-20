@@ -1,10 +1,6 @@
-import Home from "../../pages/Home";
-import Product from "../../pages/Product";
-import CategorySection from "../categories/CategorySection";
-import Feature from "../products/Feature";
-import ProjectBanner from "../products/ProjectBanner";
-import Footer from "./Footer";
-import Header from "./Header";
+import { Outlet } from "react-router-dom";
+import Footer from "../../ui/Footer";
+import Header from "../../ui/Header";
 import Hero from "./Hero";
 
 function AppLayout() {
@@ -12,14 +8,10 @@ function AppLayout() {
     <>
       <Header />
       <Hero />
-      <main className="mx-auto max-w-[1500px] overflow-y-auto px-4">
-        <CategorySection />
-        <Home />
-        <Feature />
-        <Product />
-        <ProjectBanner />
-        <Footer />
+      <main className="mx-auto flex-1 overflow-auto px-4 md:max-w-[1500px]">
+        <Outlet />
       </main>
+      <Footer />
     </>
   );
 }

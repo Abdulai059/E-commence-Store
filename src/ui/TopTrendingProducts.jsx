@@ -3,15 +3,15 @@ import homeSlides from "../data/heropagedata";
 import { motion, AnimatePresence } from "framer-motion";
 import { useSlider } from "../hooks/useSlider";
 
-function Home() {
+function TopTrendingProducts() {
   const { currentSlide, slide, goToSlide } = useSlider(homeSlides, 5000);
 
   return (
-    <section className="relative md:flex items-center my-10 hidden  md:mb-50">
+    <section className="relative my-10 hidden items-center md:mb-50 md:flex">
       <div className="px-4 md:px-8">
         <div className="grid items-center gap-x-15 gap-y-20 md:grid-cols-2">
           {/* Left: Image */}
-          <div className="relative grid left-8 justify-items-center w-full pt-8">
+          <div className="relative left-8 grid w-full justify-items-center pt-8">
             <AnimatePresence mode="wait">
               <motion.img
                 key={currentSlide}
@@ -21,21 +21,21 @@ function Home() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -50 }}
                 transition={{ duration: 0.8 }}
-                className="xs:h-[200px] h-[250px]  rounded-xl object-cover sm:h-[250px] md:h-[300px] md:pb-4"
+                className="xs:h-[200px] h-[250px] rounded-xl object-cover sm:h-[250px] md:h-[300px] md:pb-4"
               />
             </AnimatePresence>
 
             {/* Indicator */}
-            <div className="left-1/ absolute bottom-70 h-2 w-2 rounded-full bg-gray-800 after:absolute after:top-0 after:right-[50%] after:h-20 after:w-px after:bg-gray-800 after:content-[''] md:top-87 hidden md:flex"></div>
+            <div className="left-1/ absolute bottom-70 hidden h-2 w-2 rounded-full bg-gray-800 after:absolute after:top-0 after:right-[50%] after:h-20 after:w-px after:bg-gray-800 after:content-[''] md:top-87 md:flex"></div>
 
             {/* Decorative Details */}
-            <div className="absolute right-1/2 top-70 translate-y-8 transform text-right md:top-82 md:mx-3">
+            <div className="absolute top-70 right-1/2 translate-y-8 transform text-right md:top-82 md:mx-3">
               <motion.h4
                 key={slide.title}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
-                className="md:text-xl  text-lg  font-semibold text-gray-800"
+                className="text-lg font-semibold text-gray-800 md:text-xl"
               >
                 {slide.title}
               </motion.h4>
@@ -44,7 +44,7 @@ function Home() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.1 }}
-                className="md:text-base text-sm text-gray-600"
+                className="text-sm text-gray-600 md:text-base"
               >
                 {slide.subtitle}
               </motion.p>
@@ -52,7 +52,7 @@ function Home() {
           </div>
 
           {/* Right: Text */}
-          <div className="md:flex flex-col hidden pt-15 md:pt-0">
+          <div className="hidden flex-col pt-15 md:flex md:pt-0">
             <motion.h3
               key={slide.trending}
               initial={{ opacity: 0, x: -30 }}
@@ -126,4 +126,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default TopTrendingProducts;

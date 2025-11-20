@@ -1,5 +1,5 @@
-import Topbar from '../../ui/Topbar';
-import Navbar from './Navbar';
+import Topbar from "./Topbar";
+import Navbar from "../components/layout/Navbar";
 
 function Header() {
   return (

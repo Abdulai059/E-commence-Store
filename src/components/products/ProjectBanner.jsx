@@ -13,7 +13,7 @@ function ProjectBanner() {
   const { currentSlide, slide, goToSlide } = useSlider(heroImages, 8000);
 
   return (
-    <section className="max-w-8xl mx-auto my-20 w-full px-4">
+    <section className="mx-auto my-20 max-w-7xl px-4">
       <div className="relative overflow-hidden rounded-xl bg-linear-to-r from-red-500 to-red-600 shadow-2xl">
         {/* Decorative circles */}
         {/* Content Container */}
@@ -61,7 +61,7 @@ function ProjectBanner() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -50 }}
               transition={{ duration: 0.8 }}
-              className="h-120 w-full"
+              className="hidden h-120 w-full md:flex"
             />
           </AnimatePresence>
         </span>

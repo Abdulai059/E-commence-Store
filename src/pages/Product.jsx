@@ -1,11 +1,5 @@
-import ProductsSection from "../components/products/ProductsSection";
-
 function Product() {
-  return (
-    <div>
-      <ProductsSection />
-    </div>
-  );
+  return <div>product card</div>;
 }
 
 export default Product;
