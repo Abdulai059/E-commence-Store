@@ -2,7 +2,7 @@ function CategoriesCard({ category }) {
   const { name, image_url } = category;
 
   return (
-    <div className="group relative w-full rounded-xl bg-white p-4 shadow-2xs transition-all duration-300 hover:shadow-2xl">
+    <div className="group relative w-full rounded-xl bg-white py-4 shadow-2xs transition-all duration-300 hover:shadow-2xl">
       {/* Image Wrapper */}
       <div className="mx-auto flex h-24 w-24 items-center justify-center overflow-hidden rounded-full border-2 border-gray-500/10 hover:border-red-400 sm:h-28 sm:w-28 md:h-30 md:w-30">
         <img
