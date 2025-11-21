@@ -7,7 +7,7 @@ function TopTrendingProducts() {
   const { currentSlide, slide, goToSlide } = useSlider(homeSlides, 5000);
 
   return (
-    <section className="relative my-10 hidden items-center md:mb-50 md:flex">
+    <section className="relative my-10 hidden items-center md:mb-25 md:flex">
       <div className="px-4 md:px-8">
         <div className="grid items-center gap-x-15 gap-y-20 md:grid-cols-2">
           {/* Left: Image */}

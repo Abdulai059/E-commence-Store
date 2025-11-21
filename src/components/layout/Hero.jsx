@@ -13,7 +13,7 @@ function Hero() {
   if (!slide) return null;
 
   return (
-    <section className="relative pt-20 md:pt-[136px]">
+    <section className="relative pt-0 md:pt-[136px]">
       <div className="px-1 sm:px-2">
         <div className="relative mx-auto aspect-16/9 w-full overflow-hidden rounded-lg sm:aspect-16/7 md:aspect-[16/6.3]">
           <AnimatePresence mode="wait">

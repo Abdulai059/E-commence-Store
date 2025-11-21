@@ -82,7 +82,7 @@ export default function ProductCard({ product }) {
       </Card>
 
       {/* Modal Window */}
-      <Modal.Window name={`product-${product.id}`}>
+       <Modal.Window name={`product-${product.id}`}>
         <ProjectDetailsModal product={product} />
       </Modal.Window>
     </Modal>

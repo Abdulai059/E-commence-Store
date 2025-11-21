@@ -1,5 +1,5 @@
 function Product() {
-  return <div>product card</div>;
+  return <div className="text-accent">productdddddd card</div>;
 }
 
 export default Product;

@@ -1,6 +1,7 @@
 import { ProjectGrid } from "../../ui/ProductGrid";
 import SectionHeader from "../../ui/SectionHeader";
 import ProductCard from "./ProductCard";
+import ProductCardSkeleton from "./ProductCardSkeleton";
 import { useProducts } from "./useProduct";
 
 function ProductsSection() {
@@ -14,8 +15,17 @@ function ProductsSection() {
         viewAllLink="/new-arrivals"
       />
 
-      <ProjectGrid data={products} renderItem={(product) => <ProductCard product={product} />} />
-      {/* <ProjectGrid/> */}
+      {isLoading ? (
+        <ProjectGrid
+          data={Array.from({ length: 14 }, (_, index) => ({ id: index }))}
+          renderItem={(item) => <ProductCardSkeleton key={item.id} />}
+        />
+      ) : (
+        <ProjectGrid
+          data={products}
+          renderItem={(product) => <ProductCard key={product.id} product={product} />}
+        />
+      )}
     </div>
   );
 }

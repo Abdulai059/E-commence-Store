@@ -13,11 +13,11 @@ function ProjectBanner() {
   const { currentSlide, slide, goToSlide } = useSlider(heroImages, 8000);
 
   return (
-    <section className="mx-auto my-20 max-w-7xl px-4">
+    <section className="mx-auto my-20 max-w-7xl">
       <div className="relative overflow-hidden rounded-xl bg-linear-to-r from-red-500 to-red-600 shadow-2xl">
         {/* Decorative circles */}
         {/* Content Container */}
-        <div className="relative flex flex-col items-center justify-between px-6 py-8 md:flex-row md:px-12 md:py-10">
+        <div className="relative flex flex-col items-center justify-between px-4 py-8 md:flex-row md:px-12 md:py-10">
           {/* Left Content */}
           <div className="z-10 mb-8 text-left md:mb-0 md:text-left">
             <div className="mb-4 inline-block">
@@ -52,7 +52,7 @@ function ProjectBanner() {
       </div>
 
       <div className="relative">
-        <span className="absolute -top-95 translate-x-120">
+        <span className="absolute -top-95 translate-x-120 hidden md:flex sm:hidden">
           <AnimatePresence mode="wait">
             <motion.img
               key={slide.image}
@@ -61,7 +61,7 @@ function ProjectBanner() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -50 }}
               transition={{ duration: 0.8 }}
-              className="hidden h-120 w-full md:flex"
+              className=" h-120 w-full md:flex"
             />
           </AnimatePresence>
         </span>

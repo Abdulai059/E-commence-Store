@@ -37,7 +37,7 @@ function Feature() {
   ];
 
   return (
-    <section className="px-4 py-15">
+    <section className="px-4 py-0">
       <style>{getMarqueeStyles()}</style>
       <SectionHeader
         title="Trending Products"

@@ -1,17 +1,13 @@
 import { Outlet } from "react-router-dom";
-import Footer from "../../ui/Footer";
 import Header from "../../ui/Header";
-import Hero from "./Hero";
 
 function AppLayout() {
   return (
     <>
       <Header />
-      <Hero />
-      <main className="mx-auto flex-1 overflow-auto px-4 md:max-w-[1500px]">
+      <div className="pt-[80px] md:pt-[220px]  sm:pt-0 md:pt-0 z-0">
         <Outlet />
-      </main>
-      <Footer />
+      </div>
     </>
   );
 }
