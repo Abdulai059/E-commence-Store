@@ -1,64 +1,52 @@
-import { lazy, Suspense } from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Sidebar from "../components/ dashboard/      Sidebar";
+import DashboardNavbar from "../components/ dashboard/DashboardNavbar";
+import ProductCard from "../components/products/ProductCard";
+import { useProducts } from "../components/products/useProducts";
+import { ProjectGrid } from "../ui/ProductGrid";
 
-import { CitiesProvider } from "./contexts/CitiesContext";
-import { AuthProvider } from "./contexts/FakeAuthContext";
-import ProtectedRoute from "./pages/ProtectedRoute";
+function Shop() {
+  const { isLoading, products } = useProducts();
 
-import CityList from "./components/CityList";
-import CountryList from "./components/CountryList";
-import City from "./components/City";
-import Form from "./components/Form";
-import SpinnerFullPage from "./components/SpinnerFullPage";
-
-// import Product from "./pages/Product";
-// import Homepage from "./pages/Homepage";
-// import Pricing from "./pages/Pricing";
-// import PageNotFound from "./pages/PageNotFound";
-// import Login from "./pages/Login";
-// import AppLayout from "./pages/AppLayout";
-
-
-const Homepage = lazy(() => import("./pages/Homepage"));
-const Product = lazy(() => import("./pages/Product"));
-const Pricing = lazy(() => import("./pages/Pricing"));
-const Login = lazy(() => import("./pages/Login"));
-const AppLayout = lazy(() => import("./pages/AppLayout"));
-const PageNotFound = lazy(() => import("./pages/PageNotFound"));
-
-function App() {
   return (
-    <AuthProvider>
-      <CitiesProvider>
-        <BrowserRouter>
-          <Suspense fallback={<SpinnerFullPage />}>
-            <Routes>
-              <Route index element={<Homepage />} />
-              <Route path="product" element={<Product />} />
-              <Route path="pricing" element={<Pricing />} />
-              <Route path="login" element={<Login />} />
-              <Route
-                path="app"
-                element={
-                  <ProtectedRoute>
-                    <AppLayout />
-                  </ProtectedRoute>
-                }
-              >
-                <Route index element={<CityList />} />
-                <Route path="cities" element={<CityList />} />
-                <Route path="cities/:id" element={<City />} />
-                <Route path="countries" element={<CountryList />} />
-                <Route path="form" element={<Form />} />
-              </Route>
+    <div className="flex min-h-screen flex-col md:mt-[125px]">
+      {/* BELOW NAVBAR → STACK ON MOBILE, ROW ON DESKTOP */}
+      <div className="flex flex-1 flex-col md:flex-row">
+        {/* SIDEBAR */}
+        <div className="w-full border-r border-gray-300 pt-4 md:w-80">
+          <Sidebar />
+        </div>
 
-              <Route path="*" element={<PageNotFound />} />
-            </Routes>
-          </Suspense>
-        </BrowserRouter>
-      </CitiesProvider>
-    </AuthProvider>
+        {/* MAIN CONTENT */}
+        <div className="flex-1 pr-2 pl-10">
+          <DashboardNavbar />
+
+          <div className="mt-10">
+            <ProjectGrid
+              data={products}
+              renderItem={(product) => <ProductCard key={product.id} product={product} />}
+              className="md:grid-cols-6"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }
 
-export default App;
+export default Shop;
+
+{
+  /* <div className="flex items-center justify-between border-b mt-[125px] border-gray-300 bg-white px-4 py-3 transition-all duration-300 md:px-8">
+        <a href="https://prebuiltui.com">
+          <img
+            className="h-9"
+            src="https://raw.githubusercontent.com/prebuiltui/prebuiltui/main/assets/dummyLogo/dummyLogoColored.svg"
+            alt="dummyLogoColored"
+          />
+        </a>
+        <div className="flex items-center gap-5 text-gray-500">
+          <p>Hi! Admin</p>
+          <button className="rounded-full border px-4 py-1 text-sm">Logout</button>
+        </div>
+      </div> */
+}

@@ -6,6 +6,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Homepage from "./pages/Homepage";
 import ProductPage from "./pages/ProductPage";
 import NotFoundPage from "./ui/NotFoundPage";
+import Shop from "./pages/Shop";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -25,6 +26,7 @@ function App() {
           <Route element={<AppLayout />}>
             <Route index element={<Homepage />} />
             <Route path="product/:productId" element={<ProductPage />} />
+            <Route path="shop" element={<Shop />} />
           </Route>
 
            <Route path="*" element={<NotFoundPage/>} />

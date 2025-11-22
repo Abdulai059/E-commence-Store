@@ -24,6 +24,7 @@ function ProductsSection() {
         <ProjectGrid
           data={products}
           renderItem={(product) => <ProductCard key={product.id} product={product} />}
+        className="md:grid-cols-4 lg:grid-cols-6 "
         />
       )}
     </div>
