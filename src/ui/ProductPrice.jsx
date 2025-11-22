@@ -5,7 +5,7 @@ function ProductPrice({ price, offerPrice, showTaxes = true }) {
   return (
     <div className="mt-6 rounded-lg bg-red-50 p-4">
       <p className="text-gray-500/70 line-through">Price: {formatCurrency(price)}</p>
-      <p className="text-2xl font-medium">Offer Price: {formatCurrency(offerPrice)}</p>
+      <p className="md:text-2xl text-lg font-medium">Offer Price: {formatCurrency(offerPrice)}</p>
       {showTaxes && <span className="text-gray-500/70">(inclusive of all delivery fees)</span>}
     </div>
   );

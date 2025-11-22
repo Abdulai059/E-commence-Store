@@ -4,8 +4,8 @@ import AppLayout from "./components/layout/AppLayout";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import Homepage from "./pages/Homepage";
-import ProductDetails from "./components/products/ProductDetails";
 import ProductPage from "./pages/ProductPage";
+import NotFoundPage from "./ui/NotFoundPage";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -26,6 +26,8 @@ function App() {
             <Route index element={<Homepage />} />
             <Route path="product/:productId" element={<ProductPage />} />
           </Route>
+
+           <Route path="*" element={<NotFoundPage/>} />
         </Routes>
       </BrowserRouter>
     </QueryClientProvider>

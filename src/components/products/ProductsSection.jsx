@@ -1,7 +1,7 @@
 import { ProjectGrid } from "../../ui/ProductGrid";
 import SectionHeader from "../../ui/SectionHeader";
 import ProductCard from "./ProductCard";
-import ProductCardSkeleton from "./ProductCardSkeleton";
+import ProductCardSkeleton from "../skeletons/ProductCardSkeleton";
 import { useProducts } from "./useProducts";
 
 function ProductsSection() {

@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { formatCurrency } from "../../utils/helpers";
 import StockBadge from "../../ui/StockBadge";
 import ProductColors from "../../ui/ProdectColors";
 import ProductPrice from "../../ui/ProductPrice";
@@ -40,9 +39,9 @@ function ProductDetails({ product }) {
   return (
     <div className="text-accent">
       <div className="px-2">
-        <p>
-          <span>Home</span> / <span>Products</span> /<span>{category?.name || category}</span> /
-          <span className="text-indigo-500"> {name}</span>
+        <p className="text-sm">
+           <span>{category?.name || category}</span>: 
+          <span className="text-indigo-500 "> {name}</span>
         </p>
 
         <div className="mt-4 flex flex-col gap-16 md:flex-row">
@@ -71,7 +70,7 @@ function ProductDetails({ product }) {
 
           {/* Product Information */}
           <div className="w-full text-sm md:w-1/2">
-            <h1 className="mb-4 text-3xl font-medium">{name}</h1>
+            <h1 className="mb-4 md:text-3xl text-xl font-medium">{name}</h1>
 
             {/* Price */}
            <ProductPrice  price={price} offerPrice={offer_price}/>
