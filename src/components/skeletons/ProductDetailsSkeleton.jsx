@@ -1,6 +1,6 @@
 function ProductDetailsSkeleton() {
   return (
-    <div className="animate-pulse px-2">
+    <div className="max-w-[1500px] animate-pulse px-2">
       <div className="mb-6 h-4 w-1/3 rounded bg-gray-300"></div>
 
       <div className="mt-4 flex flex-col gap-16 md:flex-row">

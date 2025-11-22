@@ -69,7 +69,7 @@ function ProductDetails({ product }) {
           </div>
 
           {/* Product Information */}
-          <div className="w-full text-sm md:w-1/2">
+          <div className="w-full text-sm px-2 md:w-1/2">
             <h1 className="mb-4 md:text-3xl text-xl font-medium">{name}</h1>
 
             {/* Price */}
