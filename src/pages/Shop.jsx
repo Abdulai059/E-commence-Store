@@ -1,11 +1,15 @@
-import Sidebar from "../components/ dashboard/      Sidebar";
-import DashboardNavbar from "../components/ dashboard/DashboardNavbar";
+
+import DashboardNavbar from "../components/dashboard/DashboardNavbar";
+import Sidebar from "../components/dashboard/Sidebar";
 import ProductCard from "../components/products/ProductCard";
 import { useProducts } from "../components/products/useProducts";
+import Pagination from "../ui/Pagination";
 import { ProjectGrid } from "../ui/ProductGrid";
 
 function Shop() {
-  const { isLoading, products } = useProducts();
+  const { isLoading, products, count } = useProducts();
+console.log(products)
+
 
   return (
     <div className="flex min-h-screen flex-col md:mt-[125px]">
@@ -23,9 +27,14 @@ function Shop() {
           <div className="mt-10">
             <ProjectGrid
               data={products}
-              renderItem={(product) => <ProductCard key={product.id} product={product} />}
-              className="md:grid-cols-6"
+              renderItem={(product) => <ProductCard product={product} />}
+              getKey={(product) => product.id}
+              className="md:grid-cols-5"
             />
+
+            <div className="flex justify-center bg-gray-50 p-5 empty:hidden">
+              <Pagination count={count} />
+            </div>
           </div>
         </div>
       </div>

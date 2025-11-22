@@ -39,7 +39,7 @@ function ProductDetails({ product }) {
   return (
     <div className="text-accent">
       <div className="px-2">
-        <p className="text-sm">
+        <p className="text-base">
            <span>{category?.name || category}</span>: 
           <span className="text-indigo-500 "> {name}</span>
         </p>

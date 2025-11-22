@@ -19,12 +19,13 @@ function ProductsSection() {
         <ProjectGrid
           data={Array.from({ length: 14 }, (_, index) => ({ id: index }))}
           renderItem={(item) => <ProductCardSkeleton key={item.id} />}
+          className="md:grid-cols-4 lg:grid-cols-6"
         />
       ) : (
         <ProjectGrid
           data={products}
           renderItem={(product) => <ProductCard key={product.id} product={product} />}
-        className="md:grid-cols-4 lg:grid-cols-6 "
+          className="md:grid-cols-4 lg:grid-cols-6"
         />
       )}
     </div>

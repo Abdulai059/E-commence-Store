@@ -1,17 +1,20 @@
 function ShippingDetailsSkeleton() {
   return (
-    <div className="animate-pulse px-2 py-8">
-      <div className="flex flex-wrap justify-center gap-4 md:gap-8 lg:gap-12">
-        {[1, 2, 3, 4].map((i) => (
+    <div className="mx-auto max-w-full px-2 py-8">
+      <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
+        {[...Array(8)].map((_, i) => (
           <div
             key={i}
-            className="flex w-[calc(50%-12px)] flex-row items-center gap-3 rounded-lg px-2 py-6 shadow-sm md:w-auto"
+            className="flex animate-pulse items-center gap-3 rounded-lg px-2 py-6 shadow-sm"
           >
-            <div className="h-10 w-10 rounded-full bg-gray-300"></div>
+            {/* Icon skeleton */}
+            <div className="h-6 w-6 rounded bg-gray-300 md:h-10 md:w-10" />
 
-            <div>
-              <div className="mb-2 h-4 w-24 rounded bg-gray-300"></div>
-              <div className="h-3 w-20 rounded bg-gray-300"></div>
+            <div className="flex-1 space-y-2">
+              {/* Title skeleton */}
+              <div className="h-3 w-20 rounded bg-gray-300 md:w-24" />
+              {/* Description skeleton */}
+              <div className="h-2 w-16 rounded bg-gray-200 md:w-20" />
             </div>
           </div>
         ))}

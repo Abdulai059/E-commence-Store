@@ -1,35 +1,56 @@
+import { PAGE_SIZE } from "../utils/constants";
 import supabase from "./supabase";
 
-export async function getProducts() {
-  const { data, error } = await supabase
+export async function getProducts({ page = 1 }) {
+  let query = supabase
     .from("products")
     .select(
       `
-      id,
-      name,
-      description,
-      price,
-      offer_price,
-      stock_quantity,
-      trending_colors, 
-      in_stock,
-      categories(id, name, description),
-      created_at,
-      product_images(id, image_url, position)
-    `,
+        id,
+        name,
+        description,
+        price,
+        offer_price,
+        stock_quantity,
+        trending_colors,
+        in_stock,
+        categories (
+          id,
+          name,
+          description
+        ),
+        created_at,
+        product_images (
+          id,
+          image_url,
+          position
+        )
+      `,
+      { count: "exact" },
     )
     .order("created_at", { ascending: false });
+
+  // Apply pagination
+  const from = (page - 1) * PAGE_SIZE;
+  const to = from + PAGE_SIZE - 1;
+
+  query = query.range(from, to);
+
+  const { data, error, count } = await query;
 
   if (error) {
     console.error("Error fetching products:", error);
     throw new Error("Products could not be loaded");
   }
 
-  return data.map((product) => ({
+  // Clean & normalize returned data
+  const products = data.map((product) => ({
     ...product,
-    images: product.product_images || [], // ensure `images` is always an array
+    images: product.product_images || [],
     category: product.categories || null,
   }));
+
+  return { products, count };
 }
 
 export async function getProduct(id) {
