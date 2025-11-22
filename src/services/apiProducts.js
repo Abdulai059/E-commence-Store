@@ -31,3 +31,27 @@ export async function getProducts() {
     category: product.categories || null,
   }));
 }
+
+export async function getProduct(id) {
+  const { data, error } = await supabase
+    .from("products")
+    .select(
+      `*, 
+      categories(*),
+      product_images(*)`,
+    )
+    .eq("id", id)
+    .single();
+
+  if (error) {
+    console.error(error);
+    throw new Error("Product not found");
+  }
+
+  // Transform to match ProductDetails structure
+  return {
+    ...data,
+    images: data.product_images || [],
+    category: data.categories || null,
+  };
+}

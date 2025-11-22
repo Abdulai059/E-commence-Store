@@ -3,8 +3,9 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import AppLayout from "./components/layout/AppLayout";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
-import Product from "./pages/Product";
 import Homepage from "./pages/Homepage";
+import ProductDetails from "./components/products/ProductDetails";
+import ProductPage from "./pages/ProductPage";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -23,7 +24,7 @@ function App() {
         <Routes>
           <Route element={<AppLayout />}>
             <Route index element={<Homepage />} />
-            <Route path="product" element={<Product />} />
+            <Route path="product/:productId" element={<ProductPage />} />
           </Route>
         </Routes>
       </BrowserRouter>

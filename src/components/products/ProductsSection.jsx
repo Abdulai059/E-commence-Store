@@ -2,7 +2,7 @@ import { ProjectGrid } from "../../ui/ProductGrid";
 import SectionHeader from "../../ui/SectionHeader";
 import ProductCard from "./ProductCard";
 import ProductCardSkeleton from "./ProductCardSkeleton";
-import { useProducts } from "./useProduct";
+import { useProducts } from "./useProducts";
 
 function ProductsSection() {
   const { isLoading, products } = useProducts();

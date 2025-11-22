@@ -1,33 +1,35 @@
 import { useState } from "react";
 import { formatCurrency } from "../../utils/helpers";
 import StockBadge from "../../ui/StockBadge";
+import ProductColors from "../../ui/ProdectColors";
+import ProductPrice from "../../ui/ProductPrice";
 
-function ProductDetails({ products }) {
-  const product = products?.[0];
-
+function ProductDetails({ product }) {
   if (!product) return <p>Loading...</p>;
 
-  // Handle images (array of objects or strings)
+  // Extract image URLs
   const imageUrls =
     product.images?.map((img) => (typeof img === "string" ? img : img.image_url)) || [];
+
   const [thumbnail, setThumbnail] = useState(imageUrls[0] || "");
 
   const {
+    id: productId,
     name,
     category,
     price,
     offer_price,
-    rating,
     description,
     trending_colors = [],
     stock_quantity,
-    // in_stock,
   } = product;
 
   // Determine stock status
-  const in_stock = product.stock_quantity > 0;
+  const in_stock = stock_quantity > 0;
 
-  // Handle description as string or array
+  const safeTrendingColors = product?.trending_colors || [];
+
+  // Normalize description
   const descriptionText =
     typeof description === "string"
       ? description
@@ -39,12 +41,12 @@ function ProductDetails({ products }) {
     <div className="text-accent">
       <div className="px-2">
         <p>
-          <span>Home</span> / <span>Products</span> / <span>{category?.name || category}</span> /
+          <span>Home</span> / <span>Products</span> /<span>{category?.name || category}</span> /
           <span className="text-indigo-500"> {name}</span>
         </p>
 
         <div className="mt-4 flex flex-col gap-16 md:flex-row">
-          {/* Thumbnails and main image */}
+          {/* Images Section */}
           <div className="flex gap-3">
             <div className="flex flex-col gap-3">
               {imageUrls.map((image, index) => (
@@ -67,28 +69,17 @@ function ProductDetails({ products }) {
             </div>
           </div>
 
-          {/* Product info */}
+          {/* Product Information */}
           <div className="w-full text-sm md:w-1/2">
             <h1 className="mb-4 text-3xl font-medium">{name}</h1>
 
             {/* Price */}
-            <div className="mt-6 rounded-lg bg-red-50 p-4">
-              <p className="text-gray-500/70 line-through">MRP: {formatCurrency(price)}</p>
-              <p className="text-2xl font-medium">MRP: {formatCurrency(offer_price)}</p>
-              <span className="text-gray-500/70">(inclusive of all taxes)</span>
-            </div>
+           <ProductPrice  price={price} offerPrice={offer_price}/>
 
-            {/* Trending colors */}
-            {trending_colors.length > 0 && (
-              <div className="my-6 flex items-center gap-3">
-                <span className="rounded-full bg-orange-500 px-3 py-1 text-sm font-medium text-white">
-                  Trending
-                </span>
-                <span className="text-gray-700">Color: {trending_colors.join(", ")}</span>
-              </div>
-            )}
+            {/* Trending Colors */}
+            <ProductColors colors={trending_colors} />
 
-            {/* Stock status */}
+            {/* Stock Status */}
             <StockBadge inStock={in_stock} />
 
             {/* Description */}
