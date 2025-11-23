@@ -2,16 +2,31 @@ import { Card, CardBody, CardFooter } from "@heroui/react";
 import { formatCurrency } from "../../utils/helpers";
 import ProductActionButton from "../../ui/ProductActionButton";
 import { Eye, Heart, ShoppingCart } from "lucide-react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addItem } from "../cart/cartSlice";
 
 export default function ProductCard({ product }) {
   const { name, price, category } = product;
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   // Get main image safely
   const mainImage = product.product_images?.[0]?.image_url || product.images?.[0]?.image_url || "";
 
-  // Handle card click (mobile)
+  function handleAddToCart(e) {
+    e.stopPropagation();
+    const newItem = {
+      productId: product.id,
+      name: product.name,
+      price: product.price,
+      quantity: 1,
+      image: mainImage,
+    };
+    dispatch(addItem(newItem));
+  }
+
+  // Handle card click (mobile) - FIXED
   const handleCardClick = () => navigate(`/product/${product.id}`);
 
   return (
@@ -36,7 +51,7 @@ export default function ProductCard({ product }) {
         {/* Hover overlay (desktop only) */}
         <div className="absolute inset-0 hidden items-center justify-center bg-black/0 transition-all duration-300 group-hover:bg-black/20 md:flex">
           <div className="flex gap-2">
-            {/* Eye button navigates */}
+            {/* Eye button navigates - FIXED */}
             <ProductActionButton
               icon={Eye}
               bgColor="white"
@@ -44,7 +59,7 @@ export default function ProductCard({ product }) {
               hoverColor="blue"
               label="View Details"
               onClick={(e) => {
-                e.stopPropagation(); // prevent card click
+                e.stopPropagation();
                 navigate(`/product/${product.id}`);
               }}
             />
@@ -63,17 +78,16 @@ export default function ProductCard({ product }) {
             />
 
             {/* Add to Cart button */}
-            <ProductActionButton
-              icon={ShoppingCart}
-              bgColor="white"
-              textColor="green"
-              hoverColor="darkgreen"
-              label="Add to Cart"
-              onClick={(e) => {
-                e.stopPropagation();
-                console.log("Add to Cart clicked");
-              }}
-            />
+            <Link to="/cart">
+              <ProductActionButton
+                icon={ShoppingCart}
+                bgColor="white"
+                textColor="green"
+                hoverColor="darkgreen"
+                label="Add to Cart"
+                onClick={handleAddToCart}
+              />
+            </Link>
           </div>
         </div>
       </CardBody>

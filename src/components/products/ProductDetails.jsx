@@ -4,8 +4,11 @@ import ProductColors from "../../ui/ProdectColors";
 import ProductPrice from "../../ui/ProductPrice";
 import { Link } from "react-router-dom";
 import Button from "../../ui/Button";
+import { useDispatch } from "react-redux";
+import { addItem } from "../cart/cartSlice";
 
 function ProductDetails({ product }) {
+  const dispatch = useDispatch();
   if (!product) return <p>Loading...</p>;
 
   // Extract image URLs
@@ -15,7 +18,6 @@ function ProductDetails({ product }) {
   const [thumbnail, setThumbnail] = useState(imageUrls[0] || "");
 
   const {
-    id: productId,
     name,
     category,
     price,
@@ -28,7 +30,16 @@ function ProductDetails({ product }) {
   // Determine stock status
   const in_stock = stock_quantity > 0;
 
-  const safeTrendingColors = product?.trending_colors || [];
+  function handleAddToCart() {
+    const newItem = {
+      productId: product.id,
+      name: product.name,
+      price: product.price,
+      quantity: 1,
+      image: imageUrls[0],
+    };
+    dispatch(addItem(newItem));
+  }
 
   // Normalize description
   const descriptionText =
@@ -84,12 +95,13 @@ function ProductDetails({ product }) {
 
             <div className="mt-10 flex items-center gap-4 text-base">
               <Link
+                onClick={handleAddToCart}
                 to="/cart"
-                className="w-full cursor-pointer bg-gray-100 py-3.5 font-medium text-gray-800/80 transition  hover:bg-gray-200 text-center shadow-sm"
+                className="w-full cursor-pointer bg-gray-100 py-3.5 text-center font-medium text-gray-800/80 shadow-sm transition hover:bg-gray-200"
               >
                 Add to Cart
               </Link>
-              <Button className="w-full cursor-pointer bg-indigo-500 py-3.5 font-medium text-white transition hover:bg-indigo-600 shadow-sm">
+              <Button className="w-full cursor-pointer bg-indigo-500 py-3.5 font-medium text-white shadow-sm transition hover:bg-indigo-600">
                 Buy now
               </Button>
             </div>
