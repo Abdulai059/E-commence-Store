@@ -1,6 +1,6 @@
-
 import { SlidersHorizontal, Tag } from "lucide-react";
 import { useState } from "react";
+import Button from "../../ui/Button";
 
 function Sidebar() {
   const [minPrice, setMinPrice] = useState("0");
@@ -33,9 +33,9 @@ function Sidebar() {
   const brands = ["Asano fridge", "Franko fridge"];
 
   return (
-    <div className=" space-y-6 rounded-lg bg-gray-50 p-6">
+    <div className="space-y-6 rounded-lg bg-gray-50 p-6">
       {/* Header */}
-      <div className="flex items-center pl-4 gap-6 border-b border-gray-200 pb-4">
+      <div className="flex items-center gap-6 border-b border-gray-200 pb-4 pl-4">
         <SlidersHorizontal className="h-5 w-5 text-red-600" />
         <h2 className="text-xl font-semibold text-gray-800">Filters</h2>
       </div>
@@ -76,12 +76,9 @@ function Sidebar() {
           </div>
         </div>
 
-        <button
-          onClick={handleApplyPrice}
-          className="w-full rounded-md bg-gradient-to-r from-green-400 to-teal-500 py-2.5 font-semibold text-white transition-all hover:from-green-500 hover:to-teal-600"
-        >
+        <Button onClick={handleApplyPrice} variation="success">
           Apply Price Filter
-        </button>
+        </Button>
 
         <div className="flex items-center justify-between pt-2 text-sm">
           <span className="font-medium text-gray-700">Applied Range:</span>
@@ -141,12 +138,9 @@ function Sidebar() {
       </div>
 
       {/* Reset Button */}
-      <button
-        onClick={handleResetFilters}
-        className="w-full rounded-lg bg-gradient-to-r from-red-400 to-red-500 py-3 font-semibold text-white shadow-md transition-all hover:from-red-500 hover:to-red-600"
-      >
+      <Button onClick={handleResetFilters} className="w-full">
         Reset All Filters
-      </button>
+      </Button>
     </div>
   );
 }

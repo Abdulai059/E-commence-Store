@@ -1,41 +1,23 @@
 import { HiChevronLeft, HiChevronRight } from "react-icons/hi2";
-import { useSearchParams } from "react-router-dom";
+
 import { PAGE_SIZE } from "../utils/constants";
+import ShowingResults from "./ShowingResults";
+import { usePagination } from "../hooks/usePagination";
 
 function Pagination({ count }) {
-  const [searchParams, setSearchParams] = useSearchParams();
-
-  // current page from the url
-  const currentPage = !searchParams.get("page") ? 1 : Number(searchParams.get("page"));
-
-  const pageCount = Math.ceil(count / PAGE_SIZE);
-
-  function nextPage() {
-    const next = currentPage === pageCount ? currentPage : currentPage + 1;
-    searchParams.set("page", next);
-    setSearchParams(searchParams);
-  }
-
-  function previousPage() {
-    const prev = currentPage === 1 ? currentPage : currentPage - 1;
-    searchParams.set("page", prev);
-    setSearchParams(searchParams);
-  }
+  const { currentPage, pageCount, nextPage, previousPage } = usePagination(count);
 
   if (pageCount <= 1) return null;
 
   return (
     <div className="mt-6 flex w-full items-center justify-between">
-   
-      <p className="ml-2 text-base">
-        showing <span className="font-semibold">{(currentPage - 1) * PAGE_SIZE + 1}</span> to{" "}
-        <span className="font-semibold">
-          {currentPage === pageCount ? count : currentPage * PAGE_SIZE}
-        </span>{" "}
-        of <span className="font-semibold">{count}</span> results
-      </p>
+      <ShowingResults
+        currentPage={currentPage}
+        pageCount={pageCount}
+        PAGE_SIZE={PAGE_SIZE}
+        count={count}
+      />
 
-    
       <div className="flex gap-2">
         <button
           onClick={previousPage}

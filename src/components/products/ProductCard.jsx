@@ -22,7 +22,7 @@ export default function ProductCard({ product }) {
       {/* Card body */}
       <CardBody
         className="group relative cursor-pointer overflow-visible p-0"
-        onClick={handleCardClick} // mobile click
+        onClick={handleCardClick}
       >
         {/* Product Image */}
         <div className="md:cursor-default">

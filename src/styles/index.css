@@ -1,0 +1,56 @@
+/* ANIMATION FOR THE DEAL BANNER */
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+.bounce-animation {
+  animation: bounce 1s ease-in-out infinite;
+}
+
+@keyframes diagonal-bounce {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(5px, -5px);
+  }
+}
+.diagonal-bounce {
+  animation: diagonal-bounce 1s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%) skewX(-15deg);
+  }
+  100% {
+    transform: translateX(200%) skewX(-15deg);
+  }
+}
+.shimmer-effect::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.1) 20%,
+    rgba(255, 255, 255, 0.4) 50%,
+    rgba(255, 255, 255, 0.5) 55%,
+    rgba(255, 255, 255, 0.5) 60%,
+    rgba(255, 255, 255, 0.1) 70%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  animation: shimmer 3s infinite;
+  filter: blur(1px);
+}

@@ -2,6 +2,8 @@ import { useState } from "react";
 import StockBadge from "../../ui/StockBadge";
 import ProductColors from "../../ui/ProdectColors";
 import ProductPrice from "../../ui/ProductPrice";
+import { Link } from "react-router-dom";
+import Button from "../../ui/Button";
 
 function ProductDetails({ product }) {
   if (!product) return <p>Loading...</p>;
@@ -40,8 +42,7 @@ function ProductDetails({ product }) {
     <div className="text-accent">
       <div className="px-2">
         <p className="text-base">
-           <span>{category?.name || category}</span>: 
-          <span className="text-indigo-500 "> {name}</span>
+          <span>{category?.name || category}</span>:<span className="text-indigo-500"> {name}</span>
         </p>
 
         <div className="mt-4 flex flex-col gap-16 md:flex-row">
@@ -69,30 +70,28 @@ function ProductDetails({ product }) {
           </div>
 
           {/* Product Information */}
-          <div className="w-full text-sm px-2 md:w-1/2">
-            <h1 className="mb-4 md:text-3xl text-xl font-medium">{name}</h1>
+          <div className="w-full px-2 text-sm md:w-1/2">
+            <h1 className="mb-4 text-xl font-medium md:text-3xl">{name}</h1>
 
-            {/* Price */}
-           <ProductPrice  price={price} offerPrice={offer_price}/>
+            <ProductPrice price={price} offerPrice={offer_price} />
 
-            {/* Trending Colors */}
             <ProductColors colors={trending_colors} />
 
-            {/* Stock Status */}
             <StockBadge inStock={in_stock} />
 
-            {/* Description */}
             <p className="mt-6 text-base font-medium">About Product</p>
             <div className="ml-4 text-gray-500/70">{descriptionText}</div>
 
-            {/* Buttons */}
             <div className="mt-10 flex items-center gap-4 text-base">
-              <button className="w-full cursor-pointer bg-gray-100 py-3.5 font-medium text-gray-800/80 transition hover:bg-gray-200">
+              <Link
+                to="/cart"
+                className="w-full cursor-pointer bg-gray-100 py-3.5 font-medium text-gray-800/80 transition  hover:bg-gray-200 text-center shadow-sm"
+              >
                 Add to Cart
-              </button>
-              <button className="w-full cursor-pointer bg-indigo-500 py-3.5 font-medium text-white transition hover:bg-indigo-600">
+              </Link>
+              <Button className="w-full cursor-pointer bg-indigo-500 py-3.5 font-medium text-white transition hover:bg-indigo-600 shadow-sm">
                 Buy now
-              </button>
+              </Button>
             </div>
           </div>
         </div>

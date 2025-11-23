@@ -10,7 +10,7 @@ export default function ProductActionButton({
   onClick,
 }) {
   return (
-    <Button
+    <button
       onClick={onClick}
       className="flex items-center gap-2 rounded-full px-2 py-2 text-sm font-medium opacity-0 transition-all duration-300 cursor-pointer group-hover:translate-y-0 group-hover:opacity-100"
       style={{ backgroundColor: bgColor, color: textColor }}
@@ -22,6 +22,6 @@ export default function ProductActionButton({
         onMouseEnter={(e) => (e.target.style.color = hoverColor)}
         onMouseLeave={(e) => (e.target.style.color = textColor)}
       />
-    </Button>
+    </button>
   );
 }

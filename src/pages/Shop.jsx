@@ -1,4 +1,3 @@
-
 import DashboardNavbar from "../components/dashboard/DashboardNavbar";
 import Sidebar from "../components/dashboard/Sidebar";
 import ProductCard from "../components/products/ProductCard";
@@ -8,30 +7,24 @@ import { ProjectGrid } from "../ui/ProductGrid";
 
 function Shop() {
   const { isLoading, products, count } = useProducts();
-console.log(products)
-
-
   return (
-    <div className="flex min-h-screen flex-col md:mt-[125px]">
-      {/* BELOW NAVBAR → STACK ON MOBILE, ROW ON DESKTOP */}
-      <div className="flex flex-1 flex-col md:flex-row">
+    <div className="flex md:pt-5 min-h-screen flex-col md:mt-[130px]">
+      {/* GRID LAYOUT */}
+      <div className="grid flex-1 grid-cols-1 md:grid-cols-[85px_1fr]">
         {/* SIDEBAR */}
-        <div className="w-full border-r border-gray-300 pt-4 md:w-80">
+        <div className="w-full border-r border-gray-300 pt-4 md:w-85">
           <Sidebar />
         </div>
-
-        {/* MAIN CONTENT */}
-        <div className="flex-1 pr-2 pl-10">
-          <DashboardNavbar />
-
+        {/* MAIN */}
+        <div className="flex-1 pr-2 pl-0 md:pl-80">
+          <DashboardNavbar count={count} />
           <div className="mt-10">
             <ProjectGrid
               data={products}
               renderItem={(product) => <ProductCard product={product} />}
               getKey={(product) => product.id}
-              className="md:grid-cols-5"
+              className="gap-8 md:grid-cols-5"
             />
-
             <div className="flex justify-center bg-gray-50 p-5 empty:hidden">
               <Pagination count={count} />
             </div>

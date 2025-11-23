@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { ChevronDown } from "lucide-react";
+import { usePagination } from "../../hooks/usePagination";
+import { PAGE_SIZE } from "../../utils/constants";
 
-function DashboardNavbar() {
+function DashboardNavbar({ count }) {
   const [sortOption, setSortOption] = useState("Newest First");
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
@@ -13,13 +15,15 @@ function DashboardNavbar() {
     "Best Rating",
   ];
 
+  const { currentPage, pageCount, nextPage, previousPage } = usePagination(count);
+
   const handleSortChange = (option) => {
     setSortOption(option);
     setIsDropdownOpen(false);
   };
 
   return (
-    <div className="rounded-2 w-full border-b shadow-sm rounded-xl border-gray-200 bg-white px-6 py-3">
+    <div className="rounded-2 w-full rounded-xl border-b border-gray-200 bg-white px-6 py-3 shadow-sm">
       <div className="mx-auto flex items-start justify-between">
         {/* Left Section - Brand Info */}
         <div>
@@ -29,9 +33,12 @@ function DashboardNavbar() {
 
         {/* Right Section - Product Count & Sort */}
         <div className="flex items-center gap-6">
-          {/* Product Count */}
           <div className="rounded-3xl bg-red-100 px-5 py-2 text-sm">
-            <span className="font-semibold text-red-600">8 of 26</span>
+            <span className="font-semibold text-red-600">{(currentPage - 1) * PAGE_SIZE + 1}</span>{" "}
+            to{" "}
+            <span className="font-semibold text-red-600">
+              {currentPage === pageCount ? count : currentPage * PAGE_SIZE}
+            </span>{" "}
             <span className="text-gray-600"> products</span>
           </div>
 
