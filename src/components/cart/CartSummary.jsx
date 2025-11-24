@@ -1,9 +1,25 @@
 import { useState } from "react";
 import Button from "../../ui/Button";
+import { useSelector } from "react-redux";
+import { getCart } from "./cartSlice";
+import { formatCurrency } from "../../utils/helpers";
 
 function CartSummary() {
- const [showAddress, setShowAddress] = useState(false);
+  const [showAddress, setShowAddress] = useState(false);
 
+  const cart = useSelector(getCart);
+
+  // Sum of all item subtotals = quantity * unitPrice
+  const price = cart.reduce((sum, item) => sum + item.quantity * item.unitPrice, 0);
+
+  // tax = 2% of price
+  const tax = price * 0.02;
+
+  // Shipping fee
+  const shippingFee = 0;
+
+  // Total amount
+  const totalAmount = price + tax + shippingFee;
 
   return (
     <div className="w-full max-w-[360px] border border-gray-300/70 bg-gray-100/40 p-5 max-md:mt-16">
@@ -51,7 +67,7 @@ function CartSummary() {
       <div className="mt-4 space-y-2 text-gray-500">
         <p className="flex justify-between">
           <span>Price</span>
-          <span>$20</span>
+          <span>{formatCurrency(price)}</span>
         </p>
         <p className="flex justify-between">
           <span>Shipping Fee</span>
@@ -59,11 +75,11 @@ function CartSummary() {
         </p>
         <p className="flex justify-between">
           <span>Tax (2%)</span>
-          <span>$20</span>
+          <span>{formatCurrency(tax)}</span>
         </p>
         <p className="mt-3 flex justify-between text-lg font-medium">
           <span>Total Amount:</span>
-          <span>$20</span>
+          <span className="text-base">{formatCurrency(totalAmount)}</span>
         </p>
       </div>
 

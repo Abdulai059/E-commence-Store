@@ -2,56 +2,61 @@ import { Card, CardBody, CardFooter } from "@heroui/react";
 import { formatCurrency } from "../../utils/helpers";
 import ProductActionButton from "../../ui/ProductActionButton";
 import { Eye, Heart, ShoppingCart } from "lucide-react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addItem } from "../cart/cartSlice";
+import { useEffect, useState } from "react";
 
 export default function ProductCard({ product }) {
-  const { name, price, category } = product;
+  const { name, offer_price, category } = product;
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [isMobile, setIsMobile] = useState(false);
 
-  // Get main image safely
+  // Detect mobile
+  useEffect(() => {
+    const checkScreen = () => setIsMobile(window.innerWidth < 768);
+    checkScreen();
+    window.addEventListener("resize", checkScreen);
+    return () => window.removeEventListener("resize", checkScreen);
+  }, []);
+
   const mainImage = product.product_images?.[0]?.image_url || product.images?.[0]?.image_url || "";
 
   function handleAddToCart(e) {
     e.stopPropagation();
-    const newItem = {
-      productId: product.id,
-      name: product.name,
-      price: product.price,
-      quantity: 1,
-      image: mainImage,
-    };
-    dispatch(addItem(newItem));
+    dispatch(
+      addItem({
+        productId: product.id,
+        name: product.name,
+        unitPrice: Number(product.offer_price || product.price),
+        quantity: 1,
+        image: mainImage,
+      }),
+    );
   }
-
-  // Handle card click (mobile) - FIXED
-  const handleCardClick = () => navigate(`/product/${product.id}`);
 
   return (
     <Card
       shadow="sm"
-      className="overflow-hidden rounded-xl shadow-md transition-shadow duration-300 hover:shadow-2xl"
+      className="w-full overflow-hidden rounded-xl shadow-md transition-shadow duration-300 hover:shadow-2xl sm:max-w-[250px] md:max-w-[300px] lg:max-w-[320px]"
     >
-      {/* Card body */}
       <CardBody
         className="group relative cursor-pointer overflow-visible p-0"
-        onClick={handleCardClick}
+        // Mobile: enable full-card click
+        onClick={isMobile ? () => navigate(`/product/${product.id}`) : undefined}
       >
-        {/* Product Image */}
-        <div className="md:cursor-default">
-          <img
-            src={mainImage}
-            alt={name}
-            className="h-[150px] w-full rounded-lg object-cover sm:h-[180px] md:h-[200px] lg:h-[220px]"
-          />
-        </div>
+        {/* Image */}
+        <img
+          src={mainImage}
+          alt={name}
+          className="h-[150px] w-full rounded-lg object-cover sm:h-[180px] md:h-[200px] lg:h-[220px]"
+        />
 
-        {/* Hover overlay (desktop only) */}
+        {/* Hover buttons (desktop only) */}
         <div className="absolute inset-0 hidden items-center justify-center bg-black/0 transition-all duration-300 group-hover:bg-black/20 md:flex">
           <div className="flex gap-2">
-            {/* Eye button navigates - FIXED */}
+            {/* Eye → View Details */}
             <ProductActionButton
               icon={Eye}
               bgColor="white"
@@ -64,41 +69,32 @@ export default function ProductCard({ product }) {
               }}
             />
 
-            {/* Wishlist button */}
+            {/* Wishlist */}
             <ProductActionButton
               icon={Heart}
               bgColor="white"
               textColor="red"
               hoverColor="darkred"
               label="Wishlist"
-              onClick={(e) => {
-                e.stopPropagation();
-                console.log("Wishlist clicked");
-              }}
+              onClick={(e) => e.stopPropagation()}
             />
 
-            {/* Add to Cart button */}
-            <Link to="/cart">
-              <ProductActionButton
-                icon={ShoppingCart}
-                bgColor="white"
-                textColor="green"
-                hoverColor="darkgreen"
-                label="Add to Cart"
-                onClick={handleAddToCart}
-              />
-            </Link>
+            {/* Add to cart */}
+            <ProductActionButton
+              icon={ShoppingCart}
+              bgColor="white"
+              textColor="green"
+              hoverColor="darkgreen"
+              label="Add to Cart"
+              onClick={handleAddToCart}
+            />
           </div>
         </div>
       </CardBody>
 
-      {/* Footer */}
-      <CardFooter className="flex flex-col gap-1 p-3">
-        <span className="text-[11px] font-medium tracking-wide text-slate-500 uppercase">
-          {category?.name}
-        </span>
+      <CardFooter className="flex flex-col gap-1 p-2 sm:p-3">
         <h3 className="line-clamp-1 text-[15px] font-semibold text-slate-800">{name}</h3>
-        <p className="text-[15px] font-semibold text-red-500">{formatCurrency(price)}</p>
+        <p className="text-[15px] font-semibold text-red-500">{formatCurrency(offer_price)}</p>
       </CardFooter>
     </Card>
   );

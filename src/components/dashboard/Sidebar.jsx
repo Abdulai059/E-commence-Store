@@ -89,7 +89,7 @@ function Sidebar() {
       </div>
 
       {/* Discounted Items Toggle */}
-      <div className="rounded-lg border border-orange-200 bg-gradient-to-br from-orange-50 to-orange-100 p-4">
+      <div className="rounded-lg border border-orange-200 bg-linear-to-br from-orange-50 to-orange-100 p-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="rounded-lg bg-orange-500 p-2">
@@ -114,7 +114,7 @@ function Sidebar() {
       </div>
 
       {/* Filter by Brand */}
-      <div className="rounded-lg border border-green-200 bg-gradient-to-br from-green-50 to-teal-50 p-4">
+      <div className="rounded-lg border border-green-200 bg-linear-to-br from-green-50 to-teal-50 p-4">
         <div className="mb-3 flex items-center gap-2">
           <div className="h-2 w-2 rounded-full bg-red-500"></div>
           <h3 className="font-semibold text-gray-800">Filter by Brand</h3>

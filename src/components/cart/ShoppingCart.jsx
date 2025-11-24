@@ -2,6 +2,7 @@ import { useSelector } from "react-redux";
 import CartSummary from "./CartSummary";
 import CartItem from "./CartItem";
 import LinkButton from "../../ui/LinkButton";
+import { Link } from "react-router-dom";
 
 function ShoppingCart() {
   const cart = useSelector((state) => state.cart.cart);
@@ -39,7 +40,10 @@ function ShoppingCart() {
               strokeLinejoin="round"
             />
           </svg>
-          <span className="text-indigo-500 group-hover:text-indigo-600">Continue Shopping</span>
+
+          <Link to="/" className="text-indigo-500 group-hover:text-indigo-600">
+            Continue Shopping
+          </Link>
         </LinkButton>
       </div>
 

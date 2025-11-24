@@ -1,12 +1,13 @@
 import NavList from "./NavList";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import { formatCurrency } from "../../utils/helpers";
 
 function Navbar() {
-    const cart = useSelector((state) => state.cart.cart);
-
+  const cart = useSelector((state) => state.cart.cart);
 
   return (
-    <div className="navbar bg-slate-100 text-muted  shadow-sm">
+    <div className="navbar text-muted bg-slate-100 shadow-sm">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost btn-circle border-0">
@@ -31,10 +32,10 @@ function Navbar() {
         </div>
       </div>
 
-      <div className="navbar-center">
-        {/* <a className="btn btn-ghost text-xl">daisyUI</a> */}
+      {/* <div className="navbar-center">
+        
         <NavList />
-      </div>
+      </div> */}
 
       <NavDetails cart={cart} />
     </div>
@@ -46,7 +47,7 @@ export function NavItems() {
   return (
     <ul
       tabIndex="-1"
-      className="menu menu-sm dropdown-content bg-popover rounded-box z-1 mt-3 w-52 p-2 shadow "
+      className="menu menu-sm dropdown-content bg-slate-50 rounded-box z-1 mt-3 w-52 p-2 shadow"
     >
       <li>
         <a>Homepage</a>
@@ -61,28 +62,15 @@ export function NavItems() {
   );
 }
 
-export function NavDetails({cart}) {
+export function NavDetails({ cart }) {
+  const Subtotal = cart.reduce((sum, item) => sum + item.quantity * item.unitPrice, 0);
+
   return (
     <div className="navbar-end flex items-center gap-3">
+      <NavList />
+
       {/* Search & Notifications */}
       <div className="flex gap-2 border-0">
-        <button className="btn btn-ghost btn-circle border-0 hover:bg-red-100">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-6 w-6 text-red-600"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-            />
-          </svg>
-        </button>
-
         <button className="btn btn-ghost btn-circle relative border-0 hover:bg-red-100">
           <div className="indicator">
             <svg
@@ -106,8 +94,10 @@ export function NavDetails({cart}) {
 
       {/* Cart */}
       <div className="dropdown dropdown-end">
-        <div tabIndex={0} className="relative flex items-center justify-center rounded-full bg-transparent border-0 p-2 hover:bg-red-100"
->
+        <div
+          tabIndex={0}
+          className="relative flex items-center justify-center rounded-full border-0 bg-transparent p-2 hover:bg-red-100"
+        >
           <div className="indicator">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -123,7 +113,7 @@ export function NavDetails({cart}) {
                 d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
               />
             </svg>
-            <span className="indicator-item rounded-full bg-red-600 px-1.5 py-0.5 text-[10px] font-semibold text-white">
+            <span className="indicator-item rounded-full bg-green-600 px-1.5 py-0.5 text-[10px] font-semibold text-white">
               {cart.length}
             </span>
           </div>
@@ -131,13 +121,18 @@ export function NavDetails({cart}) {
 
         <div
           tabIndex={0}
-          className="card card-compact dropdown-content bg-slate-100 z-10 mt-3 w-56 overflow-hidden rounded-lg shadow-lg"
+          className="card card-compact dropdown-content z-10 mt-3 w-56 overflow-hidden rounded-lg bg-slate-50 shadow-lg"
         >
-          <div className="card-body">
-            <span className="text-lg text-red-600 font-semibold">{cart.length} Items</span>
-            <span className="text-info">Subtotal: $999</span>
+          <div className="card-body text-slate-100">
+            <span className="text-lg font-semibold text-red-600">{cart.length} Items</span>
+            <span className="text-accent">Subtotal: {formatCurrency(Subtotal)}</span>
             <div className="card-actions">
-              <button className="btn btn-primary btn-block">View Cart</button>
+              <Link
+                to="/cart"
+                className="block w-full rounded bg-gradient-to-r from-red-400 to-red-500 px-4 py-2 text-center font-medium text-white shadow-md transition-all hover:from-red-500 hover:to-red-600"
+              >
+                View Cart
+              </Link>
             </div>
           </div>
         </div>
@@ -159,7 +154,7 @@ export function NavDetails({cart}) {
 
         <ul
           tabIndex={-1}
-          className="menu menu-sm bg-popover dropdown-content z-10 mt-3 w-52 rounded-lg p-2 shadow-lg"
+          className="menu menu-sm bg-slate-50 dropdown-content z-10 mt-3 w-52 rounded-lg p-2 shadow-lg"
         >
           <li>
             <a className="justify-between">

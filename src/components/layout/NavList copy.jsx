@@ -5,10 +5,10 @@ import { CaretDownIcon } from "@radix-ui/react-icons";
 
 function NavList() {
   return (
-    <NavigationMenu.Root className="relative z-10 hidden justify-end md:flex md:w-2xl">
+    <NavigationMenu.Root className="relative z-10 hidden justify-center p-3 md:flex md:w-2xl">
       <NavigationMenu.List className="center m-0 flex list-none rounded-md p-1">
         <NavigationMenu.Item>
-          <NavigationMenu.Trigger className="group text-violet11 hover:bg-violet3 focus:shadow-violet7 flex items-center justify-between gap-0.5 rounded px-3 py-2.5 text-[15px] leading-none font-medium select-none hover:text-red-600 focus:shadow-none! focus:outline-none!">
+          <NavigationMenu.Trigger className="group text-violet11 hover:bg-violet3 focus:shadow-violet7 flex items-center justify-between gap-0.5 rounded px-3 py-2.5 text-[15px] leading-none font-medium outline-none select-none hover:text-red-600 focus:shadow-[0_0_0_2px]">
             Home{" "}
             <CaretDownIcon
               className="text-violet10 relative top-px transition-transform duration-[250] ease-in group-data-[state=open]:-rotate-180"
@@ -67,8 +67,7 @@ function NavList() {
 
         <NavigationMenu.Item>
           <NavigationMenu.Link
-            href="/shop"
-            className="text-violet11 hover:bg-violet3 focus:shadow-violet7 block rounded px-3 py-2 text-[35px] leading-none font-normal no-underline select-none hover:text-red-600! focus:shadow-none! focus:outline-none!"
+            className="text-violet11 hover:bg-violet3 focus:shadow-violet7 block rounded px-3 py-2 text-[35px] leading-none font-normal no-underline outline-none select-none hover:text-red-600! focus:shadow-[0_0_0_2px]"
             style={{ fontSize: "15px" }}
           >
             Shop

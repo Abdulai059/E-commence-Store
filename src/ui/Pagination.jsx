@@ -18,14 +18,14 @@ function Pagination({ count }) {
         count={count}
       />
 
-      <div className="flex gap-2">
+      <div className="flex gap-15 md:gap-2 pl-8">
         <button
           onClick={previousPage}
           disabled={currentPage === 1}
           className={`flex items-center gap-1 rounded-md px-4 py-2 text-base font-medium transition ${
             currentPage === 1
               ? "cursor-not-allowed bg-gray-100 text-gray-400"
-              : "bg-blue-600 text-white hover:bg-blue-700"
+              : "bg-red-600 text-white hover:bg-red-700"
           } `}
         >
           <HiChevronLeft className="h-5 w-5" />
@@ -38,7 +38,7 @@ function Pagination({ count }) {
           className={`flex items-center gap-1 rounded-md px-4 py-2 text-base font-medium transition ${
             currentPage === pageCount
               ? "cursor-not-allowed bg-gray-100 text-gray-400"
-              : "bg-blue-600 text-white hover:bg-blue-700"
+              : "bg-red-600 text-white hover:bg-red-700"
           } `}
         >
           <HiChevronRight className="h-5 w-5" />
