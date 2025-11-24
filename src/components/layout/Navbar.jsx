@@ -1,8 +1,12 @@
 import NavList from "./NavList";
+import { useSelector } from "react-redux";
 
 function Navbar() {
+    const cart = useSelector((state) => state.cart.cart);
+
+
   return (
-    <div className="navbar bg-gray-100 text-muted  shadow-sm">
+    <div className="navbar bg-slate-100 text-muted  shadow-sm">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost btn-circle border-0">
@@ -32,7 +36,7 @@ function Navbar() {
         <NavList />
       </div>
 
-      <NavDetails />
+      <NavDetails cart={cart} />
     </div>
   );
 }
@@ -57,7 +61,7 @@ export function NavItems() {
   );
 }
 
-export function NavDetails() {
+export function NavDetails({cart}) {
   return (
     <div className="navbar-end flex items-center gap-3">
       {/* Search & Notifications */}
@@ -102,7 +106,8 @@ export function NavDetails() {
 
       {/* Cart */}
       <div className="dropdown dropdown-end">
-        <div tabIndex={0} className="btn btn-ghost btn-circle relative border-0 hover:bg-red-100">
+        <div tabIndex={0} className="relative flex items-center justify-center rounded-full bg-transparent border-0 p-2 hover:bg-red-100"
+>
           <div className="indicator">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -118,18 +123,18 @@ export function NavDetails() {
                 d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
               />
             </svg>
-            <span className="indicator-item rounded-full bg-red-600 px-1.5 py-[2px] text-[10px] font-semibold text-white">
-              8
+            <span className="indicator-item rounded-full bg-red-600 px-1.5 py-0.5 text-[10px] font-semibold text-white">
+              {cart.length}
             </span>
           </div>
         </div>
 
         <div
           tabIndex={0}
-          className="card card-compact dropdown-content bg-popover z-10 mt-3 w-56 overflow-hidden rounded-lg shadow-lg"
+          className="card card-compact dropdown-content bg-slate-100 z-10 mt-3 w-56 overflow-hidden rounded-lg shadow-lg"
         >
           <div className="card-body">
-            <span className="text-lg font-bold">8 Items</span>
+            <span className="text-lg text-red-600 font-semibold">{cart.length} Items</span>
             <span className="text-info">Subtotal: $999</span>
             <div className="card-actions">
               <button className="btn btn-primary btn-block">View Cart</button>

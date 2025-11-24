@@ -34,9 +34,10 @@ function ProductDetails({ product }) {
     const newItem = {
       productId: product.id,
       name: product.name,
-      price: product.price,
+      unitPrice: product.price,
       quantity: 1,
       image: imageUrls[0],
+      offer_price: product.price,
     };
     dispatch(addItem(newItem));
   }

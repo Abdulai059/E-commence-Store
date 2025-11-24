@@ -1,15 +1,10 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import CartSummary from "./CartSummary";
-import { Trash2 } from "lucide-react";
-import { deleteItem } from "./cartSlice";
+import CartItem from "./CartItem";
+import LinkButton from "../../ui/LinkButton";
 
 function ShoppingCart() {
-  const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart.cart);
-
-  function handleDelete(productId) {
-    dispatch(deleteItem(productId));
-  }
 
   return (
     <div className="mx-auto flex w-full max-w-6xl flex-col rounded-lg bg-white px-6 py-16 shadow-lg md:mt-[190px] md:flex-row">
@@ -24,40 +19,11 @@ function ShoppingCart() {
           <p className="text-center">Action</p>
         </div>
 
-        {cart.map((item, index) => (
-          <div
-            key={index}
-            className="grid grid-cols-[2fr_1fr_1fr] items-center pt-3 text-sm font-medium text-gray-500 md:text-base"
-          >
-            <div className="flex items-center gap-3 md:gap-6">
-              {/* IMAGE */}
-              <div className="flex h-24 w-24 cursor-pointer items-center justify-center overflow-hidden rounded border border-gray-300">
-                <img className="h-full max-w-full object-cover" src={item.image} alt={item.name} />
-              </div>
-
-              {/* DETAILS */}
-              <div>
-                <p className="hidden font-semibold md:block">{item.name}</p>
-                <div className="font-normal text-gray-500/70">
-                  <p>
-                    Qty: <span>{item.quantity}</span>
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            {/* SUBTOTAL */}
-            <p className="text-center">${item.price * item.quantity}</p>
-
-            {/* DELETE */}
-            <button onClick={() => handleDelete(item.productId)} className="mx-auto cursor-pointer text-red-600">
-              <Trash2 />
-            </button>
-          </div>
+        {cart.map((item) => (
+          <CartItem item={item} key={item.productId} />
         ))}
 
-        {/* Back to shop */}
-        <button className="group mt-8 flex cursor-pointer items-center gap-2 font-medium text-indigo-500">
+        <LinkButton className="group mt-8 flex items-center gap-2">
           <svg
             width="15"
             height="11"
@@ -73,8 +39,8 @@ function ShoppingCart() {
               strokeLinejoin="round"
             />
           </svg>
-          Continue Shopping
-        </button>
+          <span className="text-indigo-500 group-hover:text-indigo-600">Continue Shopping</span>
+        </LinkButton>
       </div>
 
       <CartSummary />
