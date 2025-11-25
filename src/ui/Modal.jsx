@@ -27,25 +27,21 @@ function Window({ children, name }) {
   if (name !== openName) return null;
 
   return createPortal(
-    <>
-      {/* Overlay */}
-      <div className="fixed inset-0 z-1000 bg-black/50 backdrop-blur-sm transition-all duration-500" />
-
-      {/* Modal - Mobile First, Responsive */}
+    <div className="fixed inset-0 z-[1000] bg-black/50 backdrop-blur-sm transition-all duration-500">
       <div
         ref={ref}
-        className="fixed inset-x-4 top-4 bottom-4 z-1001 overflow-y-auto rounded-xl bg-white p-4 shadow-2xl transition-all duration-500 sm:inset-x-8 sm:top-8 sm:bottom-8 sm:p-6 md:inset-x-auto md:inset-y-auto md:top-1/2 md:left-1/2 md:max-h-[90vh] md:w-[90vw] md:max-w-5xl md:-translate-x-1/2 md:-translate-y-1/2 md:p-8 md:px-16 md:py-12"
+        className="fixed top-1/2 left-1/2 w-[90%] max-w-lg -translate-x-1/2 -translate-y-1/2 rounded-lg bg-white p-6 sm:w-auto sm:p-10 md:p-14"
       >
         <button
           onClick={close}
-          className="absolute top-2 right-2 z-10 rounded-md p-1.5 transition-colors hover:bg-gray-100 sm:top-4 sm:right-4"
+          className="absolute top-5 right-8 rounded-sm p-1 transition-all duration-200 hover:bg-gray-100"
         >
-          <HiXMark className="h-5 w-5 text-gray-500 sm:h-6 sm:w-6" />
+          <HiXMark className="h-6 w-6 text-gray-500" />
         </button>
 
-        <div className="mt-8 sm:mt-0">{cloneElement(children, { onCloseModal: close })}</div>
+        <div>{cloneElement(children, { onCloseModal: close })}</div>
       </div>
-    </>,
+    </div>,
     document.body,
   );
 }

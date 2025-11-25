@@ -2,13 +2,12 @@ import { useSelector } from "react-redux";
 import CartSummary from "./CartSummary";
 import CartItem from "./CartItem";
 import LinkButton from "../../ui/LinkButton";
-import { Link } from "react-router-dom";
 
 function ShoppingCart() {
   const cart = useSelector((state) => state.cart.cart);
 
   return (
-    <div className="mx-auto flex w-full max-w-6xl flex-col rounded-lg bg-white px-6 py-16 shadow-lg md:mt-[190px] md:flex-row">
+    <div className="mx-auto flex w-full max-w-6xl flex-col rounded-lg bg-white px-6 py-16 shadow-2xs md:mt-[190px] md:flex-row">
       <div className="max-w-4xl flex-1">
         <h1 className="mb-6 text-3xl font-medium">
           Shopping Cart <span className="text-sm text-indigo-500">{cart.length} Items</span>
@@ -24,7 +23,10 @@ function ShoppingCart() {
           <CartItem item={item} key={item.productId} />
         ))}
 
-        <LinkButton className="group mt-8 flex items-center gap-2">
+        <LinkButton
+          to="/"
+          className="group mt-8 flex items-center gap-2 text-indigo-500 group-hover:text-indigo-600"
+        >
           <svg
             width="15"
             height="11"
@@ -40,10 +42,7 @@ function ShoppingCart() {
               strokeLinejoin="round"
             />
           </svg>
-
-          <Link to="/" className="text-indigo-500 group-hover:text-indigo-600">
-            Continue Shopping
-          </Link>
+          Continue Shopping
         </LinkButton>
       </div>
 
