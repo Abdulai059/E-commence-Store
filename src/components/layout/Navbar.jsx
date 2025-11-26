@@ -59,7 +59,7 @@ export function NavItems({ isOpen, onClose }) {
         onClick={onClose}
       />
 
-      <div className="animate-slide-in fixed top-0 left-0 z-50 h-full w-[80%] max-w-[320px] overflow-y-auto bg-white shadow-lg md:w-80">
+      <div className="animate-slide-in fixed top-0 left-0 z-50 h-full w-[80%] max-w-[320px]  bg-white shadow-lg md:w-80">
         <SideNav onClose={onClose} />
       </div>
     </>
