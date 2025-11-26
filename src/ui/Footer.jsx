@@ -46,7 +46,7 @@ function Footer() {
           </div>
         </div>
 
-        <div className="hidden md:flex">
+        <div className="hidden md:flex md:flex-coll">
           <h6 className="mb-5 text-lg font-semibold text-slate-50">Subscribe to our newsletter</h6>
 
           <div className="max-w-sm space-y-6 text-sm">

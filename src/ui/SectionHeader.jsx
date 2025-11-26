@@ -10,7 +10,10 @@ function SectionHeader({
       {/* Top Row: Title, line, and View All */}
       <div className="flex items-center gap-4">
         {/* Title */}
-        <h2 className="text-lg font-semibold text-gray-900 md:text-2xl">{title}</h2>
+        <span>
+          <h2 className="text-lg font-semibold text-gray-900 md:text-2xl">{title}</h2>
+          <div class=" h-[3px] w-32 bg-gradient-to-l from-transparent to-red-600"></div>
+        </span>
 
         {/* Gray line between title and link */}
         <div className="flex-1 border-b border-gray-300"></div>

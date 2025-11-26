@@ -10,26 +10,36 @@ import Avatar from "../../ui/Avatar";
 
 import { useState } from "react";
 import { Menu, User } from "lucide-react";
-import OpenNav from "../navigation/SideNav";
 import SideNav from "../navigation/SideNav";
 import SearchBar from "../../ui/SearchBar";
+import { PressmartLogo2 } from "../../ui/Logo";
+import { Link } from "react-router-dom";
+
 
 function Navbar() {
   const cart = useSelector((state) => state.cart.cart);
   const [isNavOpen, setIsNavOpen] = useState(false);
 
   return (
-    <div className="flex items-center justify-between bg-slate-100 px-2 py-2 shadow-sm">
+    <div className="flex items-center justify-between bg-slate-100 px-6 py-2 shadow-sm">
       <div className="navbar-start">
-        <div className="md:hidden">
-          <button onClick={() => setIsNavOpen(true)} className="btn btn-ghost btn-circle border-0">
-            <Menu  />
+        <div className="">
+          <button
+            onClick={() => setIsNavOpen(true)}
+            className="btn btn-ghost btn-circle border-0 md:hidden"
+          >
+            <Menu />
           </button>
+
+          <Link to="/" className="hidden md:flex">
+            <PressmartLogo2 />
+          </Link>
 
           {/* Mobile Nav Overlay */}
           {isNavOpen && <NavItems isOpen={isNavOpen} onClose={() => setIsNavOpen(false)} />}
         </div>
       </div>
+
       <>
         <SearchBar />
 
