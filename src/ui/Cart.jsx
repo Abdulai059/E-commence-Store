@@ -14,7 +14,7 @@ function Cart({cart}) {
       >
         <div className="indicator">
           <ShoppingCart className="text-red-600" />
-          <span className="indicator-item rounded-full bg-green-600 px-1.5 py-0.5 text-[10px] font-semibold text-white">
+          <span className="indicator-item rounded-full bg-red-600 px-1.5 py-0.5 text-[10px] font-semibold text-white">
             {cart.length}
           </span>
         </div>

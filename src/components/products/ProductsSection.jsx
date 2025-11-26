@@ -8,7 +8,7 @@ function ProductsSection() {
   const { isLoading, products } = useProducts();
 
   return (
-    <div className="md:py-12">
+    <div className="md:py-12 my-10">
       <SectionHeader
         title="New Arrival"
         subtitle="Browse our selection of high-quality refrigerators"
@@ -25,7 +25,7 @@ function ProductsSection() {
         <ProjectGrid
           data={products}
           renderItem={(product) => <ProductCard key={product.id} product={product} />}
-          className="md:grid-cols-4 lg:grid-cols-6 gap-6 "
+          className="md:grid-cols-4 lg:grid-cols-6 gap-4 "
         />
       )}
     </div>

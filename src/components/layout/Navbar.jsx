@@ -79,7 +79,7 @@ export function NavDetails({ cart }) {
           <>
             {/* Button that OPENS the modal */}
             <Modal.Open opens="login">
-              <button className="text-md flex gap-1 rounded-lg bg-green-500 px-3 py-0.5 text-slate-50 hover:bg-green-600">
+              <button className="text-md hidden gap-1 rounded-lg bg-green-500 px-3 py-0.5 text-slate-50 hover:bg-green-600 md:flex">
                 <User size={17} />
                 <span>Login</span>
               </button>
