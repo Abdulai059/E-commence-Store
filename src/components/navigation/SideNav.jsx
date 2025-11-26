@@ -92,7 +92,7 @@ export default function OpenNav({ onClose }) {
           </nav>
         </>
       ) : (
-        <nav className="flex-1 overflow-y-auto px-2 py-2">
+        <nav className="flex-1 overflow-y-auto overscroll-contain px-2 py-2">
           {categories.map((category, index) => (
             <CategoryItem
               key={index}

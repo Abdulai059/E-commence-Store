@@ -1,8 +1,8 @@
 export const categories = [
-  {
-    name: "Computers",
-    subcategories: ["Laptops", "Desktops", "Tablets", "Monitors", "Accessories"],
-  },
+  // {
+  //   name: "Computers",
+  //   subcategories: ["Laptops", "Desktops", "Tablets", "Monitors", "Accessories"],
+  // },
   {
     name: "Washing Machine",
     subcategories: ["Front Load", "Top Load", "Semi-Automatic", "Fully Automatic"],

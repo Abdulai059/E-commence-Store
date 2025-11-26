@@ -10,7 +10,8 @@ import Avatar from "../../ui/Avatar";
 
 import { useState } from "react";
 import { User } from "lucide-react";
-import OpenNav from "../../ui/OpenNav";
+import OpenNav from "../navigation/SideNav";
+import SideNav from "../navigation/SideNav";
 
 function Navbar() {
   const cart = useSelector((state) => state.cart.cart);
@@ -52,14 +53,14 @@ export function NavItems({ isOpen, onClose }) {
 
   return (
     <>
-      {" "}
       {/* Backdrop */}
       <div
         className="fixed inset-0 z-40 bg-black/50 backdrop-blur-sm transition-all"
         onClick={onClose}
       />
-      <div className="animate-slide-in fixed top-0 left-0 z-50">
-        <OpenNav onClose={onClose} />
+
+      <div className="animate-slide-in fixed top-0 left-0 z-50 h-full w-[80%] max-w-[320px] overflow-y-auto bg-white shadow-lg md:w-80">
+        <SideNav onClose={onClose} />
       </div>
     </>
   );

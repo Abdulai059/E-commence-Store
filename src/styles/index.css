@@ -54,3 +54,23 @@
   animation: shimmer 3s infinite;
   filter: blur(1px);
 }
+
+
+
+
+
+
+@keyframes slide-in {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.animate-slide-in {
+  animation: slide-in 0.35s ease-out forwards;
+}
