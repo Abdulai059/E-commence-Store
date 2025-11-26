@@ -7,9 +7,9 @@ function ShoppingCart() {
   const cart = useSelector((state) => state.cart.cart);
 
   return (
-    <div className="mx-auto flex w-full max-w-6xl flex-col rounded-lg bg-white px-6 py-16 shadow-2xs md:mt-[190px] md:flex-row">
+    <div className="mx-auto flex w-full max-w-6xl flex-col rounded-lg bg-white px-6 py-8 shadow-2xs md:mt-[165px] md:flex-row">
       <div className="max-w-4xl flex-1">
-        <h1 className="mb-6 text-3xl font-medium">
+        <h1 className="mb-6 text-2xl font-medium">
           Shopping Cart <span className="text-sm text-indigo-500">{cart.length} Items</span>
         </h1>
 
