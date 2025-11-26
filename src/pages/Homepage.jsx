@@ -19,8 +19,8 @@ function Homepage() {
         <Feature />
         <ProductsSection />
         <ProjectBanner />
-        <Footer />
       </main>
+      <Footer />
     </>
   );
 }
