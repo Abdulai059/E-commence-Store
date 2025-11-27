@@ -18,7 +18,7 @@ function Pagination({ count }) {
         count={count}
       />
 
-      <div className="flex gap-15 md:gap-2 pl-8">
+      <div className="flex gap-15 pl-8 md:gap-2">
         <button
           onClick={previousPage}
           disabled={currentPage === 1}

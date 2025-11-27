@@ -49,18 +49,4 @@ function Shop() {
 
 export default Shop;
 
-{
-  /* <div className="flex items-center justify-between border-b mt-[125px] border-gray-300 bg-white px-4 py-3 transition-all duration-300 md:px-8">
-        <a href="https://prebuiltui.com">
-          <img
-            className="h-9"
-            src="https://raw.githubusercontent.com/prebuiltui/prebuiltui/main/assets/dummyLogo/dummyLogoColored.svg"
-            alt="dummyLogoColored"
-          />
-        </a>
-        <div className="flex items-center gap-5 text-gray-500">
-          <p>Hi! Admin</p>
-          <button className="rounded-full border px-4 py-1 text-sm">Logout</button>
-        </div>
-      </div> */
-}
+

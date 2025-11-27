@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addItem } from "../cart/cartSlice";
 import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 
 export default function ProductCard({ product }) {
   const { name, offer_price, category } = product;
@@ -34,6 +35,8 @@ export default function ProductCard({ product }) {
         image: mainImage,
       }),
     );
+
+      toast.success(`${product.name} added to cart!`);
   }
 
   return (
