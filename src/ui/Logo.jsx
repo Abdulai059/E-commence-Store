@@ -1,7 +1,7 @@
+import classNames from "classnames";
 import { ShoppingCart } from "lucide-react";
 
-
-function PressmartLogo({ size = "large", variant = "green" }) {
+function PressmartLogo({ size = "large", variant = "green", classNames = "" }) {
   const sizes = {
     small: { container: "text-xl", icon: 20, padding: "p-1" },
     medium: { container: "text-2xl", icon: 20, padding: "p-1.5" },

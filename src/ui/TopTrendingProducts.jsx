@@ -1,7 +1,8 @@
-import homeSlides from "../data/heropagedata";
-
 import { motion, AnimatePresence } from "framer-motion";
 import { useSlider } from "../hooks/useSlider";
+import homeSlides from "../data/heropagedata";
+import Button from "./Button";
+import { ArrowRight } from "lucide-react";
 
 function TopTrendingProducts() {
   const { currentSlide, slide, goToSlide } = useSlider(homeSlides, 5000);
@@ -92,17 +93,21 @@ function TopTrendingProducts() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.4 }}
-              className="flex flex-wrap gap-4 sm:flex-col sm:gap-2"
+              className="flex flex-col gap-2 sm:flex-row sm:gap-4"
             >
-              <button className="bg-secondary hover:bg-first-color-alt rounded- px-7 py-4 font-medium text-white transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg">
-                Buy Now
-              </button>
-              <a
+              <Button size="medium" variation="primary">
+                View Details
+                
+              </Button>
+
+              <Button
+                size="medium"
+                variation="secondary"
+                className="flex items-center gap-2 md:hidden"
                 href="#"
-                className="text-title-color flex items-center gap-2 hover:underline md:hidden"
               >
-                View Details <i className="bx bx-right-arrow-alt text-xl" />
-              </a>
+                Buy Now <ArrowRight size={18} />
+              </Button>
             </motion.div>
           </div>
         </div>
