@@ -9,6 +9,7 @@ import ProductPage from "./pages/ProductPage";
 import NotFoundPage from "./ui/NotFoundPage";
 import Shop from "./pages/Shop";
 import ShoppingCart from "./components/cart/ShoppingCart";
+import CheckoutPage from "./pages/CheckoutPage";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -29,33 +30,34 @@ function App() {
             <Route index element={<Homepage />} />
             <Route path="product/:productId" element={<ProductPage />} />
             <Route path="shop" element={<Shop />} />
-              <Route path="cart" element={<ShoppingCart />} />
+            <Route path="cart" element={<ShoppingCart />} />
+             <Route path="checkout" element={<CheckoutPage />} />
           </Route>
 
-           <Route path="*" element={<NotFoundPage/>} />
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </BrowserRouter>
 
       <Toaster
-          position="top-center"
-          gutter={12}
-          containerStyle={{ margin: "8px" }}
-          toastOptions={{
-            success: {
-              duration: 1500,
-            },
-            error: {
-              duration: 5000,
-            },
-            style: {
-              fontSize: "16px",
-              maxWidth: "500px",
-              padding: "16px 24px",
-              backgroundColor: "var(--color-grey-0)",
-              color: "var(--color-grey-700)",
-            },
-          }}
-        />
+        position="top-right"
+        gutter={12}
+        containerStyle={{ margin: "8px" }}
+        toastOptions={{
+          success: {
+            duration: 1500,
+          },
+          error: {
+            duration: 5000,
+          },
+          style: {
+            fontSize: "16px",
+            maxWidth: "500px",
+            padding: "16px 24px",
+            backgroundColor: "rgb(22 163 74)",
+            color: "rgb(241 245 249)",
+          },
+        }}
+      />
     </QueryClientProvider>
   );
 }

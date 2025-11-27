@@ -4,7 +4,7 @@ import CategoryItem from "./CategoryItem";
 import MenuItem from "./MenuItem";
 import { categories } from "./CategoriesData";
 
-export default function OpenNav({ onClose }) {
+export default function SideNav({ onClose }) {
   const [activeTab, setActiveTab] = useState("main");
   const [expandedCategory, setExpandedCategory] = useState(null);
 

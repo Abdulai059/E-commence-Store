@@ -6,7 +6,7 @@ function MenuItem({ icon, label, active, badge, to, onClick }) {
       className={`flex w-full items-center gap-3 rounded-lg px-4 py-3 transition-colors ${
         active ? "bg-green-50 text-green-700" : "text-gray-700 hover:bg-gray-50"
       }`}
-      onClick={onClick} // now works
+      onClick={onClick} 
     >
       <span className={active ? "text-green-600" : "text-gray-500"}>{icon}</span>
       <span className="flex-1 text-left font-medium">{label}</span>

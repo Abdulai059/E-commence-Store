@@ -3,6 +3,7 @@ import Button from "../../ui/Button";
 import { useSelector } from "react-redux";
 import { getCart } from "./cartSlice";
 import { formatCurrency } from "../../utils/helpers";
+import { Link } from "react-router-dom";
 
 function CartSummary() {
   const [showAddress, setShowAddress] = useState(false);
@@ -83,9 +84,11 @@ function CartSummary() {
         </p>
       </div>
 
-      <Button className="mt-6 w-full cursor-pointer py-3 font-medium text-white transition">
-        Place Order
-      </Button>
+      <Link to="/checkout">
+        <Button className="mt-6 w-full cursor-pointer py-3 font-medium text-white transition">
+          Place Order
+        </Button>
+      </Link>
     </div>
   );
 }
