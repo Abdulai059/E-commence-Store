@@ -1,5 +1,6 @@
+import Navbar from "../components/navbar/Navbar";
 import Topbar from "./Topbar";
-import Navbar from "../components/layout/Navbar";
+
 
 function Header() {
   return (
