@@ -1,85 +1,42 @@
-import { ShoppingCart, Zap } from "lucide-react";
+import { ShoppingCart } from "lucide-react";
 
-export default function PressmartLogo({ size = "large" }) {
+
+function PressmartLogo({ size = "large", variant = "green" }) {
   const sizes = {
-    small: {
-      container: "text-xl",
-      icon: 20,
-      padding: "p-1",
-    },
-    medium: {
-      container: "text-2xl",
-      icon: 20,
-      padding: "p-1.5",
-    },
-    large: {
-      container: "text-3xl",
-      icon: 24,
-      padding: "p-3",
-    },
+    small: { container: "text-xl", icon: 20, padding: "p-1" },
+    medium: { container: "text-2xl", icon: 20, padding: "p-1.5" },
+    large: { container: "text-xl", icon: 22, padding: "p-3" },
+    xlarge: { container: "text-2xl", icon: 30, padding: "p-2" },
   };
 
   const currentSize = sizes[size];
 
-  return (
-    <div className="flex items-center gap-2">
-      <div
-        className={`${currentSize.padding} rounded-lg bg-gradient-to-br from-green-500 to-green-600 shadow-sm`}
-      >
-        <ShoppingCart size={currentSize.icon} className="fill-white text-white" />
-      </div>
-
-      <div className={`text-xl leading-none font-semibold`}>
-        <span className="text-green-600">Press</span>
-        <span className="text-slate-100">mart.</span>
-      </div>
-    </div>
-  );
-}
-
-// Alternative versions you can use:
-
-export function PressmartLogo2({ size = "medium" }) {
-  const sizes = {
-    small: {
-      container: "text-xl",
-      icon: 16,
-      padding: "p-1",
+  const variants = {
+    green: {
+      bg: "bg-gradient-to-br from-green-500 to-green-600",
+      text1: "text-green-600",
+      text2: "text-slate-100",
     },
-    medium: {
-      container: "text-xl",
-      icon: 24,
-      padding: "p-1.5",
-    },
-    large: {
-      container: "text-2xl",
-      icon: 24,
-      padding: "p-2",
-    },
-
-    xlarge: {
-      container: "text-2xl",
-      icon: 30,
-      padding: "p-2",
+    red: {
+      bg: "bg-gradient-to-br from-red-500 to-red-600",
+      text1: "text-gray-800",
+      text2: "text-red-600",
     },
   };
 
-  const currentSize = sizes[size];
+  const currentVariant = variants[variant];
 
   return (
     <div className="flex items-center gap-2">
-      {/* Icon with gradient background */}
-      <div
-        className={`${currentSize.padding} rounded-lg bg-gradient-to-br from-red-500 to-red-600 shadow-sm`}
-      >
+      <div className={`${currentSize.padding} rounded-lg ${currentVariant.bg} shadow-sm`}>
         <ShoppingCart size={currentSize.icon} className="fill-white text-white" />
       </div>
-
-      {/* Logo Text */}
       <div className={`font-medium ${currentSize.container} leading-none`}>
-        <span className="text-gray-800">Press</span>
-        <span className="text-red-600">mart</span>
+        <span className={currentVariant.text1}>Press</span>
+        <span className={currentVariant.text2}>mart</span>
       </div>
     </div>
   );
 }
+
+export default PressmartLogo;

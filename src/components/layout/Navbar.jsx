@@ -12,9 +12,9 @@ import { useState } from "react";
 import { Menu, User } from "lucide-react";
 import SideNav from "../navigation/SideNav";
 import SearchBar from "../../ui/SearchBar";
-import { PressmartLogo2 } from "../../ui/Logo";
-import { Link } from "react-router-dom";
 
+import { Link } from "react-router-dom";
+import PressmartLogo from "../../ui/Logo";
 
 function Navbar() {
   const cart = useSelector((state) => state.cart.cart);
@@ -32,7 +32,7 @@ function Navbar() {
           </button>
 
           <Link to="/" className="hidden md:flex">
-            <PressmartLogo2 />
+            <PressmartLogo size="large" variant="red" />
           </Link>
 
           {/* Mobile Nav Overlay */}
@@ -81,8 +81,8 @@ export function NavDetails({ cart }) {
           <>
             {/* Button that OPENS the modal */}
             <Modal.Open opens="login">
-              <button className="text-md hidden gap-1 rounded-lg bg-green-500 px-3 py-0.5 text-slate-50 hover:bg-green-600 md:flex">
-                <User size={17} />
+              <button className="hidden items-center gap-2 rounded-lg bg-green-500 px-4 py-1.5 text-sm font-medium text-slate-50 transition-colors hover:bg-green-600 md:flex">
+                <User size={18} />
                 <span>Login</span>
               </button>
             </Modal.Open>

@@ -1,29 +1,41 @@
-export default function LoginForm({ onSubmit, switchToSignup }) {
+import Button from "../../ui/Button";
+import Checkbox from "../../ui/Checkbox";
+import GoogleIcon from "../../ui/GoogleIcon";
+import InputField from "../../ui/InputField";
+
+function LoginForm({ rememberMe, setRememberMe, onSwitchToSignup }) {
   return (
-    <form onSubmit={onSubmit} className="space-y-5">
-      <div>
-        <label className="mb-2 block text-sm font-medium">Email</label>
-        <input name="email" type="email" className="w-full rounded-lg border px-4 py-3" required />
-      </div>
+    <div className="space-y-4 sm:space-y-5">
+      <InputField label="Email" type="email" placeholder="Enter your email" />
 
-      <div>
-        <label className="mb-2 block text-sm font-medium">Password</label>
-        <input
-          name="password"
-          type="password"
-          className="w-full rounded-lg border px-4 py-3"
-          required
+      <InputField label="Password" type="password" placeholder="••••••••" />
+
+      <div className="xs:flex-row xs:items-center xs:justify-between xs:gap-0 flex flex-col gap-3">
+        <Checkbox
+          checked={rememberMe}
+          onChange={(e) => setRememberMe(e.target.checked)}
+          label="Remember for 30 days"
         />
+        <a href="#" className="text-sm font-medium text-red-600 hover:text-red-700 sm:text-sm">
+          Forgot password
+        </a>
       </div>
 
-      <button className="w-full rounded-lg bg-purple-600 py-3 text-white">Sign in</button>
+      <Button size="medium" variation="secondary" icon={<GoogleIcon />} className="w-full">
+        Sign in with Google
+      </Button>
 
-      <p className="text-center text-sm text-gray-600">
-        Don’t have an account?{" "}
-        <button onClick={switchToSignup} className="font-medium text-purple-600">
+      <p className="mt-4 text-center text-xs text-gray-600 sm:mt-6 sm:text-sm">
+        Don't have an account?{" "}
+        <button
+          onClick={onSwitchToSignup}
+          className="text-sm font-medium text-green-600 hover:text-green-700"
+        >
           Sign up
         </button>
       </p>
-    </form>
+    </div>
   );
 }
+
+export default LoginForm;

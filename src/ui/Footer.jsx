@@ -7,7 +7,7 @@ function Footer() {
       <div className="mx-auto grid grid-cols-1 gap-8 px-10 sm:grid-cols-2 lg:grid-cols-4">
         <div className="sm:col-span-2 lg:col-span-1">
           <a href="">
-            <PressmartLogo />
+           <PressmartLogo size="large" variant="green" />
           </a>
 
           <p className="mt-6 text-sm">
