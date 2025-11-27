@@ -1,11 +1,11 @@
 import React, { useState } from "react";
+import { PressmartLogo2 } from "../../ui/Logo";
+import { Check } from "lucide-react";
 
 // Logo Component
 const Logo = () => (
-  <div className="mb-4 flex justify-center sm:mb-6">
-    <div className="flex h-16 w-16 transform items-center justify-center rounded-2xl bg-gradient-to-br from-purple-400 via-purple-500 to-purple-600 shadow-2xl transition-transform hover:scale-105 sm:h-20 sm:w-20 sm:rounded-3xl">
-      <div className="h-8 w-8 rounded-full bg-white opacity-95 shadow-inner sm:h-10 sm:w-10"></div>
-    </div>
+  <div className="mb-5 flex justify-center sm:mb-6">
+    <PressmartLogo2 size="xlarge" />
   </div>
 );
 
@@ -23,7 +23,7 @@ const Header = ({ title, subtitle }) => (
 // Input Field Component
 const InputField = ({ label, type, placeholder, value, onChange }) => (
   <div>
-    <label className="mb-1.5 block text-xs font-medium text-gray-700 sm:mb-2 sm:text-sm">
+    <label className="mb-1.5 block text-sm font-medium text-gray-700 sm:mb-2 sm:text-sm">
       {label}
     </label>
     <input
@@ -37,15 +37,27 @@ const InputField = ({ label, type, placeholder, value, onChange }) => (
 );
 
 // Checkbox Component
+
 const Checkbox = ({ checked, onChange, label }) => (
-  <label className="flex cursor-pointer items-center">
-    <input
-      type="checkbox"
-      checked={checked}
-      onChange={onChange}
-      className="h-4 w-4 rounded border-gray-100 text-purple-600 focus:ring-purple-500"
-    />
-    <span className="ml-2 text-xs text-gray-700 sm:text-sm">{label}</span>
+  <label className="relative flex cursor-pointer items-center gap-3">
+    <input type="checkbox" checked={checked} onChange={onChange} className="peer hidden" />
+    <span className="relative flex h-5 w-5 items-center justify-center rounded border border-slate-300 peer-checked:border-red-600"></span>
+    <svg
+      className="absolute top-1/2 left-1 hidden -translate-y-1/2 transform peer-checked:inline"
+      width="11"
+      height="8"
+      viewBox="0 0 11 8"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="m10.092.952-.005-.006-.006-.005A.45.45 0 0 0 9.43.939L4.162 6.23 1.585 3.636a.45.45 0 0 0-.652 0 .47.47 0 0 0 0 .657l.002.002L3.58 6.958a.8.8 0 0 0 .567.242.78.78 0 0 0 .567-.242l5.333-5.356a.474.474 0 0 0 .044-.65Zm-5.86 5.349V6.3Z"
+        fill="#2563EB"
+        stroke="#EF4444"
+        stroke-width=".4"
+      />
+    </svg>
+    <span className="text-sm text-gray-700 select-none">{label}</span>
   </label>
 );
 
@@ -55,7 +67,7 @@ const Button = ({ children, onClick, variant = "primary", type = "button" }) => 
     "w-full py-2.5 sm:py-3 text-sm sm:text-base font-medium rounded-lg transition-colors";
   const variantClasses =
     variant === "primary"
-      ? "bg-purple-600 hover:bg-purple-700 text-white shadow-sm"
+      ? "bg-gradient-to-r from-red-400 to-red-500 text-white shadow-md transition-all hover:from-red-500 hover:to-red-600 text-white shadow-sm"
       : "bg-white border border-gray-300 hover:bg-gray-50 text-gray-700";
 
   return (
@@ -111,7 +123,7 @@ const LoginForm = ({ rememberMe, setRememberMe, onSwitchToSignup }) => (
         onChange={(e) => setRememberMe(e.target.checked)}
         label="Remember for 30 days"
       />
-      <a href="#" className="text-xs font-medium text-purple-600 hover:text-purple-700 sm:text-sm">
+      <a href="#" className="text-sm font-medium text-red-600 hover:text-red-700 sm:text-sm">
         Forgot password
       </a>
     </div>
@@ -122,10 +134,7 @@ const LoginForm = ({ rememberMe, setRememberMe, onSwitchToSignup }) => (
 
     <p className="mt-4 text-center text-xs text-gray-600 sm:mt-6 sm:text-sm">
       Don't have an account?{" "}
-      <button
-        onClick={onSwitchToSignup}
-        className="font-medium text-purple-600 hover:text-purple-700"
-      >
+      <button onClick={onSwitchToSignup} className="font-medium text-sm text-green-600 hover:text-green-700">
         Sign up
       </button>
     </p>

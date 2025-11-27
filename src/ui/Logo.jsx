@@ -29,7 +29,7 @@ export default function PressmartLogo({ size = "large" }) {
         <ShoppingCart size={currentSize.icon} className="fill-white text-white" />
       </div>
 
-      <div className={`text-2xl leading-none font-bold`}>
+      <div className={`text-xl leading-none font-semibold`}>
         <span className="text-green-600">Press</span>
         <span className="text-slate-100">mart.</span>
       </div>
@@ -52,8 +52,14 @@ export function PressmartLogo2({ size = "medium" }) {
       padding: "p-1.5",
     },
     large: {
-      container: "text-3xl",
+      container: "text-2xl",
       icon: 24,
+      padding: "p-2",
+    },
+
+    xlarge: {
+      container: "text-2xl",
+      icon: 30,
       padding: "p-2",
     },
   };

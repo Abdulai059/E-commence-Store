@@ -3,9 +3,9 @@ export default function AppDownloadCard() {
     <div className="w-full max-w-xl rounded-md border border-gray-500/30 p-2 text-sm md:p-8">
       <p className="mb-1 font-medium text-green-400">Download Now!</p>
 
-      <h2 className="text-2xl font-semibold text-slate-50">Download our mobile app.</h2>
+      <h2 className="text-lg font-semibold text-slate-50">Download our mobile app.</h2>
 
-      <p className="mt-1 text-slate-50/80">
+      <p className="mt-1 text-slate-50/80 text-sm">
         Mobile banking app for IOS & Android to <br />
         manage your online money.
       </p>

@@ -12,7 +12,7 @@ function SectionHeader({
         {/* Title */}
         <span>
           <h2 className="text-lg font-semibold text-gray-900 md:text-2xl">{title}</h2>
-          <div class=" h-[3px] w-32 bg-gradient-to-l from-transparent to-red-600"></div>
+          <div className=" h-[3px] w-32 bg-gradient-to-l from-transparent to-red-600"></div>
         </span>
 
         {/* Gray line between title and link */}
