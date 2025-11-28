@@ -1,7 +1,9 @@
-import { PAGE_SIZE } from "../utils/constants";
-import supabase from "./supabase";
+import supabase from "../../services/supabase";
+import { PAGE_SIZE } from "../../utils/constants";
 
-export async function getProducts({ page = 1 }) {
+
+
+export async function getAllProducts({ page = 1 }) {
   let query = supabase
     .from("products")
     .select(
@@ -51,30 +53,4 @@ export async function getProducts({ page = 1 }) {
   }));
 
   return { products, count };
-}
-
-
-// RESQUESTING FOR A SINGLE PPRODUCT
-export async function getProduct(id) {
-  const { data, error } = await supabase
-    .from("products")
-    .select(
-      `*, 
-      categories(*),
-      product_images(*)`,
-    )
-    .eq("id", id)
-    .single();
-
-  if (error) {
-    console.error(error);
-    throw new Error("Product not found");
-  }
-
-  // Transform to match ProductDetails structure
-  return {
-    ...data,
-    images: data.product_images || [],
-    category: data.categories || null,
-  };
 }

@@ -1,9 +1,16 @@
 import AdminSidebar from "../../components/admin/AdminSidebar"
+import AllProducts from "./AllProducts"
 
 
 function AdminDashboard() {
   return (
-    <AdminSidebar/>
+
+    <div className="flex">
+     <AdminSidebar/>
+
+     <AllProducts/>
+    </div>
+   
   )
 }
 
