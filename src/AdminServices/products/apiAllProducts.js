@@ -1,9 +1,7 @@
 import supabase from "../../services/supabase";
 import { PAGE_SIZE } from "../../utils/constants";
 
-
-
-export async function getAllProducts({ page = 1 }) {
+export async function getAllProducts({ page = 1, pageSize = PAGE_SIZE }) {
   let query = supabase
     .from("products")
     .select(
@@ -33,8 +31,8 @@ export async function getAllProducts({ page = 1 }) {
     .order("created_at", { ascending: false });
 
   // Apply pagination
-  const from = (page - 1) * PAGE_SIZE;
-  const to = from + PAGE_SIZE - 1;
+  const from = (page - 1) * pageSize;
+  const to = from + pageSize - 1;
 
   query = query.range(from, to);
 

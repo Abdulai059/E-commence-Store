@@ -1,17 +1,16 @@
-import AdminSidebar from "../../components/admin/AdminSidebar"
-import AllProducts from "./AllProducts"
-
+import AdminSidebar from "../../components/admin/AdminSidebar";
+import AddProducts from "./AddProducts";
+import AllProducts from "./AllProducts";
 
 function AdminDashboard() {
   return (
-
     <div className="flex">
-     <AdminSidebar/>
+      <AdminSidebar />
 
-     <AllProducts/>
+      <AllProducts />
+      <AddProducts />
     </div>
-   
-  )
+  );
 }
 
-export default AdminDashboard
+export default AdminDashboard;
