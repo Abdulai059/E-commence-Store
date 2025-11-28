@@ -1,10 +1,10 @@
-import DashboardNavbar from "../components/dashboard/DashboardNavbar";
-import Sidebar from "../components/dashboard/Sidebar";
-import ProductCard from "../components/products/ProductCard";
-import { useProducts } from "../components/products/useProducts";
-import ProductCardSkeleton from "../components/skeletons/ProductCardSkeleton";
-import Pagination from "../ui/Pagination";
-import { ProjectGrid } from "../ui/ProductGrid";
+import DashboardNavbar from "../../components/ShopSidebar/DashboardNavbar";
+import Sidebar from "../../components/ShopSidebar/Sidebar";
+import ProductCard from "../../components/products/ProductCard";
+import { useProducts } from "../../components/products/useProducts";
+import ProductCardSkeleton from "../../components/skeletons/ProductCardSkeleton";
+import Pagination from "../../ui/Pagination";
+import { ProjectGrid } from "../../ui/ProductGrid";
 
 function Shop() {
   const { isLoading, products, count } = useProducts();

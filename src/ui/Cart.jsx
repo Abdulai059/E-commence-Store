@@ -26,7 +26,7 @@ function Cart({cart}) {
       >
         <div className="card-body text-slate-100">
           <span className="text-lg font-semibold text-red-600">{cart.length} Items</span>
-          <span className="text-accent">Subtotal: {formatCurrency(Subtotal)}</span>
+          <span className="text-gray-600 font-medium">Subtotal: {formatCurrency(Subtotal)}</span>
           <div className="card-actions">
             <Link
               to="/cart"

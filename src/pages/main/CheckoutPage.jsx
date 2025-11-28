@@ -1,9 +1,9 @@
 import { ShoppingBag, MapPin, X } from "lucide-react";
 import { useState } from "react";
 import { useSelector } from "react-redux";
-import { formatCurrency } from "../utils/helpers";
-import { getCart } from "../components/cart/cartSlice";
-import RadioCheckbox from "../ui/RadioCheckbox";
+import { formatCurrency } from "../../utils/helpers";
+import { getCart } from "../../components/cart/cartSlice";
+import RadioCheckbox from "../../ui/RadioCheckbox";
 
 export default function CheckoutPage() {
   const [selectedPayment, setSelectedPayment] = useState("mobile");

@@ -1,9 +1,9 @@
-import ShippingDetails from "../ui/ShippingDetails";
-import ProductDetails from "../components/products/ProductDetails";
-import { useProduct } from "../components/products/useProduct";
-import ProductDetailsSkeleton from "../components/skeletons/ProductDetailsSkeleton";
-import ShippingDetailsSkeleton from "../components/skeletons/ShippingDetailsSkeleton";
-import NotFoundPage from "../ui/NotFoundPage";
+import ShippingDetails from "../../ui/ShippingDetails";
+import ProductDetails from "../../components/products/ProductDetails";
+import { useProduct } from "../../components/products/useProduct";
+import ProductDetailsSkeleton from "../../components/skeletons/ProductDetailsSkeleton";
+import ShippingDetailsSkeleton from "../../components/skeletons/ShippingDetailsSkeleton";
+import NotFoundPage from "../../ui/NotFoundPage";
 
 function ProductPage() {
   const { isLoading, product, error } = useProduct();
