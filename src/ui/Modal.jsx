@@ -30,7 +30,7 @@ function Window({ children, name }) {
     <div className="fixed inset-0 z-[1000] bg-black/50 backdrop-blur-sm transition-all duration-500">
       <div
         ref={ref}
-        className="fixed top-1/2 left-1/2 w-[90%] max-w-lg -translate-x-1/2 -translate-y-1/2 rounded-lg bg-white p-6 sm:w-auto sm:p-10 md:p-14"
+        className="fixed top-1/2 left-1/2 w-[90%] max-w-lg md:max-w-4xl -translate-x-1/2 -translate-y-1/2 rounded-lg bg-white p-6 sm:w-auto sm:p-10 md:p-14"
       >
         <button
           onClick={close}

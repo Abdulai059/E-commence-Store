@@ -5,6 +5,8 @@ import Menus from "../../../ui/Menus";
 import { HiPhoto, HiPlus, HiTag } from "react-icons/hi2";
 import Modal from "../../../ui/Modal";
 import AddProductForm from "./AddProductForm";
+import AddImages from "./AddImages";
+import AddCategory from "./AddCategory";
 
 const columns = [
   { label: "Product", key: "product" },
@@ -61,25 +63,31 @@ function AddProductTable({ isLoading, products }) {
                             <Menus.Toggle id={product.id} />
 
                             <Menus.List id={product.id}>
-                              <Modal.Open opens="add">
+                              <Modal.Open opens="addproduct">
                                 <Menus.Button icon={<HiPlus size={18} />}>Add Product</Menus.Button>
                               </Modal.Open>
 
-                              <Modal.Open opens="addImage">
+                              <Modal.Open opens="addimage">
                                 <Menus.Button icon={<HiPhoto size={18} />}>Add Image</Menus.Button>
                               </Modal.Open>
 
-                              <Menus.Button icon={<HiTag size={18} />}>Add Category</Menus.Button>
+                              <Modal.Open opens="category">
+                                <Menus.Button icon={<HiTag size={18} />}>Add Category</Menus.Button>
+                              </Modal.Open>
                             </Menus.List>
                           </Menus.Menu>
                         </Menus>
 
-                        <Modal.Window name="add">
+                        <Modal.Window name="addproduct">
                           <AddProductForm />
                         </Modal.Window>
 
-                        <Modal.Window name="addImage">
-                          <div>Add Image Form Here</div>
+                        <Modal.Window name="addimage">
+                          <AddImages />
+                        </Modal.Window>
+
+                        <Modal.Window name="category">
+                          <AddCategory />
                         </Modal.Window>
                       </Modal>
                     </td>
