@@ -1,11 +1,11 @@
-import AddProductTable from "../../components/admin/AddProductTable";
+import AddProductTable from "../../components/admin/product/AddProductTable";
 import { useAllProducts } from "../../hooks/admin/useAllProducts";
 
 function AddProducts() {
   const { isLoading, products, count } = useAllProducts();
 
   return (
-    <div className="pt-20 pl-30 w-full">
+    <div className="flex h-screen w-full items-center justify-center">
       <AddProductTable isLoading={isLoading} products={products} />
     </div>
   );
