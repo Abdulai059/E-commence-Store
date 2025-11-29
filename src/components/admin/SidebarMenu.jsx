@@ -1,7 +1,8 @@
 import { ChevronDown } from "lucide-react";
 import SidebarSubMenu from "./SidebarSubMenu";
+import { useNavigate } from "react-router-dom";
 
-export default function SidebarMenuItem({
+export default function SidebarMenu({
   item,
   isActive,
   isCollapsed,
@@ -11,6 +12,7 @@ export default function SidebarMenuItem({
   setActiveItem,
   setIsMobileOpen,
 }) {
+  const navigate = useNavigate();
   const Icon = item.icon;
   const isExpanded = expandedMenu === item.id;
   const hasSubItems = item.subItems && item.subItems.length > 0;
@@ -18,9 +20,20 @@ export default function SidebarMenuItem({
   const handleClick = () => {
     if (hasSubItems) {
       setExpandedMenu(isExpanded ? null : item.id);
+
+      // Navigate if parent has a path
+      if (item.path) {
+        navigate(item.path);
+        setActiveItem(item.id);
+        setIsMobileOpen(false);
+      }
     } else {
-      setActiveItem(item.id);
-      setIsMobileOpen(false);
+      // Navigate normally
+      if (item.path) {
+        navigate(item.path);
+        setActiveItem(item.id);
+        setIsMobileOpen(false);
+      }
     }
   };
 
@@ -29,9 +42,7 @@ export default function SidebarMenuItem({
       <button
         onClick={handleClick}
         className={`group relative flex w-full items-center gap-3 rounded-lg px-3 py-4 transition-all duration-200 ${
-          isActive
-            ? "bg-green-400 shadow-lg shadow-red-300/50"
-            : "hover:bg-gray-100/50"
+          isActive ? "bg-green-400 shadow-lg shadow-red-300/50" : "hover:bg-gray-100/50"
         }`}
       >
         <Icon className={`h-5 w-5 shrink-0 ${isActive ? "text-white" : "text-gray-800 "}`} />
@@ -52,7 +63,7 @@ export default function SidebarMenuItem({
                 {item.badge}
               </span>
             )}
-            
+
             {hasSubItems && (
               <ChevronDown
                 className={`h-4 w-4 transition-transform ${isExpanded ? "rotate-180" : ""}`}
@@ -68,7 +79,7 @@ export default function SidebarMenuItem({
         )}
 
         {isCollapsed && (
-          <div className="invisible absolute left-full z-50 ml-2 hidden rounded-lg bg-slate-900 px-3 py-2 whitespace-nowrap opacity-0 shadow-xl transition-all duration-200 group-hover:visible group-hover:opacity-100 lg:block">
+          <div className="absolute left-full z-50 ml-2 hidden rounded-lg bg-slate-900 px-3 py-2 whitespace-nowrap opacity-0 shadow-xl transition-all duration-200 group-hover:visible group-hover:opacity-100 lg:block">
             <span className="text-sm font-medium">{item.label}</span>
             {item.badge && (
               <span className="ml-2 rounded-full bg-red-500 px-2 py-0.5 text-xs font-semibold">

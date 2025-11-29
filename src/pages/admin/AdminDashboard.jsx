@@ -1,14 +1,14 @@
+import { Outlet } from "react-router-dom";
 import AdminSidebar from "../../components/admin/AdminSidebar";
-import AddProducts from "./AddProducts";
-import AllProducts from "./AllProducts";
 
 function AdminDashboard() {
   return (
     <div className="flex">
       <AdminSidebar />
 
-      <AllProducts />
-      <AddProducts />
+      <main className="w-full">
+        <Outlet />
+      </main>
     </div>
   );
 }

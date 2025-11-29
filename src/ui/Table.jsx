@@ -1,26 +1,14 @@
 import ToggleSwitch from "./ToggleSwitch";
+import { formatCurrency } from "../utils/helpers";
+import TableHeader from "./TableHeader";
 
 function Table({ products, columns, onStockChange }) {
   console.log(products);
-
+  
   return (
     <div className="max-w-8xl flex w-full flex-col overflow-hidden rounded-md border border-gray-300 bg-white">
       <table className="w-full table-auto">
-        <thead className="bg-gray-50 text-left text-sm text-gray-600">
-          <tr>
-            {columns.map((col, idx) => (
-              <th
-                key={idx}
-                className={`px-4 py-3 font-semibold uppercase ${
-                  col.hideOnMobile ? "hidden md:table-cell" : ""
-                }`}
-              >
-                {col.label}
-              </th>
-            ))}
-          </tr>
-        </thead>
-
+        <TableHeader columns={columns} />
         <tbody className="text-sm text-gray-700">
           {products.map((product, index) => {
             // Get main image for this product
@@ -45,10 +33,14 @@ function Table({ products, columns, onStockChange }) {
                 <td className="px-4 py-3">{product.category?.name || "—"}</td>
 
                 {/** PRICE */}
-                <td className="hidden px-4 py-3 md:table-cell">${product.price}</td>
+                <td className="hidden px-4 py-3 font-medium text-red-600 md:table-cell">
+                  {formatCurrency(product.price)}
+                </td>
 
                 {/** OFFER PRICE */}
-                <td className="hidden px-4 py-3 md:table-cell">${product.offer_price}</td>
+                <td className="hidden px-4 py-3 font-medium text-green-600 md:table-cell">
+                  {formatCurrency(product.offer_price)}
+                </td>
 
                 {/** DESCRIPTION */}
                 <td className="px-4 py-3">{product.description || "—"}</td>
@@ -70,3 +62,4 @@ function Table({ products, columns, onStockChange }) {
 }
 
 export default Table;
+

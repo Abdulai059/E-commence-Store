@@ -10,8 +10,11 @@ import NotFoundPage from "./ui/NotFoundPage";
 import Shop from "./pages/main/Shop";
 import ShoppingCart from "./components/cart/ShoppingCart";
 import CheckoutPage from "./pages/main/CheckoutPage";
+
 import AdminDashboard from "./pages/admin/AdminDashboard";
 
+import AllProducts from "./pages/admin/AllProducts";
+import AddProducts from "./pages/admin/AddProducts";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -36,11 +39,13 @@ function App() {
             <Route path="checkout" element={<CheckoutPage />} />
           </Route>
 
-          <Route>
-            <Route path="admin" element={<AdminDashboard />} />
+          <Route path="admin" element={<AdminDashboard />}>
+            {/* <Route index element={<AdminHome />} />  */}
+            <Route path="addproduct" element={<AddProducts />} />
+            <Route path="allproduct" element={<AllProducts />} />
           </Route>
 
-          <Route path="*" element={<NotFoundPage />} />
+          <Route path="admin" element={<NotFoundPage />} />
         </Routes>
       </BrowserRouter>
 

@@ -1,16 +1,40 @@
 import { ChevronLeft, ChevronRight, Menu, X } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import SidebarHeader from "./SidebarHeader";
 
 import SidebarUser from "./SidebarUser";
 import { menuItems } from "./sidebarData";
-import SidebarMenuItem from "./SidebarMenu";
+import SidebarMenu from "./SidebarMenu";
+import { useLocation } from "react-router-dom";
 
 export default function AdminSidebar() {
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const [activeItem, setActiveItem] = useState("dashboard");
   const [expandedMenu, setExpandedMenu] = useState(null);
+
+  const location = useLocation();
+
+  useEffect(() => {
+    const currentPath = location.pathname;
+
+    for (const item of menuItems) {
+      if (item.path === currentPath) {
+        setActiveItem(item.id);
+        setExpandedMenu(null);
+        return;
+      }
+
+      if (item.subItems) {
+        for (const subItem of item.subItems) {
+          if (subItem.path === currentPath) {
+            setActiveItem(subItem.id);
+            setExpandedMenu(item.id);
+          }
+        }
+      }
+    }
+  }, [location.pathname]);
 
   return (
     <>
@@ -51,7 +75,7 @@ export default function AdminSidebar() {
         {/* Menu Items */}
         <nav className="flex-1 space-y-1 overflow-y-auto px-3 py-6">
           {menuItems.map((item) => (
-            <SidebarMenuItem
+            <SidebarMenu
               key={item.id}
               item={item}
               isActive={activeItem === item.id}
