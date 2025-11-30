@@ -2,6 +2,8 @@ import { useForm } from "react-hook-form";
 import Button from "../../../ui/Button";
 import { useCategories } from "../../cart/useCategories";
 import { useAddProduct } from "../../../AdminServices/products/useAddProduct";
+import Checkbox from "../../../ui/Checkbox";
+import InputField from "../../../ui/InputField";
 
 function AddProductForm() {
   const { isCreating, addNewProduct } = useAddProduct();
@@ -46,11 +48,12 @@ function AddProductForm() {
             <h3 className="mb-4 text-lg font-medium">Basic Information</h3>
             <div className="space-y-4">
               <div>
-                <label className="mb-2 block text-sm font-medium">Product Name</label>
-                <input
+                <InputField
                   {...register("productName", { required: true })}
                   type="text"
+                  disabled={isCreating}
                   placeholder="Enter product name"
+                  label="Product Name"
                   className="w-full rounded-lg border border-gray-300 px-4 py-2.5"
                 />
               </div>
@@ -60,6 +63,7 @@ function AddProductForm() {
                 <textarea
                   {...register("productDescription")}
                   rows={4}
+                  disabled={isCreating}
                   placeholder="Enter product description"
                   className="w-full resize-none rounded-lg border border-gray-300 px-4 py-2.5"
                 />
@@ -85,11 +89,12 @@ function AddProductForm() {
               </div>
 
               <div>
-                <label className="mb-2 block text-sm font-medium">Trending Colors</label>
-                <input
+                <InputField
                   {...register("trendingColors")}
                   type="text"
+                  disabled={isCreating}
                   placeholder="Red, Blue, Green"
+                  label="Trending Colors"
                   className="w-full rounded-lg border border-gray-300 px-4 py-2.5"
                 />
               </div>
@@ -101,39 +106,44 @@ function AddProductForm() {
             <h3 className="mb-4 text-lg font-medium">Pricing & Stock</h3>
             <div className="space-y-4">
               <div>
-                <label className="mb-2 block text-sm font-medium">Product Price</label>
-                <input
+                <InputField
                   {...register("price", { required: true })}
                   type="number"
+                  disabled={isCreating}
                   placeholder="0.00"
+                  label="Product Price"
                   className="w-full rounded-lg border border-gray-300 px-4 py-2.5"
                 />
               </div>
 
               <div>
-                <label className="mb-2 block text-sm font-medium">Offer Price</label>
-                <input
+             
+                <InputField
                   {...register("offerPrice")}
                   type="number"
+                  disabled={isCreating}
                   placeholder="0.00"
+                  label="Offer Price"
                   className="w-full rounded-lg border border-gray-300 px-4 py-2.5"
                 />
               </div>
 
               <div>
-                <label className="mb-2 block text-sm font-medium">Stock Quantity</label>
-                <input
+                <InputField
+                  label="Stock Quantity"
                   {...register("stockQuantity", { required: true })}
                   type="number"
+                  disabled={isCreating}
                   placeholder="0"
                   className="w-full rounded-lg border border-gray-300 px-4 py-2.5"
                 />
               </div>
 
               <div className="flex items-center gap-3">
-                <input
+                <Checkbox
                   {...register("inStock")}
                   type="checkbox"
+                  disabled={isCreating}
                   className="h-5 w-5 rounded border-gray-300"
                   defaultChecked
                 />
@@ -155,4 +165,3 @@ function AddProductForm() {
 }
 
 export default AddProductForm;
-

@@ -1,5 +1,6 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
+import { createProductImage } from "../../../services/aiProductImage";
 
 export function useCreateProductImage() {
   const queryClient = useQueryClient();
@@ -10,8 +11,6 @@ export function useCreateProductImage() {
 
     onSuccess: (_, variables) => {
       toast.success("Image uploaded!");
-
-      // Important: match your EXACT query key!
       queryClient.invalidateQueries({
         queryKey: ["product_images", variables.productId],
       });

@@ -1,14 +1,17 @@
+import supabase, { supabaseUrl } from "./supabase";
+
 export async function createProductImage(productId, file, productName = null) {
   const isExisting = file?.startsWith?.(supabaseUrl);
 
-  const imageName = `${productId}-${crypto.randomUUID()}-${file.name}`
-    .replaceAll("/", "");
+  const imageName = `${productId}-${crypto.randomUUID()}-${file.name}`.replaceAll("/", "");
+
+  const filePath = `product-images/${imageName}`;
 
   const imageUrl = isExisting
     ? file
-    : `${supabaseUrl}/storage/v1/object/public/product-images/${imageName}`;
+    : `${supabaseUrl}/storage/v1/object/public/product-images/${filePath}`;
 
-  // Count existing images for auto position
+  // Count images
   const { count } = await supabase
     .from("product_images")
     .select("id", { count: "exact", head: true })
@@ -32,7 +35,10 @@ export async function createProductImage(productId, file, productName = null) {
   if (!isExisting) {
     const { error: storageError } = await supabase.storage
       .from("product-images")
-      .upload(imageName, file);
+      .upload(filePath, file, {
+        cacheControl: "3600",
+        upsert: false,
+      });
 
     if (storageError) {
       await supabase.from("product_images").delete().eq("id", data.id);

@@ -15,8 +15,8 @@ const columns = [
   { label: "Add Product", key: "add" },
 ];
 
-function AddProductTable({ isLoading, products }) {
-  console.log(products);
+function AddProductTable({ isLoading, products: product, categories }) {
+  console.log(categories);
 
   return (
     <div className="flex w-5xl flex-col overflow-hidden rounded-md border border-gray-300 bg-white">
@@ -27,32 +27,32 @@ function AddProductTable({ isLoading, products }) {
           <>
             <TableHeader columns={columns} />
             <tbody className="text-sm text-gray-700">
-              {products.map((product, index) => {
+              {categories.map((category, index) => {
                 // Get main image for this product
                 const mainImage =
                   product.product_images?.[0]?.image_url || product.images?.[0]?.image_url || "";
 
                 return (
-                  <tr key={product.id} className="border-t">
+                  <tr key={category.id} className="border-t">
                     {/** PRODUCT CELL */}
                     <td className="flex items-center gap-3 px-4 py-3">
                       <div className="h-16 w-16 overflow-hidden rounded border border-gray-200">
                         <img
-                          src={mainImage}
-                          alt={product.name}
+                          src={category.image_url}
+                          alt={category.name}
                           className="h-full w-full object-cover"
                         />
                       </div>
-                      <span className="truncate">{product.name}</span>
+                      <span className="truncate">{category.name}</span>
                     </td>
 
                     {/** CATEGORY */}
-                    <td className="px-4 py-3">{product.category?.name || "—"}</td>
+                    <td className="px-4 py-3">{category.name || "—"}</td>
 
                     {/** PRICE */}
                     <td className="hidden px-4 py-3 font-medium md:table-cell">
                       <Snippet size="lg" symbol="" hideCopyButton={false}>
-                        {product.id}
+                        {category.id}
                       </Snippet>
                     </td>
 
