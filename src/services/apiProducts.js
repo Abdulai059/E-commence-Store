@@ -1,5 +1,5 @@
 import { PAGE_SIZE } from "../utils/constants";
-import supabase from "./supabase";
+import supabase, { supabaseUrl } from "./supabase";
 
 export async function getProducts({ page = 1 }) {
   let query = supabase
@@ -53,7 +53,6 @@ export async function getProducts({ page = 1 }) {
   return { products, count };
 }
 
-
 // RESQUESTING FOR A SINGLE PPRODUCT
 export async function getProduct(id) {
   const { data, error } = await supabase
@@ -77,4 +76,41 @@ export async function getProduct(id) {
     images: data.product_images || [],
     category: data.categories || null,
   };
+}
+
+export async function addProduct(product) {
+  const {
+    name,
+    description,
+    price,
+    offer_price,
+    stock_quantity,
+    trending_colors,
+    in_stock,
+    category_id,
+  } = product;
+
+  const { data, error } = await supabase
+    .from("products")
+    .insert([
+      {
+        name,
+        description,
+        price,
+        offer_price,
+        stock_quantity,
+        trending_colors,
+        in_stock,
+        category_id,
+      },
+    ])
+    .select();
+
+  if (error) {
+    console.error("Insert failed Product:", error);
+    return { error };
+  }
+
+  console.log("Inserted product:", data);
+  return { data };
 }
