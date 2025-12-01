@@ -7,6 +7,7 @@ import Modal from "../../../ui/Modal";
 import AddProductForm from "./AddProductForm";
 import AddImages from "./AddImages";
 import AddCategory from "./AddCategory";
+import { useCategories } from "../../cart/useCategories";
 
 const columns = [
   { label: "Product", key: "product" },
@@ -16,8 +17,6 @@ const columns = [
 ];
 
 function AddProductTable({ isLoading, products: product, categories }) {
-  console.log(categories);
-
   return (
     <div className="flex w-5xl flex-col overflow-hidden rounded-md border border-gray-300 bg-white">
       <table className="w-5xl table-auto">

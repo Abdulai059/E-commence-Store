@@ -1,5 +1,5 @@
 import { ArrowRight } from "lucide-react";
-import { useSlider } from "../../hooks/useSlider";
+import { useSlider } from "../../hooks/client/useSlider";
 import { motion, AnimatePresence } from "framer-motion";
 
 function ProjectBanner() {

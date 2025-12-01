@@ -2,8 +2,7 @@
 import { createContext, useContext, useState } from "react";
 import { createPortal } from "react-dom";
 import { HiEllipsisVertical } from "react-icons/hi2";
-import { useOutsideClick } from "../hooks/useOutsideClick";
-
+import { useOutsideClick } from "../hooks/client/useOutsideClick";
 
 const MenusContext = createContext();
 

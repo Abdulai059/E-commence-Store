@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { useAutoScroll } from "../hooks/useAutoScroll";
+import { useAutoScroll } from "../hooks/client/useAutoScroll";
 
 export function CarouselSection({ items = [], renderItem, showArrows = true }) {
   const scrollContainerRef = useRef();

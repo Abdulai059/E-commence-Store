@@ -4,17 +4,17 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
 
 import AppLayout from "./components/layout/AppLayout";
-import Homepage from "./pages/main/Homepage";
-import ProductPage from "./pages/main/ProductPage";
+import ProductPage from "./pages/client/ProductPage";
 import NotFoundPage from "./ui/NotFoundPage";
-import Shop from "./pages/main/Shop";
+import Shop from "./pages/client/Shop";
 import ShoppingCart from "./components/cart/ShoppingCart";
-import CheckoutPage from "./pages/main/CheckoutPage";
+import CheckoutPage from "./pages/client/CheckoutPage";
 
 import AdminDashboard from "./pages/admin/AdminDashboard";
 
 import AllProducts from "./pages/admin/AllProducts";
 import AddProducts from "./pages/admin/AddProducts";
+import Homepage from "./pages/client/Homepage";
 
 const queryClient = new QueryClient({
   defaultOptions: {

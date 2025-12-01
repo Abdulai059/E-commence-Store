@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
-import { usePagination } from "../../hooks/usePagination";
+import { usePagination } from "../../hooks/client/usePagination";
 import { PAGE_SIZE } from "../../utils/constants";
 
 function DashboardNavbar({ count }) {

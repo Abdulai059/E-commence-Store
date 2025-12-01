@@ -51,7 +51,7 @@ function ProductDetails({ product }) {
         : "No description available";
 
   return (
-    <div className="text-accent">
+    <div className="text-gray-800">
       <div className="px-2">
         <p className="text-base">
           <span>{category?.name || category}</span>:<span className="text-indigo-500"> {name}</span>
@@ -94,11 +94,11 @@ function ProductDetails({ product }) {
             <p className="mt-6 text-base font-medium">About Product</p>
             <div className="ml-4 text-gray-500/70">{descriptionText}</div>
 
-            <div className="mt-10 flex items-center gap-4 text-base">
+            <div className="mt-10 flex items-center gap-4 text-base text-gray-800">
               <Link
                 onClick={handleAddToCart}
                 to="/cart"
-                className="w-full cursor-pointer bg-gray-100 py-3.5 text-center font-medium text-gray-800/80 shadow-sm transition hover:bg-gray-200"
+                className="w-full cursor-pointer bg-gray-100 py-3.5 text-center font-medium shadow-sm transition hover:bg-gray-200"
               >
                 Add to Cart
               </Link>

@@ -9,7 +9,7 @@ import { ProjectGrid } from "../../ui/ProductGrid";
 function Shop() {
   const { isLoading, products, count } = useProducts();
   return (
-    <div className="flex min-h-screen flex-col md:mt-[130px] md:pt-5">
+    <div className="flex min-h-screen flex-col md:mt-[100px] md:pt-5">
       {/* GRID LAYOUT */}
       <div className="grid flex-1 grid-cols-1 md:grid-cols-[85px_1fr]">
         {/* SIDEBAR */}

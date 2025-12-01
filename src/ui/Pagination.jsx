@@ -1,8 +1,7 @@
 import { HiChevronLeft, HiChevronRight } from "react-icons/hi2";
-
 import { PAGE_SIZE } from "../utils/constants";
 import ShowingResults from "./ShowingResults";
-import { usePagination } from "../hooks/usePagination";
+import { usePagination } from "../hooks/client/usePagination";
 
 function Pagination({ count }) {
   const { currentPage, pageCount, nextPage, previousPage } = usePagination(count);

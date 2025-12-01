@@ -22,7 +22,8 @@ export default function ProductCard({ product }) {
     return () => window.removeEventListener("resize", checkScreen);
   }, []);
 
-  const mainImage = product.product_images?.[0]?.image_url || product.images?.[0]?.image_url || "";
+  const mainImage =
+    product.product_images?.[0]?.image_url || product.images?.[0]?.image_url || null;
 
   function handleAddToCart(e) {
     e.stopPropagation();
@@ -36,7 +37,7 @@ export default function ProductCard({ product }) {
       }),
     );
 
-      toast.success(`${product.name} added to cart!`);
+    toast.success(`${product.name} added to cart!`);
   }
 
   return (

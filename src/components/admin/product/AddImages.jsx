@@ -8,101 +8,75 @@ export default function ProductImageForm() {
   const [productId, setProductId] = useState("");
   const [productName, setProductName] = useState("");
 
-  // ✅ FIXED POSITION NUMBERS (now start from 1 instead of 0)
+  // 4 image slots with preview
   const [images, setImages] = useState([
-    { file: null, preview: null, position: 1 },
-    { file: null, preview: null, position: 2 },
-    { file: null, preview: null, position: 3 },
-    { file: null, preview: null, position: 4 },
+    { file: null, preview: null },
+    { file: null, preview: null },
+    { file: null, preview: null },
+    { file: null, preview: null },
   ]);
 
+  // Handle file selection per slot
   const handleImageUpload = (index, e) => {
     const file = e.target.files[0];
     if (!file) return;
 
     if (!productId) return alert("Please enter a Product ID first");
 
-    // Validate file size
-    if (file.size > 5 * 1024 * 1024) return alert("File must be less than 5MB");
+    if (file.size > 5 * 1024 * 1024)
+      return alert("File must be less than 5MB");
 
     const reader = new FileReader();
     reader.onloadend = () => {
       const newImages = [...images];
-      newImages[index] = {
-        file,
-        preview: reader.result,
-        position: index + 1, // stays correct
-      };
+      newImages[index] = { file, preview: reader.result };
       setImages(newImages);
     };
     reader.readAsDataURL(file);
   };
 
+  // Remove image from slot
   const handleRemoveImage = (index) => {
     const newImages = [...images];
     if (newImages[index].preview) URL.revokeObjectURL(newImages[index].preview);
-
-    // reset the slot correctly
-    newImages[index] = {
-      file: null,
-      preview: null,
-      position: index + 1,
-    };
-
+    newImages[index] = { file: null, preview: null };
     setImages(newImages);
   };
 
+  // Upload all selected images
   const handleSaveImages = async () => {
     if (!productId) return alert("Please enter Product ID");
 
     const imagesToUpload = images.filter((img) => img.file);
-
     if (imagesToUpload.length === 0) return alert("No images to upload");
 
     try {
       for (const img of imagesToUpload) {
+        // Upload each image and wait for completion
         await new Promise((resolve, reject) => {
           createImage(
-            {
-              productId,
-              productName,
-              file: img.file,
-              position: img.position,
-            },
+            { productId, productName, file: img.file },
             {
               onSuccess: () => resolve(),
               onError: (err) => reject(err),
-            },
+            }
           );
         });
       }
 
-      // Reset all slots after upload
-      setImages(
-        images.map((_, i) => ({
-          file: null,
-          preview: null,
-          position: i + 1,
-        })),
-      );
-
+      // Reset after upload
+      setImages(images.map(() => ({ file: null, preview: null })));
       alert("All images uploaded successfully!");
     } catch (err) {
       console.error(err);
-      alert("Upload failed");
+      alert("Upload failed: " + err.message);
     }
   };
 
+  // Clear all slots
   const handleClearAll = () => {
     images.forEach((img) => img.preview && URL.revokeObjectURL(img.preview));
-
-    setImages(
-      images.map((_, i) => ({
-        file: null,
-        preview: null,
-        position: i + 1,
-      })),
-    );
+    setImages(images.map(() => ({ file: null, preview: null })));
   };
 
   return (
@@ -153,7 +127,9 @@ export default function ProductImageForm() {
                     className="h-full w-full object-cover"
                   />
                 ) : (
-                  <span className="text-center text-gray-400">Upload Image</span>
+                  <span className="text-center text-gray-400">
+                    Upload Image
+                  </span>
                 )}
               </div>
             </label>
@@ -168,11 +144,6 @@ export default function ProductImageForm() {
                 ✕
               </button>
             )}
-
-            {/* Position Label */}
-            <div className="absolute bottom-2 left-2 rounded bg-black/60 px-1 text-xs text-white">
-              #{img.position}
-            </div>
           </div>
         ))}
       </div>
