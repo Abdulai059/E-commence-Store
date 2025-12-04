@@ -19,7 +19,9 @@ export async function getOrder({ page = 1 }) {
         shipping_fee,
         total_amount,
         order_items,
-        order_status
+        order_status,
+        payment_status,
+        created_at
       `,
       { count: "exact" },
     )

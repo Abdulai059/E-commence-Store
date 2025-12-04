@@ -8,6 +8,9 @@ import { ProjectGrid } from "../../ui/ProductGrid";
 
 function Shop() {
   const { isLoading, products, count } = useProducts();
+
+  console.log(products);
+
   return (
     <div className="flex min-h-screen flex-col md:mt-[100px] md:pt-5">
       {/* GRID LAYOUT */}
@@ -48,5 +51,3 @@ function Shop() {
 }
 
 export default Shop;
-
-
