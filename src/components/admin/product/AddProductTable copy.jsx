@@ -1,3 +1,4 @@
+import TableSkeleton from "../Skeleton/TableSkeleton";
 import TableHeader from "../../../ui/TableHeader";
 import { Snippet } from "@heroui/snippet";
 import Menus from "../../../ui/Menus";
@@ -6,7 +7,6 @@ import Modal from "../../../ui/Modal";
 import AddProductForm from "./AddProductForm";
 import AddImages from "./AddImages";
 import AddCategory from "./AddCategory";
-import CategoryTableSkeleton from "../Skeleton/CategoryTableSkeleton";
 
 const columns = [
   { label: "Product", key: "product" },
@@ -15,33 +15,28 @@ const columns = [
   { label: "Add Product", key: "add" },
 ];
 
-function AddProductTable({ isLoading, products, categories }) {
-  const categoryList = Array.isArray(categories) ? categories : [];
-  const productList = products || [];
-
+function AddProductTable({ isLoading, products: product, categories }) {
   return (
-    <span className="flex w-5xl flex-col overflow-hidden rounded-md border border-gray-300 bg-white">
+    <div className="flex w-5xl flex-col overflow-hidden rounded-md border border-gray-300 bg-white">
       <table className="w-5xl table-auto">
         {isLoading ? (
-          <CategoryTableSkeleton columns={columns} />
+          <TableSkeleton columns={columns} />
         ) : (
           <>
             <TableHeader columns={columns} />
             <tbody className="text-sm text-gray-700">
-              {categoryList.map((category) => {
-                const mainProduct = productList[0] || {};
+              {categories.map((category, index) => {
+                // Get main image for this product
                 const mainImage =
-                  mainProduct.product_images?.[0]?.image_url ||
-                  mainProduct.images?.[0]?.image_url ||
-                  "";
+                  product.product_images?.[0]?.image_url || product.images?.[0]?.image_url || "";
 
                 return (
                   <tr key={category.id} className="border-t">
-                    {/* PRODUCT CELL */}
+                    {/** PRODUCT CELL */}
                     <td className="flex items-center gap-3 px-4 py-3">
                       <div className="h-16 w-16 overflow-hidden rounded border border-gray-200">
                         <img
-                          src={category.image_url || mainImage}
+                          src={category.image_url}
                           alt={category.name}
                           className="h-full w-full object-cover"
                         />
@@ -49,48 +44,47 @@ function AddProductTable({ isLoading, products, categories }) {
                       <span className="truncate">{category.name}</span>
                     </td>
 
-                    {/* CATEGORY */}
+                    {/** CATEGORY */}
                     <td className="px-4 py-3">{category.name || "—"}</td>
 
-                    {/* PRODUCT ID */}
+                    {/** PRICE */}
                     <td className="hidden px-4 py-3 font-medium md:table-cell">
                       <Snippet size="lg" symbol="" hideCopyButton={false}>
                         {category.id}
                       </Snippet>
                     </td>
 
-                    {/* MODALS */}
                     <td className="pl-6">
                       <Modal>
                         <Menus>
                           <Menus.Menu>
-                            <Menus.Toggle id={mainProduct.id || category.id}>Actions</Menus.Toggle>
+                            <Menus.Toggle id={product.id} />
 
-                            <Menus.List id={mainProduct.id || category.id}>
-                              <Modal.Open opens={`addproduct-${category.id}`}>
+                            <Menus.List id={product.id}>
+                              <Modal.Open opens="addproduct">
                                 <Menus.Button icon={<HiPlus size={18} />}>Add Product</Menus.Button>
                               </Modal.Open>
 
-                              <Modal.Open opens={`addimage-${category.id}`}>
+                              <Modal.Open opens="addimage">
                                 <Menus.Button icon={<HiPhoto size={18} />}>Add Image</Menus.Button>
                               </Modal.Open>
 
-                              <Modal.Open opens={`addcategory-${category.id}`}>
+                              <Modal.Open opens="category">
                                 <Menus.Button icon={<HiTag size={18} />}>Add Category</Menus.Button>
                               </Modal.Open>
                             </Menus.List>
                           </Menus.Menu>
                         </Menus>
 
-                        <Modal.Window name={`addproduct-${category.id}`}>
+                        <Modal.Window name="addproduct">
                           <AddProductForm />
                         </Modal.Window>
 
-                        <Modal.Window name={`addimage-${category.id}`}>
+                        <Modal.Window name="addimage">
                           <AddImages />
                         </Modal.Window>
 
-                        <Modal.Window name={`addcategory-${category.id}`}>
+                        <Modal.Window name="category">
                           <AddCategory />
                         </Modal.Window>
                       </Modal>
@@ -102,7 +96,7 @@ function AddProductTable({ isLoading, products, categories }) {
           </>
         )}
       </table>
-    </span>
+    </div>
   );
 }
 

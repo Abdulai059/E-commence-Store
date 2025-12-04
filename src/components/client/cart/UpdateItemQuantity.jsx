@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
-import { decreaseItemQuantity, increaseItemQuantity } from "../cart/cartSlice";
-import Button from "../../ui/Button";
+import { decreaseItemQuantity, increaseItemQuantity } from "./cartSlice";
+import Button from "../../../ui/Button";
 
 function UpdateItemQuantity({ productId, currentQuantity }) {
   const dispatch = useDispatch();
@@ -14,7 +14,7 @@ function UpdateItemQuantity({ productId, currentQuantity }) {
   }
 
   return (
-    <div className="md:flex items-center gap-2 md:gap-3 hidden">
+    <div className="hidden items-center gap-2 md:flex md:gap-3">
       <Button variation="round" size="basebtn" onClick={handleDecQuantity}>
         -
       </Button>

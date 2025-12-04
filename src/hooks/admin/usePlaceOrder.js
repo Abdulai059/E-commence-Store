@@ -1,6 +1,5 @@
 import { useState } from "react";
-import { useAddOrder } from "../../AdminServices/orders/useOrder";
-import { clearCart } from "../../components/cart/cartSlice";
+import { useAddOrder } from "../../AdminServices/orders/useCreateOrder";
 
 export function usePlaceOrder(cart, selectedPayment, clearCart) {
   const { addNewOrder, isSubmitting } = useAddOrder();

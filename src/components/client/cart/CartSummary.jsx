@@ -1,8 +1,8 @@
 import { useState } from "react";
-import Button from "../../ui/Button";
+import Button from "../../../ui/Button";
 import { useSelector } from "react-redux";
 import { getCart } from "./cartSlice";
-import { formatCurrency } from "../../utils/helpers";
+import { formatCurrency } from "../../../utils/helpers";
 import { Link } from "react-router-dom";
 
 function CartSummary() {

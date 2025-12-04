@@ -7,7 +7,6 @@ import BillingInformation from "../../components/client/orders/BillingInformatio
 import OrderSummary from "../../components/client/orders/OrderSummary";
 import PaymentMethod from "../../components/client/orders/PaymentMethod";
 import { usePlaceOrder } from "../../hooks/admin/usePlaceOrder";
-import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 
 export default function CheckoutPage() {
   const [selectedPayment, setSelectedPayment] = useState("mobile");
@@ -55,7 +54,6 @@ export default function CheckoutPage() {
         {/* Success Message */}
         {success && (
           <div className="mb-6 rounded-lg border border-green-200 bg-green-50 p-4">
-            <DotLottieReact src="path/to/animation.lottie" loop autoplay />
             <p className="font-medium text-green-800">✓ Order placed successfully!</p>
           </div>
         )}

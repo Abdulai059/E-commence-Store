@@ -1,10 +1,10 @@
-import TableSkeleton from "../../AdminServices/Skeleton/TableSkeleton";
+import TableSkeleton from "../../components/admin/Skeleton/TableSkeleton";
 import { useAllProducts } from "../../hooks/admin/useAllProducts";
 import Pagination from "../../ui/Pagination";
 import Table from "../../ui/Table";
 
 function AllProducts() {
-    const ITEMS_PER_PAGE = 7; 
+  const ITEMS_PER_PAGE = 7;
   const { isLoading, products, count } = useAllProducts(ITEMS_PER_PAGE);
 
   const columns = [
@@ -21,13 +21,14 @@ function AllProducts() {
     <div className="flex flex-1 flex-col items-center justify-between py-10">
       <div className="w-7xl p-4 md:p-0">
         <h2 className="pb-4 text-lg font-medium">All Products</h2>
-
         {isLoading ? (
           <TableSkeleton columns={columns} />
         ) : (
           <>
-            <Table products={products} columns={columns} />
-            <div className="flex justify-around empty:hidden">
+            <div className="overflow-x-auto">
+              <Table products={products} columns={columns} />
+            </div>
+            <div className="mt-4 flex justify-center">
               <Pagination count={count} />
             </div>
           </>

@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import Button from "../../../ui/Button";
-import { useCategories } from "../../cart/useCategories";
+import { useCategories } from "../../categories/useCategories";
 import { useAddProduct } from "../../../AdminServices/products/useAddProduct";
 import Checkbox from "../../../ui/Checkbox";
 import InputField from "../../../ui/InputField";
@@ -8,7 +8,6 @@ import InputField from "../../../ui/InputField";
 function AddProductForm() {
   const { isCreating, addNewProduct } = useAddProduct();
   const { isLoading, categories, error } = useCategories();
-  console.log(categories);
 
   const {
     register,
@@ -117,7 +116,6 @@ function AddProductForm() {
               </div>
 
               <div>
-             
                 <InputField
                   {...register("offerPrice")}
                   type="number"

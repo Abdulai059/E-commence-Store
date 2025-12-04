@@ -7,14 +7,15 @@ import AppLayout from "./components/layout/AppLayout";
 import ProductPage from "./pages/client/ProductPage";
 import NotFoundPage from "./ui/NotFoundPage";
 import Shop from "./pages/client/Shop";
-import ShoppingCart from "./components/cart/ShoppingCart";
-import CheckoutPage from "./pages/client/CheckoutPage";
 
+import CheckoutPage from "./pages/client/CheckoutPage";
+import ShoppingCart from "./components/client/cart/ShoppingCart";
 import AdminDashboard from "./pages/admin/AdminDashboard";
 
 import AllProducts from "./pages/admin/AllProducts";
 import AddProducts from "./pages/admin/AddProducts";
 import Homepage from "./pages/client/Homepage";
+import OrdersPage from "./pages/admin/OrderPage";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -43,6 +44,7 @@ function App() {
             {/* <Route index element={<AdminHome />} />  */}
             <Route path="addproduct" element={<AddProducts />} />
             <Route path="allproduct" element={<AllProducts />} />
+            <Route path="orders" element={<OrdersPage />} />
           </Route>
 
           <Route path="admin" element={<NotFoundPage />} />

@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import { formatCurrency } from "../../../utils/helpers";
-import { getCart } from "../../cart/cartSlice";
+import { getCart } from "../cart/cartSlice";
 
 function CheckoutDetails() {
   const cart = useSelector(getCart);

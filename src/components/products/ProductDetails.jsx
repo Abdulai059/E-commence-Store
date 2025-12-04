@@ -5,7 +5,7 @@ import ProductPrice from "../../ui/ProductPrice";
 import { Link } from "react-router-dom";
 import Button from "../../ui/Button";
 import { useDispatch } from "react-redux";
-import { addItem } from "../cart/cartSlice";
+import { addItem } from "../client/cart/cartSlice";
 
 function ProductDetails({ product }) {
   const dispatch = useDispatch();

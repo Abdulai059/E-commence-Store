@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import CartSummary from "./CartSummary";
 import CartItem from "./CartItem";
-import LinkButton from "../../ui/LinkButton";
+import LinkButton from "../../../ui/LinkButton";
 
 function ShoppingCart() {
   const cart = useSelector((state) => state.cart.cart);

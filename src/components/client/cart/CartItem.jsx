@@ -1,10 +1,10 @@
 import { useDispatch, useSelector } from "react-redux";
 import { deleteItem, getCurrentQuantityById } from "./cartSlice";
 import UpdateItemQuantity from "./UpdateItemQuantity";
-import { formatCurrency } from "../../utils/helpers";
+import { formatCurrency } from "../../../utils/helpers";
 import { Trash2 } from "lucide-react";
-import Modal from "../../ui/Modal";
-import ConfirmDelete from "../../ui/ConfirmDelete";
+import Modal from "../../../ui/Modal";
+import ConfirmDelete from "../../../ui/ConfirmDelete";
 
 function CartItem({ item }) {
   const dispatch = useDispatch();

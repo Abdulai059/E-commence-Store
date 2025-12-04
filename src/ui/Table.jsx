@@ -3,8 +3,6 @@ import { formatCurrency } from "../utils/helpers";
 import TableHeader from "./TableHeader";
 
 function Table({ products, columns, onStockChange }) {
-  console.log(products);
-  
   return (
     <div className="max-w-8xl flex w-full flex-col overflow-hidden rounded-md border border-gray-300 bg-white">
       <table className="w-full table-auto">
@@ -13,7 +11,7 @@ function Table({ products, columns, onStockChange }) {
           {products.map((product, index) => {
             // Get main image for this product
             const mainImage =
-              product.product_images?.[0]?.image_url || product.images?.[0]?.image_url || "";
+              product.product_images?.[0]?.image_url || product.images?.[0]?.image_url || null;
 
             return (
               <tr key={product.id} className="border-t">
@@ -62,4 +60,3 @@ function Table({ products, columns, onStockChange }) {
 }
 
 export default Table;
-
