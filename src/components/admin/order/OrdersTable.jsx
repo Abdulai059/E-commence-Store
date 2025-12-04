@@ -1,5 +1,6 @@
 import { Eye } from "lucide-react";
 import TableHeader from "./ TableHeader";
+import { formatCurrency, formatDatePretty } from "../../../utils/helpers";
 
 export function OrdersTable({
   orders,
@@ -96,6 +97,7 @@ export function OrderTableBody({
     payment_method,
     order_status,
     payment_status,
+    created_at: orderDate,
     order_items, // keep as array
   },
   onViewOrder,
@@ -124,7 +126,9 @@ export function OrderTableBody({
       </td>
 
       <td className="px-6 py-4 whitespace-nowrap">
-        <div className="text-sm font-semibold text-gray-900">GHS {total_amount?.toFixed(2)}</div>
+        <div className="text-sm font-semibold text-gray-900">
+          {formatCurrency(total_amount?.toFixed(2))}
+        </div>
       </td>
 
       <td className="px-6 py-4 whitespace-nowrap">
@@ -145,6 +149,10 @@ export function OrderTableBody({
         >
           {order_status}
         </span>
+      </td>
+
+      <td className="px-6 py-4 text-sm whitespace-nowrap text-gray-500">
+        {formatDatePretty(orderDate)}
       </td>
 
       <td className="px-6 py-4 text-sm whitespace-nowrap">

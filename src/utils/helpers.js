@@ -1,4 +1,4 @@
-import { formatDistance, parseISO, differenceInDays } from "date-fns";
+import { formatDistance, parseISO, format, differenceInDays } from "date-fns";
 
 export const formatCurrency = (value) =>
   new Intl.NumberFormat("en-GH", { style: "currency", currency: "GHS" }).format(value);
@@ -13,6 +13,12 @@ export const formatDistanceFromNow = (dateStr) =>
   })
     .replace("about ", "")
     .replace("in", "In");
+
+export const formatDatePretty = (dateInput) => {
+  if (!dateInput) return "";
+  const date = typeof dateInput === "string" ? parseISO(dateInput) : dateInput;
+  return format(date, "MMM. dd yyyy"); // e.g., "May. 24 2014"
+};
 
 // Supabase needs an ISO date string. However, that string will be different on every render because the MS or SEC have changed, which isn't good. So we use this trick to remove any time
 export const getToday = function (options = {}) {
