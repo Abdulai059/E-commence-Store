@@ -1,20 +1,9 @@
 import { Eye } from "lucide-react";
 import TableHeader from "./ TableHeader";
 import { formatCurrency, formatDatePretty } from "../../../utils/helpers";
+import Pagination from "../../../ui/Pagination";
 
-export function OrdersTable({
-  orders,
-  onViewOrder,
-  getStatusColor,
-  getPaymentColor,
-  filteredOrders,
-  rowsPerPage,
-  setRowsPerPage,
-  currentPage,
-  setCurrentPage,
-  startIndex,
-  totalPages,
-}) {
+export function OrdersTable({ orders = [], count, onViewOrder, getStatusColor, getPaymentColor }) {
   console.log(orders);
 
   return (
@@ -38,53 +27,8 @@ export function OrdersTable({
       </div>
 
       {/* Pagination */}
-      <div className="flex items-center justify-between border-t border-gray-200 bg-white px-6 py-4">
-        <div className="flex items-center gap-2">
-          <span className="text-sm text-gray-700">Rows per page:</span>
-          <select
-            className="rounded border border-gray-300 px-2 py-1 text-sm"
-            value={rowsPerPage}
-            onChange={(e) => {
-              setRowsPerPage(Number(e.target.value));
-              setCurrentPage(1);
-            }}
-          >
-            <option value={5}>5</option>
-            <option value={10}>10</option>
-            <option value={25}>25</option>
-            <option value={50}>50</option>
-          </select>
-          <span className="ml-4 text-sm text-gray-700">
-            {startIndex + 1}-{Math.min(startIndex + rowsPerPage, filteredOrders.length)} of{" "}
-            {filteredOrders.length}
-          </span>
-        </div>
-        <div className="flex gap-2">
-          <button
-            onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
-            disabled={currentPage === 1}
-            className="rounded border border-gray-300 px-3 py-1 hover:bg-gray-50 disabled:cursor-not-allowed disabled:opacity-50"
-          >
-            Previous
-          </button>
-          {[...Array(totalPages)].map((_, i) => (
-            <button
-              key={i}
-              onClick={() => setCurrentPage(i + 1)}
-              className={`rounded border px-3 py-1 ${currentPage === i + 1 ? "border-blue-600 bg-blue-600 text-white" : "border-gray-300 hover:bg-gray-50"}`}
-            >
-              {i + 1}
-            </button>
-          ))}
-          <button
-            onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
-            disabled={currentPage === totalPages}
-            className="rounded border border-gray-300 px-3 py-1 hover:bg-gray-50 disabled:cursor-not-allowed disabled:opacity-50"
-          >
-            Next
-          </button>
-        </div>
-      </div>
+
+      <Pagination count={count} />
     </div>
   );
 }

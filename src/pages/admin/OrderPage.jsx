@@ -5,23 +5,12 @@ import { useOrders } from "../../AdminServices/orders/useOrder";
 import Stats from "../../components/admin/order/Stats";
 import OrderFilters from "../../components/admin/order/OrderFilters";
 
-const OrdersPage = () => {
-  const { isLoading, error, orders } = useOrders();
+function OrdersPage() {
+  const { isLoading, error, orders, count } = useOrders();
 
   console.log(orders);
 
-  const {
-    selectedOrder,
-    setSelectedOrder,
-    currentPage,
-    setCurrentPage,
-    rowsPerPage,
-    setRowsPerPage,
-    filteredOrders,
-    paginatedOrders,
-    totalPages,
-    startIndex,
-  } = useOrdersPage();
+  const { selectedOrder, setSelectedOrder } = useOrdersPage();
 
   const getStatusColor = (status) => {
     const colors = {
@@ -48,29 +37,22 @@ const OrdersPage = () => {
         <OrderFilters />
 
         {/* Stats Cards */}
-        <Stats orders={orders} />
+        <Stats />
       </div>
 
       {/* Orders Table */}
       <OrdersTable
         orders={orders}
-        paginatedOrders={paginatedOrders}
+        count={count}
         onViewOrder={setSelectedOrder}
         getStatusColor={getStatusColor}
         getPaymentColor={getPaymentColor}
-        filteredOrders={filteredOrders}
-        rowsPerPage={rowsPerPage}
-        setRowsPerPage={setRowsPerPage}
-        currentPage={currentPage}
-        setCurrentPage={setCurrentPage}
-        startIndex={startIndex}
-        totalPages={totalPages}
       />
 
       {/* Order Details Modal */}
       <OrderModal selectedOrder={selectedOrder} onClose={() => setSelectedOrder(null)} />
     </div>
   );
-};
+}
 
 export default OrdersPage;

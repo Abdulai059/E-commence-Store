@@ -1,5 +1,5 @@
 import { HiChevronLeft, HiChevronRight } from "react-icons/hi2";
-import { PAGE_SIZE } from "../utils/constants";
+import { PAGE_SIZE, ORDER_PAGE_SIZE } from "../utils/constants";
 import ShowingResults from "./ShowingResults";
 import { usePagination } from "../hooks/client/usePagination";
 
@@ -14,6 +14,7 @@ function Pagination({ count }) {
         currentPage={currentPage}
         pageCount={pageCount}
         PAGE_SIZE={PAGE_SIZE}
+        ORDER_PAGE_SIZE={ORDER_PAGE_SIZE}
         count={count}
       />
 

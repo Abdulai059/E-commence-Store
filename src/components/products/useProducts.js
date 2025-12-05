@@ -8,17 +8,19 @@ export function useProducts() {
   const [searchParams] = useSearchParams();
 
   // Pagination
-  const page = !searchParams.get("page") ? 1 : Number(searchParams.get("page"));
+  const page = Number(searchParams.get("page")) || 1;
 
   const { isLoading, data, error } = useQuery({
     queryKey: ["products", page],
     queryFn: () => getProducts({ page }),
+    keepPreviousData: true,
   });
 
   // Safely extract products & count after query returns
-  const products = data?.products ?? [];
+  const products = data?.data ?? [];
   const count = data?.count ?? 0;
 
+  // Total pages
   const pageCount = Math.ceil(count / PAGE_SIZE);
 
   // Prefetching
