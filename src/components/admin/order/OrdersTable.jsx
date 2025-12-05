@@ -2,6 +2,11 @@ import { Eye } from "lucide-react";
 import TableHeader from "./ TableHeader";
 import { formatCurrency, formatDatePretty } from "../../../utils/helpers";
 import Pagination from "../../../ui/Pagination";
+import Modal from "../../../ui/Modal";
+import Menus from "../../../ui/Menus";
+
+import AddImages from "../product/AddImages";
+import OrderDetails from "./OrderDetails";
 
 export function OrdersTable({ orders = [], count, onViewOrder, getStatusColor, getPaymentColor }) {
   console.log(orders);
@@ -27,14 +32,19 @@ export function OrdersTable({ orders = [], count, onViewOrder, getStatusColor, g
       </div>
 
       {/* Pagination */}
-
       <Pagination count={count} />
     </div>
   );
 }
 
 export function OrderTableBody({
-  order: {
+  order,
+  onViewOrder,
+  getStatusColor,
+  getPaymentColor,
+  selectedOrder,
+}) {
+  const {
     order_id,
     recipient_name,
     total_amount,
@@ -42,12 +52,9 @@ export function OrderTableBody({
     order_status,
     payment_status,
     created_at: orderDate,
-    order_items, // keep as array
-  },
-  onViewOrder,
-  getStatusColor,
-  getPaymentColor,
-}) {
+    order_items,
+  } = order;
+
   return (
     <tr key={order_id} className="hover:bg-gray-50">
       <td className="px-6 py-4 whitespace-nowrap">
@@ -100,22 +107,22 @@ export function OrderTableBody({
       </td>
 
       <td className="px-6 py-4 text-sm whitespace-nowrap">
-        <button
-          onClick={() =>
-            onViewOrder({
-              order_id,
-              recipient_name,
-              total_amount,
-              payment_method,
-              order_status,
-              order_items,
-            })
-          }
-          className="flex items-center gap-1 text-blue-600 hover:text-blue-900"
-        >
-          <Eye className="h-4 w-4" />
-          View
-        </button>
+        <Modal>
+          <Menus>
+            <Menus.Menu>
+              <Modal.Open opens="view-order">
+                <button className="flex items-center gap-1 text-blue-600 hover:text-blue-900">
+                  <Eye className="h-4 w-4" />
+                  View
+                </button>
+              </Modal.Open>
+            </Menus.Menu>
+          </Menus>
+
+          <Modal.Window name="view-order">
+            <OrderDetails order={order} />
+          </Modal.Window>
+        </Modal>
       </td>
     </tr>
   );

@@ -1,16 +1,14 @@
 import { useOrdersPage } from "../../components/admin/order/useOrdersPage";
 import { OrdersTable } from "../../components/admin/order/OrdersTable";
-import { OrderModal } from "../../components/admin/order/OrderModal";
 import { useOrders } from "../../AdminServices/orders/useOrder";
 import Stats from "../../components/admin/order/Stats";
 import OrderFilters from "../../components/admin/order/OrderFilters";
 
 function OrdersPage() {
   const { isLoading, error, orders, count } = useOrders();
-
   console.log(orders);
 
-  const { selectedOrder, setSelectedOrder } = useOrdersPage();
+  // const { selectedOrder, setSelectedOrder } = useOrdersPage();
 
   const getStatusColor = (status) => {
     const colors = {
@@ -44,13 +42,9 @@ function OrdersPage() {
       <OrdersTable
         orders={orders}
         count={count}
-        onViewOrder={setSelectedOrder}
         getStatusColor={getStatusColor}
         getPaymentColor={getPaymentColor}
       />
-
-      {/* Order Details Modal */}
-      <OrderModal selectedOrder={selectedOrder} onClose={() => setSelectedOrder(null)} />
     </div>
   );
 }

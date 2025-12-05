@@ -13,10 +13,10 @@ export async function getOrderStats() {
     .eq("order_status", "pending");
 
   // Completed orders
-  const { count: completedOrders } = await supabase
+  const { count: processingdOrders } = await supabase
     .from("orders")
     .select("order_id", { count: "exact", head: true })
-    .eq("order_status", "completed");
+    .eq("order_status", "processing");
 
   // Cancelled orders
   const { count: cancelledOrders } = await supabase
@@ -24,7 +24,24 @@ export async function getOrderStats() {
     .select("order_id", { count: "exact", head: true })
     .eq("order_status", "cancelled");
 
-  return { totalOrders, pendingOrders, completedOrders, cancelledOrders };
+  const { count: shippedOrders } = await supabase
+    .from("orders")
+    .select("order_id", { count: "exact", head: true })
+    .eq("order_status", "shipped");
+
+  const { count: deliveredOrders } = await supabase
+    .from("orders")
+    .select("order_id", { count: "exact", head: true })
+    .eq("order_status", "delivered");
+
+  return {
+    totalOrders,
+    pendingOrders,
+    processingdOrders,
+    cancelledOrders,
+    shippedOrders,
+    deliveredOrders,
+  };
 }
 
 export default getOrderStats;

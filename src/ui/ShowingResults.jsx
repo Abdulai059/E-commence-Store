@@ -3,11 +3,11 @@ function ShowingResults({ currentPage, pageCount, PAGE_SIZE, ORDER_PAGE_SIZE, co
   return (
     <div className="hidden md:flex">
       <p className="ml-2 text-base">
-        showing <span className="font-semibold">{(currentPage - 1) * size + 1}</span> to{" "}
+        Rows per page: <span className="font-semibold">{(currentPage - 1) * size + 1}</span> -{" "}
         <span className="font-semibold">
           {currentPage === pageCount ? count : currentPage * size}
         </span>{" "}
-        of <span className="font-semibold">{count}</span> results
+        of <span className="font-semibold">{count}</span>
       </p>
     </div>
   );

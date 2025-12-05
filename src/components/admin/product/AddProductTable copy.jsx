@@ -54,38 +54,24 @@ function AddProductTable({ isLoading, products: product, categories }) {
                       </Snippet>
                     </td>
 
-                    <td className="pl-6">
+                    <td className="px-6 py-4 text-sm whitespace-nowrap">
                       <Modal>
                         <Menus>
                           <Menus.Menu>
-                            <Menus.Toggle id={product.id} />
-
-                            <Menus.List id={product.id}>
-                              <Modal.Open opens="addproduct">
-                                <Menus.Button icon={<HiPlus size={18} />}>Add Product</Menus.Button>
-                              </Modal.Open>
-
-                              <Modal.Open opens="addimage">
-                                <Menus.Button icon={<HiPhoto size={18} />}>Add Image</Menus.Button>
-                              </Modal.Open>
-
-                              <Modal.Open opens="category">
-                                <Menus.Button icon={<HiTag size={18} />}>Add Category</Menus.Button>
-                              </Modal.Open>
-                            </Menus.List>
+                            <Modal.Open opens="view-order">
+                              <button
+                                onClick={() => setSelectedOrder(order)}
+                                className="flex items-center gap-1 text-blue-600 hover:text-blue-900"
+                              >
+                                <Eye className="h-4 w-4" />
+                                View
+                              </button>
+                            </Modal.Open>
                           </Menus.Menu>
                         </Menus>
 
-                        <Modal.Window name="addproduct">
-                          <AddProductForm />
-                        </Modal.Window>
-
-                        <Modal.Window name="addimage">
+                        <Modal.Window name="view-order">
                           <AddImages />
-                        </Modal.Window>
-
-                        <Modal.Window name="category">
-                          <AddCategory />
                         </Modal.Window>
                       </Modal>
                     </td>

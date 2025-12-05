@@ -1,13 +1,20 @@
-import { Package, Clock, CheckCircle, XCircle } from "lucide-react";
+import { Package, Clock, CheckCircle, XCircle, Truck, Loader } from "lucide-react";
 import Stat from "./Stat";
 import { useOrderStats } from "../../../AdminServices/orders/useOrderStats";
 
 function Stats() {
   const { data, isLoading } = useOrderStats();
 
-  // if (isLoading) return <p>Loading stats...</p>;
+  if (isLoading) return <p>Loading stats...</p>;
 
-  const { totalOrders, pendingOrders, completedOrders, cancelledOrders } = data;
+  const {
+    totalOrders,
+    pendingOrders,
+    processingdOrders,
+    cancelledOrders,
+    shippedOrders,
+    deliveredOrders,
+  } = data;
 
   return (
     <div className="mb-6 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-6">
@@ -24,24 +31,24 @@ function Stats() {
         icon={<Clock className="h-6 w-6 text-white" />}
       />
       <Stat
-        title="Completed Orders"
-        value={completedOrders}
+        title="Processing Orders"
+        value={processingdOrders}
         color="bg-green-500"
-        icon={<CheckCircle className="h-6 w-6 text-white" />}
+        icon={<Loader className="h-6 w-6 text-white" />}
       />
       <Stat
-        title="Cancelled Orders"
-        value={cancelledOrders}
-        color="bg-red-500"
-        icon={<XCircle className="h-6 w-6 text-white" />}
+        title="Shipped Orders"
+        value={shippedOrders}
+        color="bg-purple-500 "
+        icon={<Truck className="h-6 w-6 text-white" />}
+      />
+      <Stat
+        title="Delivered Orders"
+        value={deliveredOrders}
+        color="bg-green-500"
+        icon={<CheckCircle className="h-6 w-6 text-white" />}
       />
 
-      <Stat
-        title="Completed Orders"
-        value={completedOrders}
-        color="bg-green-500"
-        icon={<CheckCircle className="h-6 w-6 text-white" />}
-      />
       <Stat
         title="Cancelled Orders"
         value={cancelledOrders}
