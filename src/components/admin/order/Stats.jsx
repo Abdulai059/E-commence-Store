@@ -1,11 +1,12 @@
 import { Package, Clock, CheckCircle, XCircle, Truck, Loader } from "lucide-react";
 import Stat from "./Stat";
 import { useOrderStats } from "../../../AdminServices/orders/useOrderStats";
+import StateSkeleton from "../Skeleton/StateSkeleton";
 
 function Stats() {
   const { data, isLoading } = useOrderStats();
 
-  if (isLoading) return <p>Loading stats...</p>;
+  if (isLoading) return <StateSkeleton />;
 
   const {
     totalOrders,

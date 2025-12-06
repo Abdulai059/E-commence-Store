@@ -3,6 +3,8 @@ import Pagination from "../../../ui/Pagination";
 import OrderTableBody from "./OrderTableBody";
 
 export function OrdersTable({ orders = [], count, onViewOrder, getStatusColor, getPaymentColor }) {
+  console.log(orders);
+
   return (
     <div className="overflow-hidden rounded-lg bg-white shadow-sm">
       <div className="overflow-x-auto">

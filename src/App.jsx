@@ -1,6 +1,6 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
 
 import AppLayout from "./components/client/layout/AppLayout";
@@ -10,12 +10,14 @@ import NotFoundPage from "./ui/NotFoundPage";
 import Shop from "./pages/client/Shop";
 import ProductPage from "./pages/client/ProductPage";
 import CheckoutPage from "./pages/client/CheckoutPage";
-import AdminDashboard from "./pages/admin/AdminDashboard";
+import AdminLayout from "./pages/admin/AdminLayout";
 import AllProducts from "./pages/admin/AllProducts";
 import AddProducts from "./pages/admin/AddProducts";
 import Homepage from "./pages/client/Homepage";
 import OrdersPage from "./pages/admin/OrderPage";
 import OrderDetails from "./components/admin/order/OrderDetails";
+import AsingDeiver from "./components/admin/dashboard/AsingDeiver";
+import Dashboard from "./pages/admin/Dashboard";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -40,12 +42,14 @@ function App() {
             <Route path="checkout" element={<CheckoutPage />} />
           </Route>
 
-          <Route path="admin" element={<AdminDashboard />}>
-            {/* <Route index element={<AdminHome />} />  */}
+          <Route path="admin" element={<AdminLayout />}>
+            <Route index element={<Navigate replace to="dashboard" />} />
+            <Route path="dashboard" element={<Dashboard />} />
             <Route path="addproduct" element={<AddProducts />} />
             <Route path="allproduct" element={<AllProducts />} />
             <Route path="orders" element={<OrdersPage />} />
             <Route path="orders/:orderId" element={<OrderDetails />} />
+            <Route path="orders/:orderId/driver" element={<AsingDeiver />} />
           </Route>
 
           <Route path="admin" element={<NotFoundPage />} />

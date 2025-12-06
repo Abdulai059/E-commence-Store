@@ -1,8 +1,8 @@
-import { useOrdersPage } from "../../components/admin/order/useOrdersPage";
 import { OrdersTable } from "../../components/admin/order/OrdersTable";
 import { useOrders } from "../../AdminServices/orders/useOrder";
 import Stats from "../../components/admin/order/Stats";
 import OrderFilters from "../../components/admin/order/OrderFilters";
+import OrdersPageSkeleton from "../../components/admin/Skeleton/OrdersPageSkeleton";
 
 function OrdersPage() {
   const { isLoading, error, orders, count } = useOrders();
@@ -39,12 +39,18 @@ function OrdersPage() {
       </div>
 
       {/* Orders Table */}
-      <OrdersTable
-        orders={orders}
-        count={count}
-        getStatusColor={getStatusColor}
-        getPaymentColor={getPaymentColor}
-      />
+      {isLoading ? (
+        <OrdersPageSkeleton />
+      ) : error ? (
+        <div className="text-red-500">Error loading orders</div>
+      ) : (
+        <OrdersTable
+          orders={orders}
+          count={count}
+          getStatusColor={getStatusColor}
+          getPaymentColor={getPaymentColor}
+        />
+      )}
     </div>
   );
 }

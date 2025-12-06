@@ -1,8 +1,9 @@
-import { Printer, X } from "lucide-react";
+import { CheckCircle, Clock, Printer, X } from "lucide-react";
 import { useOrder } from "./useOrder";
 import OrderDetailsSkeleton from "../Skeleton/OrderDetailsSkeleton";
 import { useReactToPrint } from "react-to-print";
 import { useRef } from "react";
+import { Link } from "react-router-dom";
 
 function OrderDetails({ onClose }) {
   const { order, isLoading, error } = useOrder();
@@ -34,7 +35,7 @@ function OrderDetails({ onClose }) {
               <h2 className="text-2xl font-bold text-gray-900">Order Details - {order_id}</h2>
             </div>
 
-            {/* --- Customer Info --- */}
+            {/* --- Customer Info*/}
             <div className="mb-6 rounded-lg bg-gray-50 p-4">
               <h3 className="mb-3 text-lg font-semibold text-gray-900">Customer Information</h3>
 
@@ -61,7 +62,7 @@ function OrderDetails({ onClose }) {
               </div>
             </div>
 
-            {/* --- Items Ordered (single item for now) --- */}
+            {/* --- Items Ordered  */}
             <div className="mb-6">
               <h3 className="mb-3 px-6 text-lg font-semibold text-gray-900">Items Ordered</h3>
 
@@ -117,94 +118,52 @@ function OrderDetails({ onClose }) {
                 </tbody>
               </table>
             </div>
-          </div>
-          {/* Order Timeline */}
-          {/* <div className="mb-6">
-          <h3 className="mb-3 text-lg font-semibold text-gray-900">Order Timeline</h3>
 
-          <div className="space-y-4">
-            {timeline.map((item, idx) => (
-              <div key={idx} className="flex items-start gap-4">
-                <div
-                  className={`flex h-8 w-8 items-center justify-center rounded-full ${
-                    item.done ? "bg-green-100" : "bg-gray-100"
-                  }`}
-                >
-                  {item.done ? (
-                    <CheckCircle className="h-5 w-5 text-green-600" />
-                  ) : (
-                    <Clock className="h-5 w-5 text-gray-400" />
-                  )}
-                </div>
-
-                <div className="flex-1">
-                  <p
-                    className={`text-sm font-medium ${
-                      item.done ? "text-gray-900" : "text-gray-500"
+            {/* Order Timeline */}
+            <div className="flex flex-col gap-4 px-6">
+              {timeline?.map((item, idx) => (
+                <div key={idx} className="flex items-center gap-4">
+                  <div
+                    className={`flex h-8 w-8 items-center justify-center rounded-full ${
+                      item.done ? "bg-green-100" : "bg-gray-100"
                     }`}
                   >
-                    {item.status}
-                  </p>
+                    {item.done ? (
+                      <CheckCircle className="h-5 w-5 text-green-600" />
+                    ) : (
+                      <Clock className="h-5 w-5 text-gray-400" />
+                    )}
+                  </div>
 
-                  {item.date && <p className="text-xs text-gray-500">{item.date}</p>}
+                  <div className="flex-1">
+                    <p
+                      className={`text-sm font-medium ${
+                        item.done ? "text-gray-900" : "text-gray-500"
+                      }`}
+                    >
+                      {item.status}
+                    </p>
+                    {item.date && <p className="text-xs text-gray-500">{item.date}</p>}
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-        </div> */}
 
-          {/* Admin Actions */}
-          <div className="rounded-lg bg-blue-50 p-4">
-            <h3 className="mb-3 text-lg font-semibold text-gray-900">Admin Actions</h3>
-
-            <div className="grid grid-cols-2 gap-4">
-              <div>
-                <label className="mb-2 block text-sm font-medium text-gray-700">
-                  Change Order Status
-                </label>
-                <select className="w-full rounded-lg border border-gray-300 px-3 py-2 focus:ring-2 focus:ring-blue-500">
-                  <option>Pending</option>
-                  <option>Processing</option>
-                  <option>Shipped</option>
-                  <option>Delivered</option>
-                  <option>Cancelled</option>
-                </select>
-              </div>
-
-              <div className="flex items-end gap-2">
-                <button className="flex-1 rounded-lg bg-green-600 px-4 py-2 text-white hover:bg-green-700">
-                  Mark as Paid
-                </button>
-                <button className="flex-1 rounded-lg bg-red-600 px-4 py-2 text-white hover:bg-red-700">
-                  Cancel Order
-                </button>
-              </div>
-            </div>
-
-            <div className="mt-4">
-              <label className="mb-2 block text-sm font-medium text-gray-700">
-                Add Note for Delivery
-              </label>
-              <textarea
-                className="w-full rounded-lg border border-gray-300 px-3 py-2 focus:ring-2 focus:ring-blue-500"
-                rows="3"
-                placeholder="Enter delivery notes..."
-              ></textarea>
-            </div>
-
-            <div className="mt-4 flex gap-2">
-              <button
-                onClick={reactToPrintFn}
-                className="flex items-center gap-2 rounded-lg bg-blue-600 px-4 py-2 text-white hover:bg-blue-700"
-              >
-                <Printer className="h-4 w-4" />
-                Print Invoice
-              </button>
-
-              <button className="rounded-lg bg-gray-600 px-4 py-2 text-white hover:bg-gray-700">
-                Assign Driver
-              </button>
-            </div>
+          <div className="mt-4 flex gap-2 px-6">
+            <button
+              onClick={reactToPrintFn}
+              className="flex items-center gap-2 rounded-lg bg-blue-600 px-4 py-2 text-white hover:bg-blue-700"
+            >
+              <Printer className="h-4 w-4" />
+              Print Invoice
+            </button>
+            <Link
+              to="driver"
+              className="rounded-lg bg-gray-100 px-4 py-2 text-white hover:bg-gray-200"
+            >
+              Assign Driver
+            </Link>
           </div>
         </div>
       </div>
