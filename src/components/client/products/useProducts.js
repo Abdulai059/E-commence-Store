@@ -1,7 +1,7 @@
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { getProducts } from "../../services/apiProducts";
+import { getProducts } from "../../../services/apiProducts";
 import { useSearchParams } from "react-router-dom";
-import { PAGE_SIZE } from "../../utils/constants";
+import { PAGE_SIZE } from "../../../utils/constants";
 
 export function useProducts() {
   const queryClient = useQueryClient();
@@ -16,8 +16,8 @@ export function useProducts() {
     keepPreviousData: true,
   });
 
-  // Safely extract products & count after query returns
-  const products = data?.data ?? [];
+  // Safely extract products
+  const products = data?.products ?? [];
   const count = data?.count ?? 0;
 
   // Total pages

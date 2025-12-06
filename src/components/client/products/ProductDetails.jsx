@@ -1,11 +1,11 @@
 import { useState } from "react";
-import StockBadge from "../../ui/StockBadge";
-import ProductColors from "../../ui/ProdectColors";
-import ProductPrice from "../../ui/ProductPrice";
+import StockBadge from "../../../ui/StockBadge";
+import ProductColors from "../../../ui/ProdectColors";
+import ProductPrice from "../../../ui/ProductPrice";
 import { Link } from "react-router-dom";
-import Button from "../../ui/Button";
+import Button from "../../../ui/Button";
 import { useDispatch } from "react-redux";
-import { addItem } from "../client/cart/cartSlice";
+import { addItem } from "../../client/cart/cartSlice";
 
 function ProductDetails({ product }) {
   const dispatch = useDispatch();

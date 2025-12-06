@@ -1,10 +1,9 @@
 import { useState } from "react";
-import LoginHeader from "../../ui/LoginHeader";
-import PressmartLogo from "../../ui/Logo";
+import LoginHeader from "../../../ui/LoginHeader";
+import PressmartLogo from "../../../ui/Logo";
 import LoginForm from "./LoginForm";
 
-// Main Auth UI Component
-export default function AuthUI() {
+export default function AuthUi() {
   const [activeTab, setActiveTab] = useState("login");
   const [rememberMe, setRememberMe] = useState(false);
 

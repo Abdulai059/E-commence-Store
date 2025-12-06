@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { useSlider } from "../../hooks/client/useSlider";
+import { useSlider } from "../../../hooks/client/useSlider";
 
 function Hero() {
   const heroImages = [

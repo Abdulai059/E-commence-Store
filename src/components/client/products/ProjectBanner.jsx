@@ -1,21 +1,15 @@
 import { ArrowRight } from "lucide-react";
-import { useSlider } from "../../hooks/client/useSlider";
+import { useSlider } from "../../../hooks/client/useSlider";
 import { motion, AnimatePresence } from "framer-motion";
 
 function ProjectBanner() {
-  const heroImages = [
-    { image: "/banner-img.png" },
-    { image: "/banner-img.png" },
-    // { image: "/NASCO-DF.jpg" },
-    // { image: "/nasco-blendeer.webp" },
-  ];
+  const heroImages = [{ image: "/banner-img.png" }, { image: "/banner-img.png" }];
 
   const { currentSlide, slide, goToSlide } = useSlider(heroImages, 8000);
 
   return (
     <section className="mx-auto my-20 max-w-7xl">
       <div className="relative overflow-hidden rounded-xl bg-linear-to-r from-red-500 to-red-600 shadow-2xl">
-        {/* Decorative circles */}
         {/* Content Container */}
         <div className="relative flex flex-col items-center justify-between px-4 py-8 md:flex-row md:px-12 md:py-10">
           {/* Left Content */}
@@ -52,7 +46,7 @@ function ProjectBanner() {
       </div>
 
       <div className="relative">
-        <span className="absolute -top-95 translate-x-120 hidden md:flex sm:hidden">
+        <span className="absolute -top-95 hidden translate-x-120 sm:hidden md:flex">
           <AnimatePresence mode="wait">
             <motion.img
               key={slide.image}
@@ -61,7 +55,7 @@ function ProjectBanner() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -50 }}
               transition={{ duration: 0.8 }}
-              className=" h-120 w-full md:flex"
+              className="h-120 w-full md:flex"
             />
           </AnimatePresence>
         </span>

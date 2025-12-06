@@ -1,5 +1,5 @@
 import AddProductTable from "../../components/admin/product/AddProductTable";
-import { useCategories } from "../../components/categories/useCategories";
+import { useCategories } from "../../components/client/categories/useCategories";
 
 import { useAllProducts } from "../../hooks/admin/useAllProducts";
 

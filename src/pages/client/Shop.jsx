@@ -1,19 +1,16 @@
-import DashboardNavbar from "../../components/ShopSidebar/DashboardNavbar";
-import Sidebar from "../../components/ShopSidebar/Sidebar";
-import ProductCard from "../../components/products/ProductCard";
-import { useProducts } from "../../components/products/useProducts";
-import ProductCardSkeleton from "../../components/skeletons/ProductCardSkeleton";
+import DashboardNavbar from "../../components/client/ShopSidebar/DashboardNavbar";
+import Sidebar from "../../components/client/ShopSidebar/Sidebar";
+import ProductCard from "../../components/client/products/ProductCard";
+import { useProducts } from "../../components/client/products/useProducts";
+import ProductCardSkeleton from "../../components/client/skeletons/ProductCardSkeleton";
 import Pagination from "../../ui/Pagination";
 import { ProjectGrid } from "../../ui/ProductGrid";
 
 function Shop() {
   const { isLoading, products, count } = useProducts();
 
-  console.log(products);
-
   return (
     <div className="flex min-h-screen flex-col md:mt-[100px] md:pt-5">
-      {/* GRID LAYOUT */}
       <div className="grid flex-1 grid-cols-1 md:grid-cols-[85px_1fr]">
         {/* SIDEBAR */}
         <div className="w-full border-r border-gray-300 pt-4 md:w-85">

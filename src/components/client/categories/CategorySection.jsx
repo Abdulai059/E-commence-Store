@@ -1,5 +1,5 @@
-import CarouselSection from "../../ui/CarouselSection";
-import SectionHeader from "../../ui/SectionHeader";
+import CarouselSection from "../../../ui/CarouselSection";
+import SectionHeader from "../../../ui/SectionHeader";
 import CategoriesCard from "./CategoriesCard";
 import { useCategories } from "./useCategories";
 import CategoriesCardSkeleton from "./CategoriesCardSkeleton";
@@ -18,12 +18,11 @@ function CategorySection() {
         showViewAll={false}
       />
 
-
       {isLoading ? (
         <CarouselSection
           items={skeletonItems}
           showArrows={false}
-          renderItem={() => <CategoriesCardSkeleton/>}
+          renderItem={() => <CategoriesCardSkeleton />}
         />
       ) : (
         <CarouselSection

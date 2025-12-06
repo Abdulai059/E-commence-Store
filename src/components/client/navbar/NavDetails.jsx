@@ -1,11 +1,11 @@
 import { User } from "lucide-react";
 import NavList from "./NavList";
-import NotificationsIcon from "../../ui/NotificationsIcon";
-import Cart from "../../ui/Cart";
-import Avatar from "../../ui/Avatar";
-import AuthUI from "../auth/AuthUI";
+import NotificationsIcon from "../../../ui/NotificationsIcon";
+import Cart from "../../../ui/Cart";
+import Avatar from "../../../ui/Avatar";
+import AuthUi from "../auth/AuthUi";
 import { useState } from "react";
-import Modal from "../../ui/Modal";
+import Modal from "../../../ui/Modal";
 
 function NavDetails({ cart }) {
   const [user, setUser] = useState(null);
@@ -42,7 +42,7 @@ function NavDetails({ cart }) {
       </div>
 
       <Modal.Window name="login">
-        <AuthUI />
+        <AuthUi />
       </Modal.Window>
     </Modal>
   );

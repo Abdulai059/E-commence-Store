@@ -1,11 +1,11 @@
-import CategorySection from "../../components/categories/CategorySection";
-import Feature from "../../components/products/Feature";
-import ProductsSection from "../../components/products/ProductsSection";
+import CategorySection from "../../components/client/categories/CategorySection";
+import Feature from "../../components/client/products/Feature";
+import ProductsSection from "../../components/client/products/ProductsSection";
 import TopTrendingProducts from "../../ui/TopTrendingProducts";
 
-import ProjectBanner from "../../components/products/ProjectBanner";
+import ProjectBanner from "../../components/client/products/ProjectBanner";
 import Footer from "../../ui/Footer";
-import Hero from "../../components/layout/Hero";
+import Hero from "../../components/client/layout/Hero";
 import DealsBanner from "../../ui/DealsBanner";
 
 function Homepage() {

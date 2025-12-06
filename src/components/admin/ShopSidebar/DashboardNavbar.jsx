@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
-import { usePagination } from "../../hooks/client/usePagination";
-import { PAGE_SIZE } from "../../utils/constants";
+import { usePagination } from "../../../hooks/client/usePagination";
+import { PAGE_SIZE } from "../../../utils/constants";
 
 function DashboardNavbar({ count }) {
   const [sortOption, setSortOption] = useState("Newest First");
@@ -33,7 +33,7 @@ function DashboardNavbar({ count }) {
 
         {/* Right Section - Product Count & Sort */}
         <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-6">
-          <div className="rounded-3xl bg-red-100 px-4 py-2 text-center text-sm sm:text-left hidden">
+          <div className="hidden rounded-3xl bg-red-100 px-4 py-2 text-center text-sm sm:text-left">
             <span className="font-semibold text-red-600">{(currentPage - 1) * PAGE_SIZE + 1}</span>{" "}
             to{" "}
             <span className="font-semibold text-red-600">

@@ -3,19 +3,19 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
 
-import AppLayout from "./components/layout/AppLayout";
-import ProductPage from "./pages/client/ProductPage";
-import NotFoundPage from "./ui/NotFoundPage";
-import Shop from "./pages/client/Shop";
-
-import CheckoutPage from "./pages/client/CheckoutPage";
+import AppLayout from "./components/client/layout/AppLayout";
 import ShoppingCart from "./components/client/cart/ShoppingCart";
-import AdminDashboard from "./pages/admin/AdminDashboard";
+import NotFoundPage from "./ui/NotFoundPage";
 
+import Shop from "./pages/client/Shop";
+import ProductPage from "./pages/client/ProductPage";
+import CheckoutPage from "./pages/client/CheckoutPage";
+import AdminDashboard from "./pages/admin/AdminDashboard";
 import AllProducts from "./pages/admin/AllProducts";
 import AddProducts from "./pages/admin/AddProducts";
 import Homepage from "./pages/client/Homepage";
 import OrdersPage from "./pages/admin/OrderPage";
+import OrderDetails from "./components/admin/order/OrderDetails";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -45,6 +45,7 @@ function App() {
             <Route path="addproduct" element={<AddProducts />} />
             <Route path="allproduct" element={<AllProducts />} />
             <Route path="orders" element={<OrdersPage />} />
+            <Route path="orders/:orderId" element={<OrderDetails />} />
           </Route>
 
           <Route path="admin" element={<NotFoundPage />} />

@@ -2,11 +2,12 @@ import supabase from "../../services/supabase";
 import { v4 as uuidv4 } from "uuid";
 import { ORDER_PAGE_SIZE } from "../../utils/constants";
 
-export async function getOrder({ page = 1 }) {
+export async function getOrders({ page = 1 }) {
   let query = supabase
     .from("orders")
     .select(
       `
+     id,
       order_id,
       recipient_name,
       recipient_contact,
@@ -44,9 +45,15 @@ export async function getOrder({ page = 1 }) {
   return { data, count };
 }
 
-function generateOrderId() {
-  const uuid = uuidv4().replace(/-/g, "").slice(0, 8);
-  return `#ORD-${uuid.toUpperCase()}`;
+export async function getOrder(orderId) {
+  const { data, error } = await supabase.from("orders").select("*").eq("id", orderId).single();
+
+  if (error) {
+    console.error("Error fetching order:", error);
+    throw new Error("Order not found");
+  }
+
+  return data;
 }
 
 export async function createOrder(order) {
@@ -92,4 +99,9 @@ export async function createOrder(order) {
   }
 
   return { data };
+}
+
+function generateOrderId() {
+  const uuid = uuidv4().replace(/-/g, "").slice(0, 8);
+  return `ORD-${uuid.toUpperCase()}`; // remove #
 }

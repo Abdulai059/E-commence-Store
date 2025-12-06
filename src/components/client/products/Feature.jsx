@@ -1,5 +1,5 @@
 import { useState } from "react";
-import SectionHeader from "../../ui/SectionHeader";
+import SectionHeader from "../../../ui/SectionHeader";
 
 function Feature() {
   const [stopScroll, setStopScroll] = useState(false);
@@ -44,8 +44,6 @@ function Feature() {
         subtitle="Explore the latest additions to our collection."
         viewAllLink="/new-arrivals"
       />
-
-      
 
       <div
         className="relative mx-auto w-full overflow-hidden"

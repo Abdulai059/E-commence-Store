@@ -86,3 +86,13 @@
 .animate-slide-out {
   animation: slide-out 0.3s ease-in forwards;
 }
+
+@media print {
+  table {
+    page-break-inside: auto;
+  }
+  tr {
+    page-break-inside: avoid;
+    page-break-after: auto;
+  }
+}

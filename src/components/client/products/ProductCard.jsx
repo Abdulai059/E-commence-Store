@@ -1,10 +1,10 @@
 import { Card, CardBody, CardFooter } from "@heroui/react";
-import { formatCurrency } from "../../utils/helpers";
-import ProductActionButton from "../../ui/ProductActionButton";
+import { formatCurrency } from "../../../utils/helpers";
+import ProductActionButton from "../../../ui/ProductActionButton";
 import { Eye, Heart, ShoppingCart } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { addItem } from "../client/cart/cartSlice";
+import { addItem } from "../cart/cartSlice";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 

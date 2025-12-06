@@ -1,7 +1,7 @@
-import Button from "../../ui/Button";
-import Checkbox from "../../ui/Checkbox";
-import GoogleIcon from "../../ui/GoogleIcon";
-import InputField from "../../ui/InputField";
+import Button from "../../../ui/Button";
+import Checkbox from "../../../ui/Checkbox";
+import GoogleIcon from "../../../ui/GoogleIcon";
+import InputField from "../../../ui/InputField";
 
 function LoginForm({ rememberMe, setRememberMe, onSwitchToSignup }) {
   return (

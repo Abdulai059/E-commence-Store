@@ -1,5 +1,5 @@
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { getOrder } from "../../AdminServices/orders/apiOrder";
+import { getOrders } from "../../AdminServices/orders/apiOrder";
 import { useSearchParams } from "react-router-dom";
 import { ORDER_PAGE_SIZE } from "../../utils/constants";
 
@@ -12,7 +12,7 @@ export function useOrders() {
 
   const { isLoading, data, error } = useQuery({
     queryKey: ["orders", page],
-    queryFn: () => getOrder({ page }),
+    queryFn: () => getOrders({ page }),
     keepPreviousData: true,
   });
 

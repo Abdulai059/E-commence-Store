@@ -1,6 +1,4 @@
-import SideNav from "../navigation/SideNav"
-
-
+import SideNav from "../navigation/SideNav";
 
 function NavItems({ isOpen, onClose }) {
   if (!isOpen) return null;

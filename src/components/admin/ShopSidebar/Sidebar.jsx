@@ -1,6 +1,6 @@
 import { SlidersHorizontal, Tag } from "lucide-react";
 import { useState } from "react";
-import Button from "../../ui/Button";
+import Button from "../../../ui/Button";
 
 function Sidebar() {
   const [minPrice, setMinPrice] = useState("0");

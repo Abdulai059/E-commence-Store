@@ -1,7 +1,6 @@
 import { ChevronLeft, ChevronRight, Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
 
-
 import SidebarUser from "./SidebarUser";
 import { menuItems } from "./sidebarData";
 import SidebarMenu from "./SidebarMenu";
@@ -57,7 +56,7 @@ export default function AdminSidebar() {
 
       {/* Sidebar */}
       <div
-        className={` ${isCollapsed ? "lg:w-20" : "lg:w-80"} text-gray fixed z-40 flex h-screen w-64 flex-col shadow-2xl transition-all duration-300 lg:relative ${isMobileOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"} `}
+        className={` ${isCollapsed ? "lg:w-20" : "lg:w-80"} text-gray fixed z-40 flex h-screen w-64 flex-col bg-white shadow-2xl transition-all duration-300 lg:relative ${isMobileOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"} `}
       >
         <SidebarHeader isCollapsed={isCollapsed} />
 

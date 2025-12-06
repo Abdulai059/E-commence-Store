@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 
 import { Menu } from "lucide-react";
 
-import SearchBar from "../../ui/SearchBar";
-import PressmartLogo from "../../ui/Logo";
+import SearchBar from "../../../ui/SearchBar";
+import PressmartLogo from "../../../ui/Logo";
 import NavItems from "./NavItems";
 import NavDetails from "./NavDetails";
 
