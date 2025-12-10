@@ -1,6 +1,11 @@
 import ToggleSwitch from "./ToggleSwitch";
 import { formatCurrency } from "../utils/helpers";
 import TableHeader from "./TableHeader";
+import Modal from "./Modal";
+import Menus from "./Menus";
+import { HiPhoto, HiPlus, HiTag } from "react-icons/hi2";
+import AddProductForm from "../components/admin/product/AddProductForm";
+import ProductImageForm from "../components/admin/product/AddImages";
 
 function Table({ products, columns, onStockChange }) {
   return (
@@ -9,46 +14,79 @@ function Table({ products, columns, onStockChange }) {
         <TableHeader columns={columns} />
         <tbody className="text-sm text-gray-700">
           {products.map((product, index) => {
-            // Get main image for this product
-            const mainImage =
-              product.product_images?.[0]?.image_url || product.images?.[0]?.image_url || null;
+            const {
+              id,
+              name,
+              category,
+              price,
+              offer_price,
+              description,
+              stock_quantity,
+              in_stock,
+              product_images,
+              images,
+            } = product;
+
+            const mainImage = product_images?.[0]?.image_url || images?.[0]?.image_url || null;
 
             return (
-              <tr key={product.id} className="border-t">
-                {/** PRODUCT CELL */}
+              <tr key={id} className="border-t">
                 <td className="flex items-center gap-3 px-4 py-3">
                   <div className="h-16 w-16 overflow-hidden rounded border border-gray-200">
-                    <img
-                      src={mainImage}
-                      alt={product.name}
-                      className="h-full w-full object-cover"
-                    />
+                    <img src={mainImage} alt={name} className="h-full w-full object-cover" />
                   </div>
-                  <span className="truncate">{product.name}</span>
+                  <span className="truncate">{name}</span>
                 </td>
 
-                {/** CATEGORY */}
-                <td className="px-4 py-3">{product.category?.name || "—"}</td>
+                <td className="px-4 py-3">{category?.name || "—"}</td>
 
-                {/** PRICE */}
                 <td className="hidden px-4 py-3 font-medium text-red-600 md:table-cell">
-                  {formatCurrency(product.price)}
+                  {formatCurrency(price)}
                 </td>
 
-                {/** OFFER PRICE */}
                 <td className="hidden px-4 py-3 font-medium text-green-600 md:table-cell">
-                  {formatCurrency(product.offer_price)}
+                  {formatCurrency(offer_price)}
                 </td>
 
-                {/** DESCRIPTION */}
-                <td className="px-4 py-3">{product.description || "—"}</td>
+                <td className="px-4 py-3">{description || "—"}</td>
 
-                {/** STOCK QUANTITY */}
-                <td className="px-4 py-3">{product.stock_quantity ?? "—"}</td>
+                <td className="px-8 py-3">{stock_quantity ?? "—"}</td>
 
-                {/** IN-STOCK SWITCH */}
                 <td className="px-4 py-3">
-                  <ToggleSwitch checked={product.in_stock} onChange={() => onStockChange(index)} />
+                  <ToggleSwitch checked={in_stock} onChange={() => onStockChange(index)} />
+                </td>
+
+                <td className="pl-6">
+                  <Modal>
+                    <Menus>
+                      <Menus.Menu>
+                        <Menus.Toggle>Actions</Menus.Toggle>
+                        <Menus.List>
+                          <Modal.Open opens="addproduct">
+                            <Menus.Button icon={<HiPlus size={18} />}>Add Product</Menus.Button>
+                          </Modal.Open>
+
+                          <Modal.Open opens="addimage">
+                            <Menus.Button icon={<HiPhoto size={18} />}>Add Image</Menus.Button>
+                          </Modal.Open>
+
+                          <Modal.Open opens="addcategory">
+                            <Menus.Button icon={<HiTag size={18} />}>Edit Product</Menus.Button>
+                          </Modal.Open>
+                        </Menus.List>
+                      </Menus.Menu>
+                    </Menus>
+
+                    <Modal.Window name="addproduct">
+                      <AddProductForm />
+                    </Modal.Window>
+
+                    <Modal.Window name="addimage">
+                      <ProductImageForm />
+                    </Modal.Window>
+
+                    <Modal.Window name="addcategory" />
+                  </Modal>
                 </td>
               </tr>
             );

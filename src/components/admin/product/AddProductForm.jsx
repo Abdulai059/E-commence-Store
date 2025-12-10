@@ -48,7 +48,7 @@ function AddProductForm() {
             <div className="space-y-4">
               <div>
                 <InputField
-                  {...register("product Name", { required: true })}
+                  {...register("productName", { required: true })}
                   type="text"
                   disabled={isCreating}
                   placeholder="Enter product name"

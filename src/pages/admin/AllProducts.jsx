@@ -15,11 +15,12 @@ function AllProducts() {
     { label: "Description", key: "inStock" },
     { label: "Stock Quantity", key: "stockQty" },
     { label: "In Stock", key: "inStock" },
+    { label: "Add & Edit", key: "addedit" },
   ];
 
   return (
-    <div className="flex flex-1 flex-col items-center justify-between py-10">
-      <div className="w-7xl p-4 md:p-0">
+    <div className="flex flex-1 flex-col items-center justify-between px-20 py-8">
+      <div className="w-8xl p-4 md:p-0">
         <h2 className="pb-4 text-lg font-medium">All Products</h2>
         {isLoading ? (
           <TableSkeleton columns={columns} />
