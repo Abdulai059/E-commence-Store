@@ -10,7 +10,7 @@ export default function AsingDeiver() {
     totalSales: 48590.5,
     totalOrders: 342,
     avgOrderValue: 142.08,
-    totalCustomers: 1248,
+    // totalCustomers: 1248,
     conversionRate: 3.2,
   };
 
@@ -141,7 +141,7 @@ export default function AsingDeiver() {
         </div>
 
         {/* Stats Grid */}
-        <div className="mb-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-5">
+        <div className="mb-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
           <StatCard
             title="Total Sales"
             value={`$${stats.totalSales.toLocaleString()}`}
@@ -163,13 +163,13 @@ export default function AsingDeiver() {
             trend="+5.1% from last month"
             color="bg-gradient-to-br from-purple-500 to-purple-600"
           />
-          <StatCard
+          {/* <StatCard
             title="Total Customers"
             value={stats.totalCustomers.toLocaleString()}
             icon={Users}
             trend="+15.3% from last month"
             color="bg-gradient-to-br from-orange-500 to-orange-600"
-          />
+          /> */}
           <StatCard
             title="Conversion Rate"
             value={`${stats.conversionRate}%`}
