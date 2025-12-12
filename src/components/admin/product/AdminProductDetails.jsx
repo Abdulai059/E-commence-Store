@@ -1,10 +1,9 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { addItem } from "../../client/cart/cartSlice";
-import ProductImageGallery from "./ProductImageGallery";
-import ProductInfo from "./ProductInfo";
+import ProductImageGallery from "../../client/products/ProductImageGallery";
+import AdminProductInfo from "./AdminProductInfo";
 
-function ProductDetails({ product, addToCartText, buyNowText }) {
+function AdminProductDetails({ product }) {
   const dispatch = useDispatch();
 
   if (!product) return <p>Loading...</p>;
@@ -41,11 +40,11 @@ function ProductDetails({ product, addToCartText, buyNowText }) {
             onThumbnailChange={setThumbnail}
           />
 
-          <ProductInfo
+          <AdminProductInfo
             product={product}
             onAddToCart={handleAddToCart}
-            addToCartText={addToCartText}
-            buyNowText={buyNowText}
+            addToCartText="Edit Product"
+            buyNowText="Update Image"
           />
         </div>
       </div>
@@ -53,4 +52,4 @@ function ProductDetails({ product, addToCartText, buyNowText }) {
   );
 }
 
-export default ProductDetails;
+export default AdminProductDetails;

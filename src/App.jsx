@@ -19,6 +19,7 @@ import OrderDetails from "./components/admin/order/OrderDetails";
 import AsingDeiver from "./components/admin/dashboard/AsingDeiver";
 import Dashboard from "./pages/admin/Dashboard";
 import Categories from "./pages/admin/Categories";
+import AdminProductPage from "./pages/admin/AdminProductPage";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -51,6 +52,7 @@ function App() {
             <Route path="allproduct" element={<AllProducts />} />
             <Route path="orders" element={<OrdersPage />} />
             <Route path="orders/:orderId" element={<OrderDetails />} />
+            <Route path="product/:productId" element={<AdminProductPage />} />
             <Route path="orders/:orderId/driver" element={<AsingDeiver />} />
           </Route>
 
