@@ -1,22 +1,21 @@
 import supabase, { supabaseUrl } from "../../services/supabase";
 
-// Create multiple product images
 export async function createProductImages(productImages) {
   const uploadedImages = [];
   const errors = [];
 
   for (const newProductImage of productImages) {
     try {
-      // 🖼️ Check if image already has a full Supabase URL
+      // Check if image already has a full Supabase URL
       const hasImagePath = newProductImage.image_url?.startsWith?.(supabaseUrl);
 
-      // 🏷️ Generate a new image name and path
+      // Generate unique image name and construct full path
       const imageName = `${Math.random()}-${newProductImage.image_url.name}`.replaceAll("/", "");
       const imagePath = hasImagePath
         ? newProductImage.image_url
         : `${supabaseUrl}/storage/v1/object/public/product-images/${imageName}`;
 
-      // 🧱 CREATE new product image
+      // Insert product image record into database
       const { data, error } = await supabase
         .from("product_images")
         .insert([
@@ -31,38 +30,39 @@ export async function createProductImages(productImages) {
         .single();
 
       if (error) {
-        console.error(error);
+        console.error("Database insert error:", error);
         errors.push({ position: newProductImage.position, error });
         continue;
       }
 
-      // 🗂️ Skip image upload if already uploaded
+      // Skip storage upload if image URL already exists
       if (hasImagePath) {
         uploadedImages.push(data);
         continue;
       }
 
-      // 📤 Upload image to Supabase Storage
+      // Upload image file to Supabase Storage
       const { error: storageError } = await supabase.storage
         .from("product-images")
         .upload(imageName, newProductImage.image_url);
 
-      // 🧹 Rollback if upload fails
+      // Rollback database record if storage upload fails
       if (storageError) {
         await supabase.from("product_images").delete().eq("id", data.id);
-        console.error(storageError);
+        console.error("Storage upload error:", storageError);
         errors.push({ position: newProductImage.position, error: storageError });
         continue;
       }
 
       uploadedImages.push(data);
     } catch (err) {
+      console.error("Unexpected error:", err);
       errors.push({ position: newProductImage.position, error: err });
     }
   }
 
   if (errors.length > 0) {
-    console.error("Some images failed to upload:", errors);
+    console.warn(`${errors.length} image(s) failed to upload:`, errors);
   }
 
   return { uploadedImages, errors };
