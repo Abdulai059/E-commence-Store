@@ -11,7 +11,7 @@ function CheckoutDetails() {
   const totalAmount = price + tax + shippingFee;
 
   return (
-    <div className="space-y-2 border-t pt-4">
+    <div className="space-y-2 border-t pt-4 text-sm md:text-base">
       <div className="flex justify-between text-gray-700">
         <span>Subtotal</span>
         <span>{formatCurrency(price)}</span>
@@ -22,11 +22,11 @@ function CheckoutDetails() {
       </div>
       <div className="flex justify-between text-gray-700">
         <span>Shipping Fee:</span>
-        <span className="text-sm text-orange-500">Delivery charges apply</span>
+        <span className="text-orange-500">Delivery charges apply</span>
       </div>
-      <div className="flex justify-between border-t pt-2 text-lg font-semibold text-red-600 md:text-xl">
-        <span>Total Amount:</span>
-        <span className="text-green-600">₵{formatCurrency(totalAmount)}</span>
+      <div className="flex justify-between border-t pt-2 font-semibold text-red-600 md:text-xl">
+        <span className="text-base">Total Amount:</span>
+        <span className="text-green-600">{formatCurrency(totalAmount)}</span>
       </div>
     </div>
   );

@@ -73,7 +73,7 @@ export default function SideNav({ onClose }) {
           <nav className="px-2">
             <MenuItem icon={<Home size={20} />} label="Home" active to="/" onClick={onClose} />
             <MenuItem icon={<Info size={20} />} label="About Us" to="/" onClick={onClose} />
-            <MenuItem icon={<Store size={20} />} label="Shops" to="/shops" onClick={onClose} />
+            <MenuItem icon={<Store size={20} />} label="Shops" to="/shop" onClick={onClose} />
             <MenuItem icon={<Phone size={20} />} label="Contact" to="/contact" onClick={onClose} />
             <MenuItem
               icon={<Heart size={20} />}

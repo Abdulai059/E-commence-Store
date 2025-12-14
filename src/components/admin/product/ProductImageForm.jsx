@@ -53,7 +53,7 @@ export default function ProductImageForm({ productId, initialProduct }) {
         </div>
 
         <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
-          {[0, 1, 2, 3].map((index) => (
+          {Array.from({ length: 4 }).map((_, index) => (
             <div key={index} className="group relative">
               <label className="block cursor-pointer">
                 <input
@@ -63,6 +63,7 @@ export default function ProductImageForm({ productId, initialProduct }) {
                   disabled={isCreating}
                   onChange={(e) => handleFileChange(index, e.target.files[0])}
                 />
+
                 <div className="flex aspect-square items-center justify-center overflow-hidden rounded-lg border-2 border-dashed border-gray-300 hover:border-gray-400">
                   {imagePreviews[index] ? (
                     <img

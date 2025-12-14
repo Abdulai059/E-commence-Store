@@ -43,11 +43,11 @@ export default function CheckoutPage() {
     <div className="mx-4 min-h-screen bg-gray-50 py-8">
       <div className="mx-auto max-w-[1600px] px-0 md:mt-[100px]">
         {/* Page Header */}
-        <div className="mb-8 flex w-3xl items-center gap-2 rounded-lg border border-red-200 bg-red-50 p-4">
+        <div className="mb-8 flex w-full items-center gap-2 rounded-lg border border-red-200 bg-red-50 p-4 md:w-3xl">
           <ShoppingBag className="h-6 w-6 text-gray-700" />
           <h1 className="text-lg font-semibold text-red-600">
             Checkout
-            <span className="text-base text-gray-600"> ({cart.length} items)</span>
+            <span className="text-sm text-gray-600"> ({cart.length} items)</span>
           </h1>
         </div>
 
