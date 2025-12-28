@@ -132,15 +132,33 @@ VITE_SUPABASE_ANON_KEY=your_supabase_key
 
 ### Build Client App
 ```bash
-cd E-commerce/E-commence-Store
+cd Store
 npm run build
 ```
 
 ### Build Admin App
 ```bash
-cd E-commerce/E-commence-Admin
+cd Admin
 npm run build
 ```
+
+---
+
+## 🚀 Deployment
+
+### Deploy the Store
+
+For detailed deployment instructions, see **[Store/DEPLOYMENT.md](./Store/DEPLOYMENT.md)**
+
+**Quick Deploy Options:**
+- **Vercel** (Recommended): `cd Store && vercel --prod`
+- **Netlify**: `cd Store && netlify deploy --prod`
+- **GitHub Pages**: See deployment guide for setup
+
+**Before deploying:**
+1. Set up environment variables (`.env` file)
+2. Update Supabase configuration to use environment variables
+3. Build the project: `npm run build`
 
 ---
 
@@ -154,9 +172,10 @@ npm run build
 
 ## 📚 Documentation
 
-- See `E-commence-Store/ADMIN_MIGRATION_PLAN.md` for migration details
-- See `E-commence-Store/FILE_MAPPING_REFERENCE.md` for file mapping reference
-- See `MIGRATION_COMPLETE.md` for migration completion summary
+- **[Store/DEPLOYMENT.md](./Store/DEPLOYMENT.md)** - Complete deployment guide for the Store
+- See `E-commence-Store/ADMIN_MIGRATION_PLAN.md` for migration details (if exists)
+- See `E-commence-Store/FILE_MAPPING_REFERENCE.md` for file mapping reference (if exists)
+- See `MIGRATION_COMPLETE.md` for migration completion summary (if exists)
 
 ---
 
