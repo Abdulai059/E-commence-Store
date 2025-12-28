@@ -14,7 +14,7 @@ E-commerce/
 
 ## 🛍️ E-commence-Store (Client App)
 
-The customer-facing e-commerce website.
+The customer-facing e-commerce website
 
 **Location:** `E-commerce/E-commence-Store/`
 
