@@ -1,6 +1,6 @@
 # E-commerce Project
 
-This repository contains both the client-facing store and the admin dashboard as separate, independent projects.
+This repository contains both the client-facing store and the admin dashboard as separate, independent projects
 
 ## 📁 Project Structure
 
