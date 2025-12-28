@@ -175,7 +175,7 @@ vercel
 **Solution:**
 - You need to create **TWO separate projects**
 - Same repository, but different Root Directory
-- Different project names
+- Different project names.
 
 ---
 
