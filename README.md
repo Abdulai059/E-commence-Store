@@ -28,7 +28,7 @@ The customer-facing e-commerce website
 ### Run the Client App
 ```bash
 cd E-commerce/E-commence-Store
-npm install  # If not already installed
+npm install  # If not already install
 npm run dev
 ```
 
