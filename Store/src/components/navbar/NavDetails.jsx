@@ -15,7 +15,7 @@ function NavDetails({ cart }) {
       <div className="navbar-end flex items-center gap-3">
         <NavList />
 
-        {isLoading && <div className="text-sm">Loading...</div>}
+        {/* {isLoading && <div className="text-sm">Loading...</div>} */}
 
         {/* NOT LOGGED IN layout */}
         {!isLoading && !user && (

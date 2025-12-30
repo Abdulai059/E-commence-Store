@@ -1,18 +1,16 @@
 import { useForm } from "react-hook-form";
 import Button from "../../ui/Button";
 import Checkbox from "../../ui/Checkbox";
-import GoogleIcon from "../../ui/GoogleIcon";
 import InputField from "../../ui/InputField";
 import { useSignup } from "./useSingup";
+import { EmailVerificationMessage } from "../../ui/EmailVerification";
 import toast from "react-hot-toast";
 import { useState } from "react";
 import { IoEyeOffOutline, IoEyeOutline } from "react-icons/io5";
 
 function SignupForm({ acceptTerms, setAcceptTerms, onSwitchToLogin, onCloseModal }) {
-
-  const { signup, isPending } = useSignup();
+  const { signup, isPending, showEmailVerification, setShowEmailVerification } = useSignup();
   const [showPassword, setShowPassword] = useState(false);
-
 
   const {
     register,
@@ -31,36 +29,33 @@ function SignupForm({ acceptTerms, setAcceptTerms, onSwitchToLogin, onCloseModal
     }
 
     signup(
-
       {
         fullName: data.fullName,
         email: data.email,
         password: data.password,
       },
-
       {
         onSuccess: () => {
-          // Clear form
           reset();
           setAcceptTerms(false);
-
-          // Close modal after successful signup
-          onCloseModal?.();
         },
       }
-
-    )
-
-    console.log("Signup data:", data);
-
-
+    );
   }
 
+  const handleEmailVerificationClose = () => {
+    setShowEmailVerification(false);
+    onCloseModal?.();
+  };
+
+  // If verification message should be shown, display it instead of the form
+  if (showEmailVerification) {
+    return <EmailVerificationMessage onClose={handleEmailVerificationClose} />;
+  }
+
+  // Otherwise show the signup form
   return (
-    <form
-      onSubmit={handleSubmit(onSubmit)}
-      className="space-y-4 sm:space-y-5"
-    >
+    <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 sm:space-y-5">
       <InputField
         label="Full Name"
         type="text"
@@ -137,9 +132,6 @@ function SignupForm({ acceptTerms, setAcceptTerms, onSwitchToLogin, onCloseModal
         )}
       </div>
 
-
-      
-
       <Checkbox
         checked={acceptTerms}
         onChange={(e) => setAcceptTerms(e.target.checked)}
@@ -158,8 +150,9 @@ function SignupForm({ acceptTerms, setAcceptTerms, onSwitchToLogin, onCloseModal
         variation="primary"
         className="w-full"
         type="submit"
+        disabled={isPending}
       >
-        Sign up
+        {isPending ? "Creating account..." : "Sign up"}
       </Button>
 
       <div className="relative">
@@ -170,15 +163,6 @@ function SignupForm({ acceptTerms, setAcceptTerms, onSwitchToLogin, onCloseModal
           <span className="bg-white px-2 text-gray-500">Or</span>
         </div>
       </div>
-
-      <Button
-        size="medium"
-        variation="secondary"
-        icon={<GoogleIcon />}
-        className="w-full"
-      >
-        Sign up with Google
-      </Button>
 
       <p className="mt-4 text-center text-xs text-gray-600 sm:mt-6 sm:text-sm">
         Already have an account?{" "}
