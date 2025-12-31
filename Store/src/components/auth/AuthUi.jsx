@@ -9,11 +9,16 @@ export default function AuthUi({ onCloseModal }) {
   const [activeTab, setActiveTab] = useState("login");
   const [rememberMe, setRememberMe] = useState(false);
   const [acceptTerms, setAcceptTerms] = useState(false);
-  const { showEmailVerification } = useSignup();
+
+  const {
+    showEmailVerification,
+    setShowEmailVerification,
+  } = useSignup();
 
   return (
     <div className="w-full max-w-full rounded-xl p-5 sm:max-w-md sm:rounded-2xl sm:p-6 md:p-0">
-      {/* Only show logo and header if NOT showing email verification */}
+
+
       {!showEmailVerification && (
         <>
           <div className="mb-5 flex justify-center sm:mb-6">
@@ -44,6 +49,8 @@ export default function AuthUi({ onCloseModal }) {
           setAcceptTerms={setAcceptTerms}
           onSwitchToLogin={() => setActiveTab("login")}
           onCloseModal={onCloseModal}
+          showEmailVerification={showEmailVerification}
+          setShowEmailVerification={setShowEmailVerification}
         />
       )}
     </div>

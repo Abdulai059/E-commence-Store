@@ -23,10 +23,10 @@ function CatagoryBanner() {
 
             <div className="flex flex-col md:flex-row flex-1 gap-4 px-4 w-full">
                 <div className="flex-1 h-40 md:h-40 bg-gray-300 rounded-xl flex items-center justify-center text-gray-600">
-                <img src="/categoryimg/admin.jpg" alt="sale" />
+                    <img src="/categoryimg/admin.jpg" alt="sale" />
                 </div>
                 <div className="flex-1 h-40 md:h-40 bg-gray-300 rounded-xl flex items-center justify-center text-gray-600">
-                <img src="/categoryimg/online.jpg" alt="sale" />
+                    <img src="/categoryimg/online.jpg" alt="sale" />
                 </div>
             </div>
 
