@@ -51,6 +51,7 @@ export default function AuthUi({ onCloseModal }) {
           onCloseModal={onCloseModal}
           showEmailVerification={showEmailVerification}
           setShowEmailVerification={setShowEmailVerification}
+          
         />
       )}
     </div>

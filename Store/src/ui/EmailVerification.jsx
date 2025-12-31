@@ -44,14 +44,14 @@ export function EmailVerificationMessage({ onClose }) {
                 </div>
 
                 {/* Action button */}
-                {/* <Button
+                <Button
                     onClick={onClose}
                     size="medium"
                     variation="primary"
                     className="w-full mt-6"
                 >
                     Got it!
-                </Button> */}
+                </Button>
             </div>
         </div>
     );
