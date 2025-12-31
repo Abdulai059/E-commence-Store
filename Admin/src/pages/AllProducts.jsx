@@ -19,9 +19,10 @@ function AllProducts() {
   ];
 
   return (
-    <div className="flex flex-1 flex-col items-center justify-between px-20 py-8">
-      <div className="w-8xl p-4 md:p-0">
+    <div className="flex flex-1 flex-col items-center justify-between px-8 py-8">
+      <div className="w-full max-w-7xl">
         <h2 className="pb-4 text-lg font-medium">All Products</h2>
+
         {isLoading ? (
           <TableSkeleton columns={columns} />
         ) : (
@@ -29,9 +30,7 @@ function AllProducts() {
             <div className="overflow-x-auto">
               <Table products={products} columns={columns} />
             </div>
-            <div className="mt-4 flex justify-center">
-              <Pagination count={count} />
-            </div>
+            <Pagination count={count} pageSize={ITEMS_PER_PAGE} />
           </>
         )}
       </div>

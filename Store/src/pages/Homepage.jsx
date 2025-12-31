@@ -2,11 +2,14 @@ import CategorySection from "../components/categories/CategorySection";
 import Feature from "../components/products/Feature";
 import ProductsSection from "../components/products/ProductsSection";
 import TopTrendingProducts from "../ui/TopTrendingProducts";
+import TelevisionCategory from "../components/categories/TelevisionCategory";
 
 import ProjectBanner from "../components/products/ProjectBanner";
 import Footer from "../ui/Footer";
 import Hero from "../components/layout/Hero";
 import DealsBanner from "../ui/DealsBanner";
+import CatagoryBanner from "../components/categories/CatagoryBanner";
+
 
 function Homepage() {
   return (
@@ -18,6 +21,8 @@ function Homepage() {
         <TopTrendingProducts />
         <Feature />
         <ProductsSection />
+        <CatagoryBanner />
+        <TelevisionCategory />
         <ProjectBanner />
       </main>
       <Footer />

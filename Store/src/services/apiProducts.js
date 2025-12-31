@@ -1,5 +1,6 @@
 import { PAGE_SIZE } from "../utils/constants";
-import supabase, { supabaseUrl } from "./supabase";
+import { shuffle } from "../utils/randomshuffle";
+import supabase from "./supabase";
 
 export async function getProducts({ page = 1 }) {
   let query = supabase
@@ -44,7 +45,7 @@ export async function getProducts({ page = 1 }) {
   }
 
   // Clean & normalize returned data
-  const products = data.map((product) => ({
+  const products = shuffle(data).map((product) => ({
     ...product,
     images: product.product_images || [],
     category: product.categories || null,

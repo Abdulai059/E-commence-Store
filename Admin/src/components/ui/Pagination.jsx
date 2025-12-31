@@ -3,8 +3,8 @@ import { PAGE_SIZE, ORDER_PAGE_SIZE } from "../../utils/constants";
 import ShowingResults from "./ShowingResults";
 import { usePagination } from "../../hooks/usePagination";
 
-function Pagination({ count }) {
-  const { currentPage, pageCount, nextPage, previousPage } = usePagination(count);
+function Pagination({ count, pageSize = 7 }) {
+  const { currentPage, pageCount, nextPage, previousPage } = usePagination(count, pageSize);
 
   if (pageCount <= 1) return null;
 
@@ -13,36 +13,29 @@ function Pagination({ count }) {
       <ShowingResults
         currentPage={currentPage}
         pageCount={pageCount}
-        PAGE_SIZE={PAGE_SIZE}
-        ORDER_PAGE_SIZE={ORDER_PAGE_SIZE}
+        pageSize={pageSize} // <-- pass actual page size
         count={count}
       />
 
-      <div className="flex gap-15 pl-8 md:gap-2">
+      <div className="mt-6 flex items-center justify-center gap-3">
         <button
           onClick={previousPage}
           disabled={currentPage === 1}
-          className={`flex items-center gap-1 rounded-md px-4 py-2 text-base font-medium transition ${
-            currentPage === 1
-              ? "cursor-not-allowed bg-gray-100 text-gray-400"
-              : "bg-red-600 text-white hover:bg-red-700"
-          } `}
+          className={`px-4 py-2 rounded-md font-medium transition ${currentPage === 1 ? "bg-gray-200 text-gray-400 cursor-not-allowed" : "bg-red-600 text-white hover:bg-red-700"}`}
         >
-          <HiChevronLeft className="h-5 w-5" />
-          <span>Previous</span>
+          <HiChevronLeft className="inline w-5 h-5" /> Previous
         </button>
+
+        <span className="font-medium">
+          Page {currentPage} of {pageCount}
+        </span>
 
         <button
           onClick={nextPage}
           disabled={currentPage === pageCount}
-          className={`flex items-center gap-1 rounded-md px-4 py-2 text-base font-medium transition ${
-            currentPage === pageCount
-              ? "cursor-not-allowed bg-gray-100 text-gray-400"
-              : "bg-red-600 text-white hover:bg-red-700"
-          } `}
+          className={`px-4 py-2 rounded-md font-medium transition ${currentPage === pageCount ? "bg-gray-200 text-gray-400 cursor-not-allowed" : "bg-red-600 text-white hover:bg-red-700"}`}
         >
-          <HiChevronRight className="h-5 w-5" />
-          <span>Next</span>
+          Next <HiChevronRight className="inline w-5 h-5" />
         </button>
       </div>
     </div>

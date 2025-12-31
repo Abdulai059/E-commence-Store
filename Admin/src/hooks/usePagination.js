@@ -1,28 +1,23 @@
 import { useSearchParams } from "react-router-dom";
-import { PAGE_SIZE } from "../utils/constants";
 
-export function usePagination(count) {
+export function usePagination(count, pageSize = 7) {
   const [searchParams, setSearchParams] = useSearchParams();
-
-  const currentPage = !searchParams.get("page") ? 1 : Number(searchParams.get("page"));
-  const pageCount = Math.ceil(count / PAGE_SIZE);
+  const currentPage = Number(searchParams.get("page")) || 1;
+  const pageCount = Math.ceil(count / pageSize);
 
   const nextPage = () => {
-    const next = currentPage === pageCount ? currentPage : currentPage + 1;
-    searchParams.set("page", next);
-    setSearchParams(searchParams);
+    if (currentPage < pageCount) {
+      searchParams.set("page", currentPage + 1);
+      setSearchParams(searchParams);
+    }
   };
 
   const previousPage = () => {
-    const prev = currentPage === 1 ? currentPage : currentPage - 1;
-    searchParams.set("page", prev);
-    setSearchParams(searchParams);
+    if (currentPage > 1) {
+      searchParams.set("page", currentPage - 1);
+      setSearchParams(searchParams);
+    }
   };
 
-  return {
-    currentPage,
-    pageCount,
-    nextPage,
-    previousPage,
-  };
+  return { currentPage, pageCount, nextPage, previousPage };
 }
