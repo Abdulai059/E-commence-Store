@@ -33,7 +33,7 @@ function Shop() {
                 data={products}
                 renderItem={(product) => <ProductCard product={product} />}
                 getKey={(product) => product.id}
-                className="gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6"
+                className="gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6"
               />
             )}
 

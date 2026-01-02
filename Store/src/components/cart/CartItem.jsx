@@ -9,7 +9,7 @@ import ConfirmDelete from "../../ui/ConfirmDelete";
 function CartItem({ item }) {
   const dispatch = useDispatch();
 
-  const { productId, image, name, quantity, unitPrice, totalPrice } = item;
+  const { productId, image, name, quantity, unitPrice } = item;
 
   function handleDelete(id) {
     dispatch(deleteItem(id));

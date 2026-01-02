@@ -7,7 +7,7 @@ import InputField from "../ui/InputField";
 
 function AddProductForm() {
   const { isCreating, addNewProduct } = useAddProduct();
-  const { isLoading, categories, error } = useCategories();
+  const { isLoading, categories } = useCategories();
 
   const {
     register,

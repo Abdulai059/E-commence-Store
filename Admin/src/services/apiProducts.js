@@ -1,5 +1,5 @@
 import { PAGE_SIZE } from "../utils/constants";
-import supabase, { supabaseUrl } from "./supabase";
+import supabase from "./supabase";
 
 export async function getProducts({ page = 1 }) {
   let query = supabase

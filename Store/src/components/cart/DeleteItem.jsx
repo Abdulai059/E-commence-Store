@@ -1,6 +1,5 @@
 import Button from "@/ui/Button";
-import { deleteItem } from "./cartSlice";
-import { useDispatch } from "react-redux";
+
 
 function DeleteItem() {
   //   const dispatch = useDispatch();
