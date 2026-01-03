@@ -5,10 +5,12 @@ import MenuItem from "./MenuItem";
 import { categories } from "./CategoriesData";
 import { IoPersonOutline } from "react-icons/io5";
 import Modal from "../../ui/Modal";
+import { useSelector } from "react-redux"
 
 export default function SideNav({ onClose }) {
   const [activeTab, setActiveTab] = useState("main");
   const [expandedCategory, setExpandedCategory] = useState(null);
+  const cart = useSelector((state) => state.cart.cart);
 
   const handleCategoryToggle = useCallback(
     (index) => {
@@ -31,8 +33,8 @@ export default function SideNav({ onClose }) {
         <button
           onClick={() => setActiveTab("main")}
           className={`flex-1 py-3 text-sm font-medium ${activeTab === "main"
-              ? "border-b-2 border-green-600 text-gray-800"
-              : "text-gray-500"
+            ? "border-b-2 border-green-600 text-gray-800"
+            : "text-gray-500"
             }`}
         >
           Main Menu
@@ -41,8 +43,8 @@ export default function SideNav({ onClose }) {
         <button
           onClick={() => setActiveTab("categories")}
           className={`flex-1 py-3 text-sm font-medium ${activeTab === "categories"
-              ? "border-b-2 border-green-600 text-green-600"
-              : "text-gray-500"
+            ? "border-b-2 border-green-600 text-green-600"
+            : "text-gray-500"
             }`}
         >
           Categories
@@ -71,8 +73,16 @@ export default function SideNav({ onClose }) {
           {/* Menu Items */}
           <nav className="px-2">
             <MenuItem icon={<Home size={20} />} label="Home" active to="/" onClick={onClose} />
-            <MenuItem icon={<Info size={20} />} label="About Us" to="/" onClick={onClose} />
             <MenuItem icon={<Store size={20} />} label="Shops" to="/shop" onClick={onClose} />
+            <MenuItem
+              icon={<ShoppingCart size={20} />}
+              label="Shopping Cart"
+              cart={cart}
+
+              to="/cart"
+              onClick={onClose}
+            />
+            <MenuItem icon={<Info size={20} />} label="About Us" to="/" onClick={onClose} />
             <MenuItem icon={<Phone size={20} />} label="Contact" to="/contact" onClick={onClose} />
             <MenuItem
               icon={<Heart size={20} />}
@@ -80,14 +90,8 @@ export default function SideNav({ onClose }) {
               to="/wishlist"
               onClick={onClose}
             />
-            <MenuItem
-              icon={<ShoppingCart size={20} />}
-              label="Shopping Cart"
-              badge="4"
-              to="/cart"
-              onClick={onClose}
-            />
-            <MenuItem icon={<Radio size={20} />} label="Radio" to="/radio" onClick={onClose} />
+           
+
           </nav>
         </>
       ) : (

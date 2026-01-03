@@ -8,14 +8,13 @@ export default function AddCategoryForm({ onSuccess, onCancel }) {
 
   const [imagePreview, setImagePreview] = useState(null);
 
-  const imageFile = watch("imageFile")?.[0]; // preview only
+  const imageFile = watch("imageFile")?.[0]; 
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (!file) return;
 
     setImagePreview(URL.createObjectURL(file));
-    setValue("imageFile", e.target.files, { shouldValidate: true }); // <-- important
   };
 
   const handleRemoveImage = () => {
@@ -30,7 +29,7 @@ export default function AddCategoryForm({ onSuccess, onCancel }) {
       {
         name: data.name,
         description: data.description,
-        imageFile: data.imageFile?.[0] || null, // <-- this ensures proper File object
+        imageFile: data.imageFile?.[0] || null, 
       },
       {
         onSuccess: () => {
