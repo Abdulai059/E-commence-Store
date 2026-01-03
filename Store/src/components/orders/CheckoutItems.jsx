@@ -1,7 +1,7 @@
 import { formatCurrency } from "../../utils/helpers";
 
 function CheckoutItems({ item }) {
-  const { productId, image, name, quantity, unitPrice, totalPrice } = item;
+  const { image, name, quantity, unitPrice } = item;
 
   return (
     <div className="flex gap-4">
