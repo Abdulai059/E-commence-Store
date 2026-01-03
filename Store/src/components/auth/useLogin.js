@@ -15,7 +15,7 @@ export function useLogin() {
             // console.log("Login response:", user);
             queryClient.setQueryData(["user"], user.user);
             toast.success("Welcome back!");
-            navigate("/shop", { replace: true });
+            navigate("/", { replace: true });
         },
 
         onError: (error) => {
