@@ -5,36 +5,37 @@ function Feature() {
   const [stopScroll, setStopScroll] = useState(false);
   const cardData = [
     {
-      title: "Unlock Your Creative Flow",
+      title: "Power Up Your Kitchen",
       image:
-        "https://images.unsplash.com/photo-1543487945-139a97f387d5?w=1200&auto=format&fit=crop&q=60",
+        "https://unsplash.com/photos/u--nU1njg0A/download?force=true",
     },
     {
-      title: "Design Your Digital Future",
+      title: "Bring Movies to Life",
       image:
-        "https://images.unsplash.com/photo-1529254479751-faeedc59e78f?w=1200&auto=format&fit=crop&q=60",
+        "https://unsplash.com/photos/ZG-eiD3Ep_Q/download?force=true",
     },
     {
-      title: "Build with Passion, Ship with Pride",
+      title: "Keep It Cool in Style",
       image:
-        "https://images.unsplash.com/photo-1618327907215-4e514efabd41?w=1200&auto=format&fit=crop&q=60",
+        "https://unsplash.com/photos/aGnIPRua7zE/download?force=true",
     },
     {
-      title: "Think Big, Code Smart",
+      title: "Blend Your Way to Perfection",
       image:
-        "https://images.unsplash.com/photo-1583407723467-9b2d22504831?w=1200&auto=format&fit=crop&q=60",
+        "https://unsplash.com/photos/eIqO4P50MeY/download?force=true",
     },
     {
-      title: "Design Your Digital Future",
+      title: "Stay Comfortable All Year",
       image:
-        "https://images.unsplash.com/photo-1529254479751-faeedc59e78f?w=1200&auto=format&fit=crop&q=60",
+        "https://unsplash.com/photos/-8u1mnE-rVY/download?force=true",
     },
     {
-      title: "Build with Passion, Ship with Pride",
+      title: "Capture Every Moment",
       image:
-        "https://images.unsplash.com/photo-1618327907215-4e514efabd41?w=1200&auto=format&fit=crop&q=60",
+        "https://unsplash.com/photos/T4PGpx7WStQ/download?force=true",
     },
   ];
+
 
   return (
     <section className="px-4 py-0">
